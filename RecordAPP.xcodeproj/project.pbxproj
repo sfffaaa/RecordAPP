@@ -38,6 +38,10 @@
 		24161BC61894BE7C00BBFC56 /* RecordInfoLevelHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 24161BC51894BE7C00BBFC56 /* RecordInfoLevelHandler.m */; };
 		24161BC91894BE9400BBFC56 /* RecordInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 24161BC81894BE9400BBFC56 /* RecordInfo.m */; };
 		24161BCD1894C57500BBFC56 /* DBHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 24161BCC1894C57500BBFC56 /* DBHandler.m */; };
+		24C7033D189570C8008DDBA6 /* RecordStartView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24C7033C189570C8008DDBA6 /* RecordStartView.xib */; };
+		24C7033F189570DA008DDBA6 /* RecordStopView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24C7033E189570DA008DDBA6 /* RecordStopView.xib */; };
+		24C70341189570F6008DDBA6 /* RecordListenvStartView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24C70340189570F6008DDBA6 /* RecordListenvStartView.xib */; };
+		24C7034318957109008DDBA6 /* RecordListenStopView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24C7034218957109008DDBA6 /* RecordListenStopView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -105,6 +109,10 @@
 		24161BC81894BE9400BBFC56 /* RecordInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordInfo.m; sourceTree = "<group>"; };
 		24161BCB1894C57500BBFC56 /* DBHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBHandler.h; sourceTree = "<group>"; };
 		24161BCC1894C57500BBFC56 /* DBHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBHandler.m; sourceTree = "<group>"; };
+		24C7033C189570C8008DDBA6 /* RecordStartView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecordStartView.xib; sourceTree = "<group>"; };
+		24C7033E189570DA008DDBA6 /* RecordStopView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecordStopView.xib; sourceTree = "<group>"; };
+		24C70340189570F6008DDBA6 /* RecordListenvStartView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecordListenvStartView.xib; sourceTree = "<group>"; };
+		24C7034218957109008DDBA6 /* RecordListenStopView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecordListenStopView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,7 +177,9 @@
 				240930A4188D30CB00B01D94 /* BusinessLogic */,
 				24161B971893AD9A00BBFC56 /* Data Handler */,
 				24161B961893AD2700BBFC56 /* Functional Handler */,
-				2409309E188D1C9500B01D94 /* ViewControlerLevel-Handler */,
+				2409309E188D1C9500B01D94 /* ViewControllerLevel-Handler */,
+				24161BCE189561A000BBFC56 /* ViewController */,
+				24C7033B18957092008DDBA6 /* View */,
 				24093078188D1C5C00B01D94 /* RecordAppDelegate.h */,
 				24093079188D1C5C00B01D94 /* RecordAppDelegate.m */,
 				2409307B188D1C5C00B01D94 /* Main.storyboard */,
@@ -210,7 +220,7 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		2409309E188D1C9500B01D94 /* ViewControlerLevel-Handler */ = {
+		2409309E188D1C9500B01D94 /* ViewControllerLevel-Handler */ = {
 			isa = PBXGroup;
 			children = (
 				24161BC31894BE5600BBFC56 /* RecordInfoLevel */,
@@ -219,7 +229,7 @@
 				24161BAC1893DDA300BBFC56 /* RecordingLevel */,
 				240930A5188D30D800B01D94 /* UserSettingLevel */,
 			);
-			name = "ViewControlerLevel-Handler";
+			name = "ViewControllerLevel-Handler";
 			sourceTree = "<group>";
 		};
 		240930A2188D29DD00B01D94 /* Globol */ = {
@@ -375,6 +385,24 @@
 			name = DBHandler;
 			sourceTree = "<group>";
 		};
+		24161BCE189561A000BBFC56 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = ViewController;
+			sourceTree = "<group>";
+		};
+		24C7033B18957092008DDBA6 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				24C7033C189570C8008DDBA6 /* RecordStartView.xib */,
+				24C7033E189570DA008DDBA6 /* RecordStopView.xib */,
+				24C70340189570F6008DDBA6 /* RecordListenvStartView.xib */,
+				24C7034218957109008DDBA6 /* RecordListenStopView.xib */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -452,8 +480,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				24C70341189570F6008DDBA6 /* RecordListenvStartView.xib in Resources */,
+				24C7033D189570C8008DDBA6 /* RecordStartView.xib in Resources */,
 				24093082188D1C5C00B01D94 /* Images.xcassets in Resources */,
 				24093074188D1C5C00B01D94 /* InfoPlist.strings in Resources */,
+				24C7034318957109008DDBA6 /* RecordListenStopView.xib in Resources */,
+				24C7033F189570DA008DDBA6 /* RecordStopView.xib in Resources */,
 				2409307D188D1C5C00B01D94 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
