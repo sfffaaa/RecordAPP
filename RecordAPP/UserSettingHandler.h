@@ -21,6 +21,6 @@
 
 @end
 
-@interface UserSettingHandler : NSObject <BusinessLogicGoNexter, BusinessLogicChecker>
+@interface UserSettingHandler : NSObject <BusinessLogicProtocol>
 @property (nonatomic, strong) UserSetting* userSetting;
 @end

@@ -7,10 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "RecordActionProtocol.h"
 
-@interface RecordLevelHandler : NSObject
+@interface RecordLevelHandler : NSObject <RecordActionProtocol>
 
-- (int) getRemainRecordTime;
-- (NSString*) getRecordingPath;
-- (BOOL) startRecording:(NSString*) filePath;
 @end

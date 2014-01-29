@@ -38,17 +38,24 @@
     return inst;
 }
 
++(STATE_TYPE) getNowStat
+{
+    BusinessLogicHandler* handler = [BusinessLogicHandler getBusinessLogicHanlder];
+    CHECK_NIL(handler);
+    return [handler nowState];
+}
+
 // -1: error occurs
 //  0: success
 // >0: callback depend
 -(int) goNextState:(STATE_TYPE) nextState nexter:(id) nexter checker:(id) checker
 {
     int ret = -1;
-    if (FALSE == [nexter conformsToProtocol:@protocol(BusinessLogicGoNexter)]) {
+    if (FALSE == [nexter conformsToProtocol:@protocol(BusinessLogicProtocol)]) {
         DLog(@"input class doens't has BusinessLogicGoNexter protocol");
         goto END;
     }
-    if (FALSE == [checker conformsToProtocol:@protocol(BusinessLogicChecker)]) {
+    if (FALSE == [checker conformsToProtocol:@protocol(BusinessLogicProtocol)]) {
         DLog(@"input class doens't has BusinessLogicGoNexter protocol");
         goto END;
     }

@@ -42,6 +42,10 @@
 		24C7033F189570DA008DDBA6 /* RecordStopView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24C7033E189570DA008DDBA6 /* RecordStopView.xib */; };
 		24C70341189570F6008DDBA6 /* RecordListenvStartView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24C70340189570F6008DDBA6 /* RecordListenvStartView.xib */; };
 		24C7034318957109008DDBA6 /* RecordListenStopView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24C7034218957109008DDBA6 /* RecordListenStopView.xib */; };
+		24C7034A1896B63F008DDBA6 /* RecordingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24C703491896B63F008DDBA6 /* RecordingViewController.m */; };
+		24C703541896BFFD008DDBA6 /* EventHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 24C703531896BFFD008DDBA6 /* EventHandler.m */; };
+		24C703581896C073008DDBA6 /* TimerHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 24C703571896C073008DDBA6 /* TimerHandler.m */; };
+		24C7035C189949ED008DDBA6 /* InitializatorLevelHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 24C7035B189949ED008DDBA6 /* InitializatorLevelHandler.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -113,6 +117,15 @@
 		24C7033E189570DA008DDBA6 /* RecordStopView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecordStopView.xib; sourceTree = "<group>"; };
 		24C70340189570F6008DDBA6 /* RecordListenvStartView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecordListenvStartView.xib; sourceTree = "<group>"; };
 		24C7034218957109008DDBA6 /* RecordListenStopView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecordListenStopView.xib; sourceTree = "<group>"; };
+		24C703481896B63F008DDBA6 /* RecordingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordingViewController.h; sourceTree = "<group>"; };
+		24C703491896B63F008DDBA6 /* RecordingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordingViewController.m; sourceTree = "<group>"; };
+		24C703501896BBF8008DDBA6 /* RecordActionProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordActionProtocol.h; sourceTree = "<group>"; };
+		24C703521896BFFD008DDBA6 /* EventHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventHandler.h; sourceTree = "<group>"; };
+		24C703531896BFFD008DDBA6 /* EventHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventHandler.m; sourceTree = "<group>"; };
+		24C703561896C073008DDBA6 /* TimerHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimerHandler.h; sourceTree = "<group>"; };
+		24C703571896C073008DDBA6 /* TimerHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimerHandler.m; sourceTree = "<group>"; };
+		24C7035A189949ED008DDBA6 /* InitializatorLevelHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InitializatorLevelHandler.h; sourceTree = "<group>"; };
+		24C7035B189949ED008DDBA6 /* InitializatorLevelHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InitializatorLevelHandler.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -223,10 +236,11 @@
 		2409309E188D1C9500B01D94 /* ViewControllerLevel-Handler */ = {
 			isa = PBXGroup;
 			children = (
+				24C70359189949A3008DDBA6 /* InitialtorLevel */,
 				24161BC31894BE5600BBFC56 /* RecordInfoLevel */,
 				24161BBE1894029A00BBFC56 /* StatisticDetailLevel */,
 				24161BB71893FA4100BBFC56 /* StatisticTableLevel */,
-				24161BAC1893DDA300BBFC56 /* RecordingLevel */,
+				24161BAC1893DDA300BBFC56 /* Recording/Listening Level */,
 				240930A5188D30D800B01D94 /* UserSettingLevel */,
 			);
 			name = "ViewControllerLevel-Handler";
@@ -261,11 +275,13 @@
 		24161B961893AD2700BBFC56 /* Functional Handler */ = {
 			isa = PBXGroup;
 			children = (
+				24C703551896C061008DDBA6 /* TimerHandler */,
+				24C703511896BFDD008DDBA6 /* EventHandler */,
 				24161BCA1894C56200BBFC56 /* DBHandler */,
 				24161BB31893F97800BBFC56 /* Encourage */,
 				24161B9D1893AE3100BBFC56 /* Wakeup */,
 				24161B9C1893AE2400BBFC56 /* Email */,
-				24161B9B1893AE1800BBFC56 /* Record */,
+				24161B9B1893AE1800BBFC56 /* Record/Listen */,
 			);
 			name = "Functional Handler";
 			sourceTree = "<group>";
@@ -278,7 +294,7 @@
 			name = "Data Handler";
 			sourceTree = "<group>";
 		};
-		24161B9B1893AE1800BBFC56 /* Record */ = {
+		24161B9B1893AE1800BBFC56 /* Record/Listen */ = {
 			isa = PBXGroup;
 			children = (
 				24161B931893AD1E00BBFC56 /* RecordHandler.h */,
@@ -288,7 +304,7 @@
 				24161BB01893F80100BBFC56 /* RecordFileHandler.h */,
 				24161BB11893F80100BBFC56 /* RecordFileHandler.m */,
 			);
-			name = Record;
+			name = Record/Listen;
 			sourceTree = "<group>";
 		};
 		24161B9C1893AE2400BBFC56 /* Email */ = {
@@ -322,13 +338,14 @@
 			name = DatabaseAPI;
 			sourceTree = "<group>";
 		};
-		24161BAC1893DDA300BBFC56 /* RecordingLevel */ = {
+		24161BAC1893DDA300BBFC56 /* Recording/Listening Level */ = {
 			isa = PBXGroup;
 			children = (
-				24161BAD1893DE3100BBFC56 /* RecordLevelHandler.h */,
-				24161BAE1893DE3100BBFC56 /* RecordLevelHandler.m */,
+				24C7034E1896B8E9008DDBA6 /* Base (Protocol) */,
+				24C7034D1896B8D6008DDBA6 /* Listening */,
+				24C7034C1896B897008DDBA6 /* Recording */,
 			);
-			name = RecordingLevel;
+			name = "Recording/Listening Level";
 			sourceTree = "<group>";
 		};
 		24161BB31893F97800BBFC56 /* Encourage */ = {
@@ -388,6 +405,7 @@
 		24161BCE189561A000BBFC56 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				24C703471896B57A008DDBA6 /* RecordingView */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -401,6 +419,66 @@
 				24C7034218957109008DDBA6 /* RecordListenStopView.xib */,
 			);
 			name = View;
+			sourceTree = "<group>";
+		};
+		24C703471896B57A008DDBA6 /* RecordingView */ = {
+			isa = PBXGroup;
+			children = (
+				24C703481896B63F008DDBA6 /* RecordingViewController.h */,
+				24C703491896B63F008DDBA6 /* RecordingViewController.m */,
+			);
+			name = RecordingView;
+			sourceTree = "<group>";
+		};
+		24C7034C1896B897008DDBA6 /* Recording */ = {
+			isa = PBXGroup;
+			children = (
+				24161BAD1893DE3100BBFC56 /* RecordLevelHandler.h */,
+				24161BAE1893DE3100BBFC56 /* RecordLevelHandler.m */,
+			);
+			name = Recording;
+			sourceTree = "<group>";
+		};
+		24C7034D1896B8D6008DDBA6 /* Listening */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Listening;
+			sourceTree = "<group>";
+		};
+		24C7034E1896B8E9008DDBA6 /* Base (Protocol) */ = {
+			isa = PBXGroup;
+			children = (
+				24C703501896BBF8008DDBA6 /* RecordActionProtocol.h */,
+			);
+			name = "Base (Protocol)";
+			sourceTree = "<group>";
+		};
+		24C703511896BFDD008DDBA6 /* EventHandler */ = {
+			isa = PBXGroup;
+			children = (
+				24C703521896BFFD008DDBA6 /* EventHandler.h */,
+				24C703531896BFFD008DDBA6 /* EventHandler.m */,
+			);
+			name = EventHandler;
+			sourceTree = "<group>";
+		};
+		24C703551896C061008DDBA6 /* TimerHandler */ = {
+			isa = PBXGroup;
+			children = (
+				24C703561896C073008DDBA6 /* TimerHandler.h */,
+				24C703571896C073008DDBA6 /* TimerHandler.m */,
+			);
+			name = TimerHandler;
+			sourceTree = "<group>";
+		};
+		24C70359189949A3008DDBA6 /* InitialtorLevel */ = {
+			isa = PBXGroup;
+			children = (
+				24C7035A189949ED008DDBA6 /* InitializatorLevelHandler.h */,
+				24C7035B189949ED008DDBA6 /* InitializatorLevelHandler.m */,
+			);
+			name = InitialtorLevel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -512,11 +590,14 @@
 				24161BA51893B11A00BBFC56 /* RecordSettingHandler.m in Sources */,
 				24161BC11894032800BBFC56 /* StatisticDetailLevelHandler.m in Sources */,
 				24093080188D1C5C00B01D94 /* RecordViewController.m in Sources */,
+				24C7035C189949ED008DDBA6 /* InitializatorLevelHandler.m in Sources */,
 				240930A1188D1CDC00B01D94 /* BusinessLogicHandler.m in Sources */,
+				24C7034A1896B63F008DDBA6 /* RecordingViewController.m in Sources */,
 				24161BA21893AE8900BBFC56 /* DatabaseHandler.m in Sources */,
 				24161BAB1893B1ED00BBFC56 /* WakeupSettingHandler.m in Sources */,
 				24161BA81893B19300BBFC56 /* EmailSettingHandler.m in Sources */,
 				24161BC61894BE7C00BBFC56 /* RecordInfoLevelHandler.m in Sources */,
+				24C703541896BFFD008DDBA6 /* EventHandler.m in Sources */,
 				24161BC91894BE9400BBFC56 /* RecordInfo.m in Sources */,
 				24093076188D1C5C00B01D94 /* main.m in Sources */,
 				24161BAF1893DE3100BBFC56 /* RecordLevelHandler.m in Sources */,
@@ -524,6 +605,7 @@
 				24161BB21893F80100BBFC56 /* RecordFileHandler.m in Sources */,
 				24161BBD1894029300BBFC56 /* StatisticTableLevelHandler.m in Sources */,
 				2409307A188D1C5C00B01D94 /* RecordAppDelegate.m in Sources */,
+				24C703581896C073008DDBA6 /* TimerHandler.m in Sources */,
 				240930A8188D30FF00B01D94 /* UserSettingHandler.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -19,11 +19,8 @@ typedef enum _STATE {
     SETTING_STATE,
 } STATE_TYPE;
 
-@protocol BusinessLogicGoNexter <NSObject>
+@protocol BusinessLogicProtocol <NSObject>
 - (int) goFrom:(STATE_TYPE) nowState to:(STATE_TYPE)nextState;
-@end
-
-@protocol BusinessLogicChecker <NSObject>
 - (int) checkFrom:(STATE_TYPE) nowState to:(STATE_TYPE)nextState;
 @end
 
