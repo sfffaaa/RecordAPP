@@ -140,14 +140,15 @@
 }
 
 #pragma mark - Protocol
-- (int) goFrom:(STATE_TYPE)nowState to:(STATE_TYPE)nextState
+- (id<BusinessLogicProtocol>) goTo:(STATE_TYPE)nextState
 {
     return 0;
 }
 
-- (int) checkFrom:(STATE_TYPE)nowState to:(STATE_TYPE)nextState
+- (int) checkTo:(STATE_TYPE)nextState
 {
     int ret = -1;
+    STATE_TYPE nowState = [BusinessLogicHandler getNowStat];
     //From each state
     if (STATISTIC_ROUGH_STATE != nowState ||
         STATISTIC_DETAIL_STATE != nowState ||

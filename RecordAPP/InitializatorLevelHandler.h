@@ -7,8 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "BaseLevelHandler.h"
 #import "BusinessLogicHandler.h"
 
-@interface InitializatorLevelHandler : NSObject
+@interface InitializatorLevelHandler : BaseLevelHandler <BusinessLogicProtocol>
+
+- (BOOL) startInitialize;
 
 @end

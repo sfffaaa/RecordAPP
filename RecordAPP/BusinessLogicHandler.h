@@ -10,7 +10,8 @@
 
 typedef enum _STATE {
     INIT_STATE = 0,
-    RECORD_VOICE_STATE,
+    RECORD_VOICE_START_STATE,
+    RECORDING_VOICE_STATE,
     RECORD_TEXT_STATE,
     RECORD_FINISH_STATE,
     STATISTIC_ROUGH_STATE,
@@ -20,14 +21,19 @@ typedef enum _STATE {
 } STATE_TYPE;
 
 @protocol BusinessLogicProtocol <NSObject>
-- (int) goFrom:(STATE_TYPE) nowState to:(STATE_TYPE)nextState;
-- (int) checkFrom:(STATE_TYPE) nowState to:(STATE_TYPE)nextState;
+- (int) getNextState:(STATE_TYPE*) nextState;
+- (id<BusinessLogicProtocol>) goTo:(STATE_TYPE)nextState;
+- (int) checkTo:(STATE_TYPE)nextState;
 @end
 
 //singleton
 @interface BusinessLogicHandler : NSObject
 @property (nonatomic) STATE_TYPE nowState;
 @property (nonatomic) STATE_TYPE oldState;
+@property (nonatomic, strong) id<BusinessLogicProtocol> handler;
 +(BusinessLogicHandler*) getBusinessLogicHanlder;
--(int) goNextState:(STATE_TYPE) nextState nexter:(id) nexter checker:(id) checker;
++(STATE_TYPE) getNowStat;
++(STATE_TYPE) getOldStat;
+-(int) goNext;
+
 @end

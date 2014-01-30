@@ -8,11 +8,14 @@
 
 #import "DebugUtil.h"
 #import "BusinessLogicHandler.h"
+#import "BaseLevelHandler.h"
+#import "InitializatorLevelHandler.h"
 
 @implementation BusinessLogicHandler
 
 @synthesize nowState = _nowState;
 @synthesize oldState = _oldState;
+@synthesize handler = _handler;
 
 - (id) init
 {
@@ -20,10 +23,10 @@
     if (nil != self) {
         _oldState = INIT_STATE;
         _nowState = INIT_STATE;
+        _handler = Nil;
     }
     return self;
 }
-
 
 #pragma mark - should change page when recording!
 +(BusinessLogicHandler*) getBusinessLogicHanlder
@@ -45,29 +48,45 @@
     return [handler nowState];
 }
 
++(STATE_TYPE) getOldStat
+{
+    BusinessLogicHandler* handler = [BusinessLogicHandler getBusinessLogicHanlder];
+    CHECK_NIL(handler);
+    return [handler oldState];
+}
+
 // -1: error occurs
 //  0: success
 // >0: callback depend
--(int) goNextState:(STATE_TYPE) nextState nexter:(id) nexter checker:(id) checker
+-(int) goNext
 {
     int ret = -1;
-    if (FALSE == [nexter conformsToProtocol:@protocol(BusinessLogicProtocol)]) {
+    STATE_TYPE nextState;
+    id nower = [self handler];
+    id<BusinessLogicProtocol> nexter;
+
+    if (FALSE == [nower conformsToProtocol:@protocol(BusinessLogicProtocol)]) {
         DLog(@"input class doens't has BusinessLogicGoNexter protocol");
         goto END;
     }
-    if (FALSE == [checker conformsToProtocol:@protocol(BusinessLogicProtocol)]) {
-        DLog(@"input class doens't has BusinessLogicGoNexter protocol");
+    if (0 > [nower getNextState:&nextState]) {
+        DLog(@"nexter(%@) getNextState error", NSStringFromClass([nower class]));
         goto END;
     }
-    
-    if (0 > [checker checkFrom:[self nowState] to:nextState]) {
-        DLog(@"checker(%@) doesn't pass", NSStringFromClass([checker class]));
+    if (0 > [nower checkTo:nextState]) {
+        DLog(@"nexter(%@) doesn't pass", NSStringFromClass([nower class]));
         goto END;
     }
-    if (0 > (ret = [nexter goFrom:[self nowState] to:nextState])) {
-        DLog(@"nexter(%@) failed", NSStringFromClass([nexter class]));
+#pragma mark (TODO) need to check nower is kind of BaseLevelHandler
+    if (nil == [nower nowVC]) {
+        DLog(@"There is no nowVC");
         goto END;
     }
+    if (nil == (nexter = [nower goTo:nextState])) {
+        DLog(@"nexter(%@) failed", NSStringFromClass([nower class]));
+        goto END;
+    }
+    [self setHandler:nexter];
     [self setOldState:[self nowState]];
     [self setNowState:nextState];
     

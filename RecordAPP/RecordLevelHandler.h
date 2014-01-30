@@ -7,8 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "BusinessLogicHandler.h"
 #import "RecordActionProtocol.h"
+#import "BaseLevelHandler.h"
 
-@interface RecordLevelHandler : NSObject <RecordActionProtocol>
+@interface RecordLevelHandler : BaseLevelHandler <RecordActionProtocol, BusinessLogicProtocol>
 
 @end

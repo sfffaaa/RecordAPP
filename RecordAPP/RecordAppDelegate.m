@@ -8,13 +8,55 @@
 
 #import "RecordAppDelegate.h"
 #import "BusinessLogicHandler.h"
+#import "InitializatorLevelHandler.h"
+#import "RecordingViewController.h"
 #import "DebugUtil.h"
 
 @implementation RecordAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
+    /* Initialize:
+     *   1. Set and initial init handler
+     *   2. Set Business logic handler state
+     *   3. Add subview;
+     *   4. Set navigation view controller
+     *   5. Start initialization
+     *   6. Go to next
+     */
+    
+    RecordingViewController* recordingVC = [[RecordingViewController alloc] initWithNibName:@"RecordStartView" bundle:nil];
+    
+    //1. Set and initial init handler
+    InitializatorLevelHandler* initHandler = [[InitializatorLevelHandler alloc] init];
+    [initHandler setNowVC:recordingVC];
+    [initHandler setStoredNextState:RECORD_VOICE_START_STATE];
+    
+    //   2. Set Business logic handler state (Recording)
+    [[BusinessLogicHandler getBusinessLogicHanlder] setNowState:INIT_STATE];
+    [[BusinessLogicHandler getBusinessLogicHanlder] setHandler:initHandler];
+    
+    //   3. Add subview;
+    UIView* initView = [[[NSBundle mainBundle] loadNibNamed:@"InitView" owner:nil options:nil] objectAtIndex:0];
+    [recordingVC.view addSubview:initView];
+    
+    //  4. Set navigation view controller
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:recordingVC];
+    [navigationController setNavigationBarHidden:TRUE];
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    [self.window setRootViewController:navigationController];
+    
+    //  5. Start initialization
+    if (FALSE == [initHandler startInitialize]) {
+        DLog(@"Should not enter here");
+        return NO;
+    }
+    // 6. Goto Next;
+    if (0 != [[BusinessLogicHandler getBusinessLogicHanlder] goNext]) {
+        DLog(@"BusinessLogicHandler error: cannot go Next");
+        return NO;
+    }
+
     return YES;
 }
 							
@@ -32,7 +74,8 @@
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
-
+    BusinessLogicHandler* handler = [BusinessLogicHandler getBusinessLogicHanlder];
+    [handler goNext];
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
 }
 

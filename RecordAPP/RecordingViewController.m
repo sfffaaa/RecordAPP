@@ -7,14 +7,10 @@
 //
 
 #import "RecordingViewController.h"
-#import "RecordLevelHandler.h"
-
-@interface RecordingViewController ()
-@property (nonatomic, strong) id<RecordActionProtocol> recordAction;
-@end
 
 @implementation RecordingViewController
 @synthesize recordAction = _recordAction;
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
