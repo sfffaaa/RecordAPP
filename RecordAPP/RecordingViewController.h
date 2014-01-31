@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "RecordLevelHandler.h"
+#import "BaseVC.h"
 
-@interface RecordingViewController : UIViewController
-@property (nonatomic, strong) id<RecordActionProtocol, BusinessLogicProtocol> recordAction;
+@interface RecordingViewController : BaseVC
 @end

@@ -12,5 +12,5 @@
 #import "BaseLevelHandler.h"
 
 @interface RecordLevelHandler : BaseLevelHandler <RecordActionProtocol, BusinessLogicProtocol>
-
+- (id) initWithNowVC: (id)VC;
 @end

@@ -16,13 +16,13 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+#pragma mark (TODO) Need one VC for enter a icon page.
     /* Initialize:
      *   1. Set and initial init handler
      *   2. Set Business logic handler state
-     *   3. Add subview;
-     *   4. Set navigation view controller
-     *   5. Start initialization
-     *   6. Go to next
+     *   3. Set navigation view controller
+     *   4. Start initialization
+     *   5. Go to next
      */
     
     RecordingViewController* recordingVC = [[RecordingViewController alloc] initWithNibName:@"RecordStartView" bundle:nil];
@@ -36,22 +36,17 @@
     [[BusinessLogicHandler getBusinessLogicHanlder] setNowState:INIT_STATE];
     [[BusinessLogicHandler getBusinessLogicHanlder] setHandler:initHandler];
     
-    //   3. Add subview;
-    UIView* initView = [[[NSBundle mainBundle] loadNibNamed:@"InitView" owner:nil options:nil] objectAtIndex:0];
-    [recordingVC.view addSubview:initView];
-    
-    //  4. Set navigation view controller
+    //  3. Set navigation view controller
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:recordingVC];
     [navigationController setNavigationBarHidden:TRUE];
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     [self.window setRootViewController:navigationController];
     
-    //  5. Start initialization
+    //  4. Start initialization
     if (FALSE == [initHandler startInitialize]) {
         DLog(@"Should not enter here");
         return NO;
     }
-    // 6. Goto Next;
+    // 5. Goto Next;
     if (0 != [[BusinessLogicHandler getBusinessLogicHanlder] goNext]) {
         DLog(@"BusinessLogicHandler error: cannot go Next");
         return NO;

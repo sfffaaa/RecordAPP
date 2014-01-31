@@ -7,12 +7,17 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "BusinessLogicHandler.h"
 #import <UIKit/UIKit.h>
+
+#import "BusinessLogicHandler.h"
+#import "BaseVC.h"
+
+@class BaseVC;
 
 @interface BaseLevelHandler : NSObject
 @property (nonatomic) STATE_TYPE storedNextState;
-@property (nonatomic, weak) UIViewController* nowVC;
-@property (nonatomic, weak) UIViewController* nextVC;
+#pragma  mark - (TODO) Just create a class (check later)
+@property (nonatomic, weak) BaseVC* nowVC;
+@property (nonatomic, weak) BaseVC* nextVC;
 
 @end

@@ -11,7 +11,6 @@
 #import "BusinessLogicHandler.h"
 
 @interface InitializatorLevelHandler : BaseLevelHandler <BusinessLogicProtocol>
-
 - (BOOL) startInitialize;
 
 @end
