@@ -11,7 +11,12 @@
 #import <UIKit/UIKit.h>
 
 //Include recording and decide where to store.
+@interface RecordLevelHandler()
+@property (nonatomic, weak) UIView* stopView;
+@end
+
 @implementation RecordLevelHandler
+@synthesize stopView = _stopView;
 
 - (id) initWithNowVC: (id)VC
 {
@@ -74,8 +79,14 @@
     //1. Call record handler to stop record
     //2. Maybe we can record the time into database?
     //3. Maybe we can upload the record file to ds?
-    CHECK_NOT_ENTER_HERE;
-    return FALSE;
+    [self setStoredNextState:RECORD_TEXT_STATE];
+    if (0 != [[BusinessLogicHandler getBusinessLogicHanlder] goNext]) {
+        DLog(@"BusinessLogicHandler error: cannot go Next");
+        return NO;
+    }
+    
+
+    return TRUE;
 }
 
 #pragma mark BusinessLogicProtocol Implement
@@ -101,16 +112,32 @@ END:
 - (id<BusinessLogicProtocol>) goTo:(STATE_TYPE)nextState
 {
     if (RECORDING_VOICE_STATE == nextState) {
-        
+        if (nil !=[self stopView]) {
+            CHECK_NOT_ENTER_HERE;
+        }
+        //1. Create the superview
         UIView* view = [[[NSBundle mainBundle] loadNibNamed:@"RecordStopView" owner:[self nowVC] options:nil] objectAtIndex:0];
+        [self setStopView:view];
         
+        // Animation
         [UIView beginAnimations:@"animation" context:nil];
         [UIView setAnimationDuration:1.0f];
         [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
         [UIView setAnimationTransition:UIViewAnimationTransitionCurlDown forView:[self nowVC].view cache:YES];
+        //2. Put view to view controller
         [[self nowVC].view addSubview:view];
         [UIView commitAnimations];
         return [[self nowVC] baseLevelHandler];
+    } else if (RECORD_TEXT_STATE == nextState) {
+        //1. Remove the superview
+        [[self stopView] removeFromSuperview];
+        [self setStopView:nil];
+        //2. Segue to next
+        [[self nowVC] performSegueWithIdentifier:@"toRecordingText" sender:nil];
+        //3. Set view controller and baseLevelHandler;
+        [[[self nowVC] navigationController] setNavigationBarHidden:FALSE];
+        return [[self nowVC] baseLevelHandler];
+
     }
     return 0;
 }
@@ -121,11 +148,13 @@ END:
     STATE_TYPE nowState = [BusinessLogicHandler getNowStat];
     
     //From each state
-    if (RECORD_VOICE_START_STATE != nowState) {
+    if (RECORD_VOICE_START_STATE != nowState &&
+        RECORDING_VOICE_STATE != nowState) {
         goto END;
     }
     //To here
-    if (RECORDING_VOICE_STATE != nextState) {
+    if (RECORDING_VOICE_STATE != nextState &&
+        RECORD_TEXT_STATE != nextState) {
         goto END;
     }
     

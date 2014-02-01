@@ -32,7 +32,6 @@
 
     [[self nowVC].view addSubview:[self initialView]];
     
-    sleep(10);
     DLog(@"start initialization");
     return TRUE;
 }

@@ -25,13 +25,17 @@
      *   5. Go to next
      */
     
-    RecordingViewController* recordingVC = [[RecordingViewController alloc] initWithNibName:@"RecordStartView" bundle:nil];
+    UIStoryboard * storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    RecordingViewController* recordingVC = [storyboard instantiateViewControllerWithIdentifier:@"RecordingViewController"];
+    
+
+//    RecordingViewController* recordingVC = [[RecordingViewController alloc] initWithNibName:@"RecordStartView" bundle:nil];
     
     //1. Set and initial init handler
     InitializatorLevelHandler* initHandler = [[InitializatorLevelHandler alloc] init];
     [initHandler setNowVC:recordingVC];
     [initHandler setStoredNextState:RECORD_VOICE_START_STATE];
-    
+
     //   2. Set Business logic handler state (Recording)
     [[BusinessLogicHandler getBusinessLogicHanlder] setNowState:INIT_STATE];
     [[BusinessLogicHandler getBusinessLogicHanlder] setHandler:initHandler];
@@ -40,6 +44,7 @@
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:recordingVC];
     [navigationController setNavigationBarHidden:TRUE];
     [self.window setRootViewController:navigationController];
+//    [[[self.window rootViewController] navigationController] setNavigationBarHidden:TRUE];
     
     //  4. Start initialization
     if (FALSE == [initHandler startInitialize]) {

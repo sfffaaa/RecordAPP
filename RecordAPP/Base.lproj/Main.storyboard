@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="Zir-zK-0gs">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
     <scenes>
-        <!--Recording View Controller-->
+        <!--Recording View Controller - a-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController id="vXZ-lx-hvc" customClass="RecordingViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RecordingViewController" title="a" id="vXZ-lx-hvc" customClass="RecordingViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="wFs-vH-824"/>
                         <viewControllerLayoutGuide type="bottom" id="pMq-Nk-TvF"/>
@@ -36,18 +36,21 @@
                                 <state key="normal" title="Recording">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="actionStart:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="xo3-56-53U"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="AZ9-ub-rRa"/>
                     <connections>
-                        <segue destination="b8c-FA-te2" kind="push" id="YN1-rh-a0x"/>
+                        <segue destination="b8c-FA-te2" kind="push" identifier="toRecordingText" id="YN1-rh-a0x"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="365" y="-27"/>
+            <point key="canvasLocation" x="353" y="-315"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="8HX-ZC-8Lq">
@@ -122,6 +125,9 @@
                                 <state key="normal" title="Listen">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <segue destination="5xJ-hf-Lhy" kind="push" id="bst-Wi-p3F"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GjS-VB-LQD">
                                 <rect key="frame" x="80" y="339" width="161" height="49"/>
@@ -138,6 +144,9 @@
                                 <state key="normal" title="Submit">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <segue destination="cVJ-6D-bUW" kind="push" id="R3W-yA-KG2"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -146,7 +155,63 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kBw-WC-xzT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="789" y="-27"/>
+            <point key="canvasLocation" x="727" y="-315"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="sJX-oN-jbH">
+            <objects>
+                <viewController id="cVJ-6D-bUW" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="eDd-Iq-fhs"/>
+                        <viewControllerLayoutGuide type="bottom" id="eHm-OF-F2p"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Twj-as-13N">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="L9D-hk-M06"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kKH-Mi-e6t" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1090" y="-34"/>
+        </scene>
+        <!--Recording View Controller-->
+        <scene sceneID="V31-C0-8uD">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qg2-9s-vO2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="5xJ-hf-Lhy" customClass="RecordingViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="cMs-P6-mdw"/>
+                        <viewControllerLayoutGuide type="bottom" id="DcR-jI-VSR"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="2k3-wt-KAV">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="4cQ-Ta-41b"/>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="1090" y="-609"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Z8o-0o-bDb">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Zir-zK-0gs" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="cAe-XD-jxS">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="vXZ-lx-hvc" kind="relationship" relationship="rootViewController" id="dnd-r4-1n6"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Dra-0L-iT0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-37" y="-315"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
