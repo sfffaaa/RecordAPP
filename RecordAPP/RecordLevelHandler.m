@@ -109,7 +109,7 @@ END:
     return ret;
 }
 
-- (id<BusinessLogicProtocol>) goTo:(STATE_TYPE)nextState
+- (int) goTo:(STATE_TYPE)nextState levelHandler: (id<BusinessLogicProtocol>*) handler
 {
     if (RECORDING_VOICE_STATE == nextState) {
         if (nil !=[self stopView]) {
@@ -127,19 +127,21 @@ END:
         //2. Put view to view controller
         [[self nowVC].view addSubview:view];
         [UIView commitAnimations];
-        return [[self nowVC] baseLevelHandler];
+        *handler = [[self nowVC] baseLevelHandler];
+        return 0;
     } else if (RECORD_TEXT_STATE == nextState) {
         //1. Remove the superview
         [[self stopView] removeFromSuperview];
         [self setStopView:nil];
         //2. Segue to next
-        [[self nowVC] performSegueWithIdentifier:@"toRecordingText" sender:nil];
+        [[self nowVC] performSegueWithIdentifier:@"toRecordingText" sender:self];
         //3. Set view controller and baseLevelHandler;
-        [[[self nowVC] navigationController] setNavigationBarHidden:FALSE];
-        return [[self nowVC] baseLevelHandler];
-
+        //4. Final setup
+        *handler = [[self nextVC] baseLevelHandler];
+        [self setNextVC:nil];
+        return 0;
     }
-    return 0;
+    return -1;
 }
 
 - (int) checkTo:(STATE_TYPE)nextState

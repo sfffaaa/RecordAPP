@@ -56,7 +56,7 @@ END:
     return ret;
 }
 
-- (id<BusinessLogicProtocol>) goTo:(STATE_TYPE)nextState
+- (int) goTo:(STATE_TYPE)nextState levelHandler: (id<BusinessLogicProtocol>*) handler
 {
     if (RECORDING_VOICE_STATE == nextState) {
         //1. go back to recording voice state
@@ -65,9 +65,10 @@ END:
         CHECK_NOT_ENTER_HERE;
     } else {
         [[self initialView] removeFromSuperview];
-        return [[self nowVC] baseLevelHandler];
+        *handler = [[self nowVC] baseLevelHandler];
+        return 0;
     }
-    return 0;
+    return -1;
 }
 
 - (int) checkTo:(STATE_TYPE)nextState

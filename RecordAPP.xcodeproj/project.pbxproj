@@ -50,6 +50,8 @@
 		24C703641899F658008DDBA6 /* InitView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24C703631899F658008DDBA6 /* InitView.xib */; };
 		24C7036D189A0E3F008DDBA6 /* BaseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 24C7036C189A0E3F008DDBA6 /* BaseVC.m */; };
 		24D17F6A189D1C73005CBA4E /* RecordingInfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 24D17F69189D1C73005CBA4E /* RecordingInfoVC.m */; };
+		24D17F6E189E6C05005CBA4E /* ListeningVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 24D17F6D189E6C05005CBA4E /* ListeningVC.m */; };
+		24D17F72189FA68C005CBA4E /* RecordInfoHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 24D17F71189FA68C005CBA4E /* RecordInfoHandler.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -137,6 +139,10 @@
 		24C7036C189A0E3F008DDBA6 /* BaseVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseVC.m; sourceTree = "<group>"; };
 		24D17F68189D1C73005CBA4E /* RecordingInfoVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordingInfoVC.h; sourceTree = "<group>"; };
 		24D17F69189D1C73005CBA4E /* RecordingInfoVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordingInfoVC.m; sourceTree = "<group>"; };
+		24D17F6C189E6C05005CBA4E /* ListeningVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListeningVC.h; sourceTree = "<group>"; };
+		24D17F6D189E6C05005CBA4E /* ListeningVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListeningVC.m; sourceTree = "<group>"; };
+		24D17F70189FA68C005CBA4E /* RecordInfoHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordInfoHandler.h; sourceTree = "<group>"; };
+		24D17F71189FA68C005CBA4E /* RecordInfoHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordInfoHandler.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -250,7 +256,6 @@
 				24C7036018994C1E008DDBA6 /* Base */,
 				24C70359189949A3008DDBA6 /* InitialtorLevel */,
 				24161BC31894BE5600BBFC56 /* RecordInfoLevel */,
-				24C7036118997403008DDBA6 /* New Group */,
 				24161BBE1894029A00BBFC56 /* StatisticDetailLevel */,
 				24161BB71893FA4100BBFC56 /* StatisticTableLevel */,
 				24161BAC1893DDA300BBFC56 /* Recording/Listening Level */,
@@ -288,6 +293,7 @@
 		24161B961893AD2700BBFC56 /* Functional Handler */ = {
 			isa = PBXGroup;
 			children = (
+				24D17F6F189FA622005CBA4E /* RecordInfoHandler */,
 				24C703551896C061008DDBA6 /* TimerHandler */,
 				24C703511896BFDD008DDBA6 /* EventHandler */,
 				24161BCA1894C56200BBFC56 /* DBHandler */,
@@ -418,8 +424,9 @@
 		24161BCE189561A000BBFC56 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				24D17F64189D1C1B005CBA4E /* RecordingInfoVC */,
 				24C70367189A0650008DDBA6 /* BaseVC */,
+				24D17F6B189E6B30005CBA4E /* ListeningVC */,
+				24D17F64189D1C1B005CBA4E /* RecordingInfoVC */,
 				24C703471896B57A008DDBA6 /* RecordingVC */,
 			);
 			name = ViewController;
@@ -506,13 +513,6 @@
 			name = Base;
 			sourceTree = "<group>";
 		};
-		24C7036118997403008DDBA6 /* New Group */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = "New Group";
-			sourceTree = "<group>";
-		};
 		24C70367189A0650008DDBA6 /* BaseVC */ = {
 			isa = PBXGroup;
 			children = (
@@ -529,6 +529,24 @@
 				24D17F69189D1C73005CBA4E /* RecordingInfoVC.m */,
 			);
 			name = RecordingInfoVC;
+			sourceTree = "<group>";
+		};
+		24D17F6B189E6B30005CBA4E /* ListeningVC */ = {
+			isa = PBXGroup;
+			children = (
+				24D17F6C189E6C05005CBA4E /* ListeningVC.h */,
+				24D17F6D189E6C05005CBA4E /* ListeningVC.m */,
+			);
+			name = ListeningVC;
+			sourceTree = "<group>";
+		};
+		24D17F6F189FA622005CBA4E /* RecordInfoHandler */ = {
+			isa = PBXGroup;
+			children = (
+				24D17F70189FA68C005CBA4E /* RecordInfoHandler.h */,
+				24D17F71189FA68C005CBA4E /* RecordInfoHandler.m */,
+			);
+			name = RecordInfoHandler;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -635,6 +653,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				24161B8F1893AC5E00BBFC56 /* EmailHandler.m in Sources */,
+				24D17F72189FA68C005CBA4E /* RecordInfoHandler.m in Sources */,
 				24161BB61893F98A00BBFC56 /* EncourageHandler.m in Sources */,
 				24161BCD1894C57500BBFC56 /* DBHandler.m in Sources */,
 				24D17F6A189D1C73005CBA4E /* RecordingInfoVC.m in Sources */,
@@ -648,6 +667,7 @@
 				24161BA21893AE8900BBFC56 /* DatabaseHandler.m in Sources */,
 				24C7035F18994C11008DDBA6 /* BaseLevelHandler.m in Sources */,
 				24161BAB1893B1ED00BBFC56 /* WakeupSettingHandler.m in Sources */,
+				24D17F6E189E6C05005CBA4E /* ListeningVC.m in Sources */,
 				24161BA81893B19300BBFC56 /* EmailSettingHandler.m in Sources */,
 				24161BC61894BE7C00BBFC56 /* RecordInfoLevelHandler.m in Sources */,
 				24C703541896BFFD008DDBA6 /* EventHandler.m in Sources */,

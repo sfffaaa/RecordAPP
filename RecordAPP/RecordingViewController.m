@@ -8,6 +8,7 @@
 
 #import "RecordingViewController.h"
 #import "RecordLevelHandler.h"
+#import "RecordingInfoVC.h"
 #import "DebugUtil.h"
 
 @implementation RecordingViewController
@@ -42,6 +43,7 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - action
 - (IBAction)actionStart:(UIButton *)sender
 {
     if (nil == [self baseLevelHandler]) {
@@ -71,6 +73,16 @@
     if (FALSE == [recordAction stop]) {
         DLog(@"Class() record cannot start");
         CHECK_NOT_ENTER_HERE;
+    }
+}
+
+#pragma mark - segue
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([[segue identifier] isEqualToString:@"toRecordingText"]) {
+        RecordLevelHandler* handler = sender;
+        RecordingInfoVC *vc = [segue destinationViewController];
+        [handler setNextVC:vc];
     }
 }
 @end

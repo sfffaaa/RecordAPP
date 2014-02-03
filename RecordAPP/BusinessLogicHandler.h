@@ -14,6 +14,8 @@ typedef enum _STATE {
     RECORDING_VOICE_STATE,
     RECORD_TEXT_STATE,
     RECORD_FINISH_STATE,
+    LISTEN_VOICE_START_STATE,
+    LISTENING_VOICE_STATE,
     STATISTIC_ROUGH_STATE,
     STATISTIC_DETAIL_STATE,
     RESTART_STATE,
@@ -22,7 +24,7 @@ typedef enum _STATE {
 
 @protocol BusinessLogicProtocol <NSObject>
 - (int) getNextState:(STATE_TYPE*) nextState;
-- (id<BusinessLogicProtocol>) goTo:(STATE_TYPE)nextState;
+- (int) goTo:(STATE_TYPE)nextState levelHandler: (id<BusinessLogicProtocol>*) handler;
 - (int) checkTo:(STATE_TYPE)nextState;
 @end
 

@@ -25,7 +25,7 @@
      *   5. Go to next
      */
     
-    UIStoryboard * storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     RecordingViewController* recordingVC = [storyboard instantiateViewControllerWithIdentifier:@"RecordingViewController"];
     
 
@@ -44,7 +44,7 @@
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:recordingVC];
     [navigationController setNavigationBarHidden:TRUE];
     [self.window setRootViewController:navigationController];
-//    [[[self.window rootViewController] navigationController] setNavigationBarHidden:TRUE];
+    [[[self.window rootViewController] navigationController] setNavigationBarHidden:TRUE];
     
     //  4. Start initialization
     if (FALSE == [initHandler startInitialize]) {

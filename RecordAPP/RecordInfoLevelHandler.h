@@ -11,5 +11,10 @@
 #import "BusinessLogicHandler.h"
 
 @interface RecordInfoLevelHandler : BaseLevelHandler <BusinessLogicProtocol>
+- (id) initWithNowVC: (id)VC;
+- (BOOL) recordAgain;
+- (BOOL) listen;
+- (BOOL) submit;
+
 
 @end

@@ -140,9 +140,11 @@
 }
 
 #pragma mark - Protocol
-- (id<BusinessLogicProtocol>) goTo:(STATE_TYPE)nextState
+// return -1: failure
+//         0: success
+- (int) goTo:(STATE_TYPE)nextState levelHandler: (id<BusinessLogicProtocol>*) handler
 {
-    return 0;
+    return -1;
 }
 
 - (int) checkTo:(STATE_TYPE)nextState

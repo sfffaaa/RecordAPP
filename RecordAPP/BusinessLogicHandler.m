@@ -82,7 +82,7 @@
         DLog(@"There is no nowVC");
         goto END;
     }
-    if (nil == (nexter = [nower goTo:nextState])) {
+    if (0 != [nower goTo:nextState levelHandler:&nexter]) {
         DLog(@"nexter(%@) failed", NSStringFromClass([nower class]));
         goto END;
     }
