@@ -9,5 +9,5 @@
 #import "BaseVC.h"
 
 @interface ListeningVC : BaseVC
-
+- (IBAction)actionStart:(UIButton *)sender;
 @end

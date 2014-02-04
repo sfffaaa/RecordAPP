@@ -16,6 +16,7 @@
 //Doesn't call by storyboard
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
+    CHECK_NOT_ENTER_HERE;
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         if (NSOrderedSame == [nibNameOrNil compare:@"RecordStartView"]) {

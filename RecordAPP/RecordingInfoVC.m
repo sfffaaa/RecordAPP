@@ -8,6 +8,7 @@
 
 #import "RecordingInfoVC.h"
 #import "RecordInfoLevelHandler.h"
+#import "ListeningVC.h"
 #import "DebugUtil.h"
 
 @interface RecordingInfoVC ()
@@ -80,4 +81,13 @@
     }
 }
 
+#pragma mark - segue
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([[segue identifier] isEqualToString:@"toListen"]) {
+        RecordInfoLevelHandler* handler = (RecordInfoLevelHandler*)sender;
+        ListeningVC *vc = [segue destinationViewController];
+        [handler setNextVC:vc];
+    }
+}
 @end

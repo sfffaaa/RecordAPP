@@ -52,6 +52,7 @@
 		24D17F6A189D1C73005CBA4E /* RecordingInfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 24D17F69189D1C73005CBA4E /* RecordingInfoVC.m */; };
 		24D17F6E189E6C05005CBA4E /* ListeningVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 24D17F6D189E6C05005CBA4E /* ListeningVC.m */; };
 		24D17F72189FA68C005CBA4E /* RecordInfoHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 24D17F71189FA68C005CBA4E /* RecordInfoHandler.m */; };
+		24D17F7518A1294C005CBA4E /* ListenLevelHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 24D17F7418A1294C005CBA4E /* ListenLevelHandler.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -143,6 +144,8 @@
 		24D17F6D189E6C05005CBA4E /* ListeningVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListeningVC.m; sourceTree = "<group>"; };
 		24D17F70189FA68C005CBA4E /* RecordInfoHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordInfoHandler.h; sourceTree = "<group>"; };
 		24D17F71189FA68C005CBA4E /* RecordInfoHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordInfoHandler.m; sourceTree = "<group>"; };
+		24D17F7318A1294C005CBA4E /* ListenLevelHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListenLevelHandler.h; sourceTree = "<group>"; };
+		24D17F7418A1294C005CBA4E /* ListenLevelHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListenLevelHandler.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -465,6 +468,8 @@
 		24C7034D1896B8D6008DDBA6 /* Listening */ = {
 			isa = PBXGroup;
 			children = (
+				24D17F7318A1294C005CBA4E /* ListenLevelHandler.h */,
+				24D17F7418A1294C005CBA4E /* ListenLevelHandler.m */,
 			);
 			name = Listening;
 			sourceTree = "<group>";
@@ -666,6 +671,7 @@
 				24C7034A1896B63F008DDBA6 /* RecordingViewController.m in Sources */,
 				24161BA21893AE8900BBFC56 /* DatabaseHandler.m in Sources */,
 				24C7035F18994C11008DDBA6 /* BaseLevelHandler.m in Sources */,
+				24D17F7518A1294C005CBA4E /* ListenLevelHandler.m in Sources */,
 				24161BAB1893B1ED00BBFC56 /* WakeupSettingHandler.m in Sources */,
 				24D17F6E189E6C05005CBA4E /* ListeningVC.m in Sources */,
 				24161BA81893B19300BBFC56 /* EmailSettingHandler.m in Sources */,

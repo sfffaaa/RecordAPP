@@ -56,18 +56,18 @@
 - (BOOL) listen
 {
     //goto listen page
-    CHECK_NOT_ENTER_HERE
     [self setStoredNextState:LISTEN_VOICE_START_STATE];
     if (0 != [[BusinessLogicHandler getBusinessLogicHanlder] goNext]) {
         DLog(@"BusinessLogicHandler error: cannot go Next");
-        return NO;
+        return FALSE;
     }
-    return FALSE;
+    return TRUE;
 }
 
 - (BOOL) recordAgain
 {
     //1. Store some information user enter.
+#pragma mark (TODO) Need to store some information user enters.
     /*
      *  The record info should extract to a handler to deal with it.
      *  It is because info should be show when reentering recordinfoVC.
@@ -79,14 +79,16 @@
         return NO;
     }
     //3. Goto next;
-//    RecordLevelHandler* handler = (RecordLevelHandler*)[[BusinessLogicHandler getBusinessLogicHanlder] handler];
-//    RecordingViewController* vc = (RecordingViewController*)[handler nowVC];
-//    [vc actionStart:nil];
+    RecordLevelHandler* handler = (RecordLevelHandler*)[[BusinessLogicHandler getBusinessLogicHanlder] handler];
+    RecordingViewController* vc = (RecordingViewController*)[handler nowVC];
+    [vc actionStart:nil];
+#pragma mark (TODO) Maybe has memory leak.
+
 
     return TRUE;
 }
 
-#pragma mark BusinessLogicProtocol Implement
+#pragma mark - BusinessLogicProtocol Implement
 - (int) getNextState:(STATE_TYPE*) pNextState
 {
     int ret = -1;
@@ -94,12 +96,7 @@
         DLog(@"Wrong parameter");
         goto END;
     }
-    if (INIT_STATE == [self storedNextState]) {
-        DLog(@"No next step");
-        goto END;
-    } else {
-        *pNextState = [self storedNextState];
-    }
+    *pNextState = [self storedNextState];
     
     ret = 0;
 END:
@@ -117,6 +114,12 @@ END:
         //4. Final setup
         *handler = [vc baseLevelHandler];
         return 0;
+    } else if (LISTEN_VOICE_START_STATE == nextState) {
+        //segue to other view controller;
+        [[self nowVC] performSegueWithIdentifier:@"toListen" sender:self];
+        *handler = [[self nextVC] baseLevelHandler];
+        [self setNextVC:nil];
+        return 0;
     }
     return -1;
 }
@@ -131,7 +134,8 @@ END:
         goto END;
     }
     //To here
-    if (RECORD_VOICE_START_STATE != nextState) {
+    if (RECORD_VOICE_START_STATE != nextState &&
+        LISTEN_VOICE_START_STATE != nextState) {
         goto END;
     }
     
