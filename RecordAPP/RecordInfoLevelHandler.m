@@ -78,9 +78,12 @@
         DLog(@"BusinessLogicHandler error: cannot go Next");
         return NO;
     }
-    //3. Set self things.
-    //4. Popout the view controller
-    return FALSE;
+    //3. Goto next;
+//    RecordLevelHandler* handler = (RecordLevelHandler*)[[BusinessLogicHandler getBusinessLogicHanlder] handler];
+//    RecordingViewController* vc = (RecordingViewController*)[handler nowVC];
+//    [vc actionStart:nil];
+
+    return TRUE;
 }
 
 #pragma mark BusinessLogicProtocol Implement
@@ -111,9 +114,8 @@ END:
         NSArray* array = [[[self nowVC] navigationController] viewControllers];
         //3. Set view controller and baseLevelHandler;
         RecordingViewController* vc = [array objectAtIndex:[array count] - 1];
-//        ASDFASDF
         //4. Final setup
-        *handler = [[self nextVC] baseLevelHandler];
+        *handler = [vc baseLevelHandler];
         return 0;
     }
     return -1;

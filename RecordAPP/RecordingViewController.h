@@ -11,4 +11,5 @@
 #import "BaseVC.h"
 
 @interface RecordingViewController : BaseVC
+//- (IBAction)actionStart:(UIButton *)sender;
 @end
