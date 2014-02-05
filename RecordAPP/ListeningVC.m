@@ -67,4 +67,21 @@
     }
 }
 
+- (IBAction)actionStop:(UIButton *)sender
+{
+    CHECK_NOT_ENTER_HERE;
+    if (nil == [self baseLevelHandler]) {
+        CHECK_NOT_ENTER_HERE;
+    }
+    if (FALSE == [[self baseLevelHandler] conformsToProtocol:@protocol(RecordActionProtocol)]) {
+        DLog(@"baselevelhandler doesn't has RecordActionProtocol (%@)", NSStringFromClass([[self baseLevelHandler] class]));
+        CHECK_NOT_ENTER_HERE;
+    }
+    id<RecordActionProtocol> recordAction = (id<RecordActionProtocol>)[self baseLevelHandler];
+    if (FALSE == [recordAction stop]) {
+        DLog(@"Class() record cannot start");
+        CHECK_NOT_ENTER_HERE;
+    }
+}
+
 @end

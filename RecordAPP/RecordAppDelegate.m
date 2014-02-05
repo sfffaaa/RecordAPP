@@ -25,13 +25,14 @@
      *   5. Go to next
      */
     
-    UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+/*    UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     RecordingViewController* recordingVC = [storyboard instantiateViewControllerWithIdentifier:@"RecordingViewController"];
-    
+*/   
 
 //    RecordingViewController* recordingVC = [[RecordingViewController alloc] initWithNibName:@"RecordStartView" bundle:nil];
     
     //1. Set and initial init handler
+    /*
     InitializatorLevelHandler* initHandler = [[InitializatorLevelHandler alloc] init];
     [initHandler setNowVC:recordingVC];
     [initHandler setStoredNextState:RECORD_VOICE_START_STATE];
@@ -56,7 +57,7 @@
         DLog(@"BusinessLogicHandler error: cannot go Next");
         return NO;
     }
-
+*/
     return YES;
 }
 							

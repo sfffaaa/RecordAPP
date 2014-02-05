@@ -38,10 +38,6 @@
 		24161BC61894BE7C00BBFC56 /* RecordInfoLevelHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 24161BC51894BE7C00BBFC56 /* RecordInfoLevelHandler.m */; };
 		24161BC91894BE9400BBFC56 /* RecordInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 24161BC81894BE9400BBFC56 /* RecordInfo.m */; };
 		24161BCD1894C57500BBFC56 /* DBHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 24161BCC1894C57500BBFC56 /* DBHandler.m */; };
-		24C7033D189570C8008DDBA6 /* RecordStartView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24C7033C189570C8008DDBA6 /* RecordStartView.xib */; };
-		24C7033F189570DA008DDBA6 /* RecordStopView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24C7033E189570DA008DDBA6 /* RecordStopView.xib */; };
-		24C70341189570F6008DDBA6 /* RecordListenvStartView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24C70340189570F6008DDBA6 /* RecordListenvStartView.xib */; };
-		24C7034318957109008DDBA6 /* RecordListenStopView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24C7034218957109008DDBA6 /* RecordListenStopView.xib */; };
 		24C7034A1896B63F008DDBA6 /* RecordingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24C703491896B63F008DDBA6 /* RecordingViewController.m */; };
 		24C703541896BFFD008DDBA6 /* EventHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 24C703531896BFFD008DDBA6 /* EventHandler.m */; };
 		24C703581896C073008DDBA6 /* TimerHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 24C703571896C073008DDBA6 /* TimerHandler.m */; };
@@ -120,10 +116,6 @@
 		24161BC81894BE9400BBFC56 /* RecordInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordInfo.m; sourceTree = "<group>"; };
 		24161BCB1894C57500BBFC56 /* DBHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBHandler.h; sourceTree = "<group>"; };
 		24161BCC1894C57500BBFC56 /* DBHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBHandler.m; sourceTree = "<group>"; };
-		24C7033C189570C8008DDBA6 /* RecordStartView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecordStartView.xib; sourceTree = "<group>"; };
-		24C7033E189570DA008DDBA6 /* RecordStopView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecordStopView.xib; sourceTree = "<group>"; };
-		24C70340189570F6008DDBA6 /* RecordListenvStartView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecordListenvStartView.xib; sourceTree = "<group>"; };
-		24C7034218957109008DDBA6 /* RecordListenStopView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecordListenStopView.xib; sourceTree = "<group>"; };
 		24C703481896B63F008DDBA6 /* RecordingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordingViewController.h; sourceTree = "<group>"; };
 		24C703491896B63F008DDBA6 /* RecordingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordingViewController.m; sourceTree = "<group>"; };
 		24C703501896BBF8008DDBA6 /* RecordActionProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordActionProtocol.h; sourceTree = "<group>"; };
@@ -438,10 +430,6 @@
 		24C7033B18957092008DDBA6 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				24C7033C189570C8008DDBA6 /* RecordStartView.xib */,
-				24C7033E189570DA008DDBA6 /* RecordStopView.xib */,
-				24C70340189570F6008DDBA6 /* RecordListenvStartView.xib */,
-				24C7034218957109008DDBA6 /* RecordListenStopView.xib */,
 				24C703631899F658008DDBA6 /* InitView.xib */,
 			);
 			name = View;
@@ -631,13 +619,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				24C70341189570F6008DDBA6 /* RecordListenvStartView.xib in Resources */,
-				24C7033D189570C8008DDBA6 /* RecordStartView.xib in Resources */,
 				24093082188D1C5C00B01D94 /* Images.xcassets in Resources */,
 				24093074188D1C5C00B01D94 /* InfoPlist.strings in Resources */,
 				24C703641899F658008DDBA6 /* InitView.xib in Resources */,
-				24C7034318957109008DDBA6 /* RecordListenStopView.xib in Resources */,
-				24C7033F189570DA008DDBA6 /* RecordStopView.xib in Resources */,
 				2409307D188D1C5C00B01D94 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
