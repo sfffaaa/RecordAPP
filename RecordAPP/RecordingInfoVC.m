@@ -55,9 +55,9 @@
         CHECK_NOT_ENTER_HERE;
     }
     RecordInfoLevelHandler* handler = (RecordInfoLevelHandler*)[self baseLevelHandler];
-    if (FALSE == [handler recordAgain]) {
-        CHECK_NOT_ENTER_HERE;
-    }
+//    if (FALSE == [handler recordAgain]) {
+//        CHECK_NOT_ENTER_HERE;
+//    }
 }
 - (IBAction)listen:(id)sender
 {
@@ -77,8 +77,16 @@
     }
     RecordInfoLevelHandler* handler = (RecordInfoLevelHandler*)[self baseLevelHandler];
     if (FALSE == [handler submit]) {
-        CHECK_NOT_ENTER_HERE;
+//        CHECK_NOT_ENTER_HERE;
     }
+
+    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+    UIWindow *window = [UIApplication sharedApplication].keyWindow;
+//    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+//    UIViewController *mainViewController = [storyboard instantiateViewControllerWithIdentifier:@"test"];
+//    [window setRootViewController:mainViewController];
+    [window.rootViewController dismissViewControllerAnimated:YES completion:nil];
+
 }
 
 #pragma mark - segue

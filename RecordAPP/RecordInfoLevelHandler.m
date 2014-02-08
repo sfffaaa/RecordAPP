@@ -49,7 +49,7 @@
 
 - (BOOL) submit
 {
-    CHECK_NOT_ENTER_HERE
+//    CHECK_NOT_ENTER_HERE
     return FALSE;
 }
 

@@ -8,6 +8,20 @@
 
 #import <Foundation/Foundation.h>
 
-@interface StatisticTableLevelHandler : NSObject
+@protocol RecordInfoFillProtocol <NSObject>
+- (NSArray*) fillArray: (NSArray*) array;
+@end
 
+@interface RecordInfoWithVanishEntryBehavior : NSObject <RecordInfoFillProtocol>
+@end
+
+@interface RecordInfoWithoutVanishEntry : NSObject <RecordInfoFillProtocol>
+@end
+
+
+@interface StatisticTableLevelHandler : NSObject
+- (NSInteger) getCount;
+- (NSArray*) getInfoArray;
+- (void) sortArray:(NSComparator)cmptr;
+- (BOOL) setRecordFillBehavior:(id<RecordInfoFillProtocol>) behavior;
 @end

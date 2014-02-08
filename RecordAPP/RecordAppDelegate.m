@@ -17,20 +17,21 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
 #pragma mark (TODO) Need one VC for enter a icon page.
-    /* Initialize:
-     *   1. Set and initial init handler
-     *   2. Set Business logic handler state
-     *   3. Set navigation view controller
-     *   4. Start initialization
-     *   5. Go to next
-     */
     
-/*    UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    RecordingViewController* recordingVC = [storyboard instantiateViewControllerWithIdentifier:@"RecordingViewController"];
-*/   
+    [self.window makeKeyAndVisible];
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    UIViewController *mainViewController = [storyboard instantiateViewControllerWithIdentifier:@"initialView"];
+    
+    [self.window.rootViewController presentViewController:mainViewController animated:NO completion:nil];
+    
+/*
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"RecordTime" bundle:nil];
+    UIViewController *mainViewController = [storyboard instantiateViewControllerWithIdentifier:@"timeToRecord"];
+    
+    [self.window.rootViewController presentViewController:mainViewController animated:NO completion:nil];
+    //    self.window.rootViewController = mainViewController;
+*/
 
-//    RecordingViewController* recordingVC = [[RecordingViewController alloc] initWithNibName:@"RecordStartView" bundle:nil];
-    
     //1. Set and initial init handler
     /*
     InitializatorLevelHandler* initHandler = [[InitializatorLevelHandler alloc] init];
@@ -75,8 +76,16 @@
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
-    BusinessLogicHandler* handler = [BusinessLogicHandler getBusinessLogicHanlder];
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"RecordTime" bundle:nil];
+    UIViewController *mainViewController = [storyboard instantiateViewControllerWithIdentifier:@"timeToRecord"];
+
+    [self.window.rootViewController presentViewController:mainViewController animated:YES completion:nil];
+//    self.window.rootViewController = mainViewController;
+//    [self.window makeKeyAndVisible];
+
+/*    BusinessLogicHandler* handler = [BusinessLogicHandler getBusinessLogicHanlder];
     [handler goNext];
+ */
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
 }
 

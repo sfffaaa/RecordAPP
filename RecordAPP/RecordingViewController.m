@@ -55,10 +55,10 @@
         CHECK_NOT_ENTER_HERE;
     }
     id<RecordActionProtocol> recordAction = (id<RecordActionProtocol>)[self baseLevelHandler];
-    if (FALSE == [recordAction start]) {
-        DLog(@"Class() record cannot start");
-        CHECK_NOT_ENTER_HERE;
-    }
+//    if (FALSE == [recordAction start]) {
+//        DLog(@"Class() record cannot start");
+//        CHECK_NOT_ENTER_HERE;
+//    }
 }
 
 - (IBAction)actionStop:(UIButton *)sender

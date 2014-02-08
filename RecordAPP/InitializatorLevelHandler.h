@@ -10,7 +10,9 @@
 #import "BaseLevelHandler.h"
 #import "BusinessLogicHandler.h"
 
-@interface InitializatorLevelHandler : BaseLevelHandler <BusinessLogicProtocol>
-- (BOOL) startInitialize;
+#define INITIAL_EVENT @"InitialEvent"
+
+@interface InitializatorLevelHandler : NSObject
+- (BOOL) setStatus;
 
 @end
