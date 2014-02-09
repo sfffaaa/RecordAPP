@@ -29,8 +29,7 @@
 {
     self = [super initWithCoder:aDecoder];
     if (self) {
-#pragma mark (TODO) singleton?
-        _levelHandler = [[StatisticTableLevelHandler alloc] init];
+        _levelHandler = [StatisticTableLevelHandler getInst];
     }
     return self;
 }

@@ -20,6 +20,7 @@
 
 
 @interface StatisticTableLevelHandler : NSObject
++ (StatisticTableLevelHandler*) getInst;
 - (NSInteger) getCount;
 - (NSArray*) getInfoArray;
 - (void) sortArray:(NSComparator)cmptr;

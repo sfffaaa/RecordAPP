@@ -133,10 +133,10 @@
             </objects>
             <point key="canvasLocation" x="1011" y="959"/>
         </scene>
-        <!--View Controller - 102/2/12-->
+        <!--Statistic DetailVC - 102/2/12-->
         <scene sceneID="NxC-N9-IHq">
             <objects>
-                <viewController id="YSH-We-3CU" sceneMemberID="viewController">
+                <viewController id="YSH-We-3CU" customClass="StatisticDetailVC" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="pLo-Da-OM6">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>

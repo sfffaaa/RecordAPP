@@ -33,6 +33,19 @@
 @implementation StatisticTableLevelHandler
 @synthesize fillBehavior = _fillBehavior;
 
++ (StatisticTableLevelHandler*) getInst
+{
+    static StatisticTableLevelHandler* inst = nil;
+    static dispatch_once_t onceToken = 0;
+    //[TODO] -> Change to the new handler
+    if (nil == inst) {
+        dispatch_once(&onceToken, ^{
+            inst = [[StatisticTableLevelHandler alloc] init];
+        });
+    }
+    return inst;
+}
+
 - (id) init
 {
     self = [super init];
