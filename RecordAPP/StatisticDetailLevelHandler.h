@@ -7,7 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "RecordInfo.h"
 
 @interface StatisticDetailLevelHandler : NSObject
+@property (nonatomic, strong) RecordInfo* info;
+
++ (StatisticDetailLevelHandler*) getInst;
+- (BOOL) start;
+- (BOOL) stop;
+- (float) getRecordTime;
 
 @end

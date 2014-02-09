@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RecordInfo.h"
 
 @interface StatisticDetailVC : UIViewController
-@property (nonatomic) NSUInteger infoIndex;
+- (void) setInfo: (RecordInfo*) info;
 @end

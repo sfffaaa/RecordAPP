@@ -56,7 +56,8 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 #pragma mark (TODO) Implement didSelectRowAtIndexPath
 
-    [self performSegueWithIdentifier:@"toStatisticDetailVC" sender:indexPath];
+    RecordInfo* info = [[[self levelHandler] getInfoArray] objectAtIndex:[indexPath row]];
+    [self performSegueWithIdentifier:@"toStatisticDetailVC" sender:info];
 }
 
 #pragma mark - UITableViewDataSource
@@ -104,7 +105,7 @@
 {
     if ([[segue identifier] isEqualToString:@"toStatisticDetailVC"]) {
         StatisticDetailVC *vc = [segue destinationViewController];
-        [vc setInfoIndex:[(NSIndexPath*)sender row]];
+        [vc setInfo:(RecordInfo*)sender];
     }
 }
 
