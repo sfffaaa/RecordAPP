@@ -7,6 +7,7 @@
 //
 
 #import "SetupLevelHandler.h"
+#import "WakeupHandler.h"
 #import "DebugUtil.h"
 
 @implementation SetupLevelHandler
@@ -19,38 +20,6 @@
         _userSetting = [[UserSetting alloc] init];
     }
     return self;
-}
-
-- (NSString*) getEMail
-{
-#pragma mark (TODO) Implement getEMail
-    return [_userSetting eMail];
-}
-
-- (void) setEMail: (NSString*) eMail
-{
-#pragma mark (TODO) Implement setEMail (check type)
-    if (nil == _userSetting) {
-        DLog(@"_userSetting is null");
-        assert(0);
-    }
-    [_userSetting setEMail:eMail];
-}
-
-- (int) getWakeupPeriod
-{
-#pragma mark (TODO) Implement getPeriodDate
-    return [_userSetting wakeupPeriod];
-}
-
-- (void) setWakeupPeriod: (int) date
-{
-#pragma mark (TODO) Implement setPeriodDate (check type)
-    if (nil == _userSetting) {
-        DLog(@"_userSetting is null");
-        assert(0);
-    }
-    [_userSetting setWakeupPeriod:date];
 }
 
 - (int) getRecordPeiod
@@ -69,6 +38,23 @@
     [_userSetting setRecordPeriod:second];
 }
 
+- (int) getWakeupPeriod
+{
+#pragma mark (TODO) Implement getPeriodDate
+    return [_userSetting wakeupPeriod];
+}
+
+- (void) setWakeupPeriod: (int) date
+{
+#pragma mark (TODO) Implement setPeriodDate (check type)
+    if (nil == _userSetting) {
+        DLog(@"_userSetting is null");
+        assert(0);
+    }
+    [_userSetting setWakeupPeriod:date];
+    [[NSNotificationCenter defaultCenter] postNotificationName: WAKEUP_RELOAD_EVENT object:self];
+}
+
 - (BOOL) getRunWakeup
 {
 #pragma mark (TODO) Implement getRunWakeup
@@ -83,6 +69,42 @@
         assert(0);
     }
     [_userSetting setRunwakeup:flag];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName: WAKEUP_RELOAD_EVENT object:self];
+}
+
+- (NSDate*) getNextWakeupTime
+{
+#pragma mark (TODO) Implement getRunWakeup
+    return [_userSetting nextWakeupDate];
+}
+
+- (void) setNextWakeupTime: (NSDate*) date
+{
+#pragma mark (TODO) Implement setRunWakeup (check type)
+    if (nil == _userSetting) {
+        DLog(@"_userSetting is null");
+        assert(0);
+    }
+    [_userSetting setNextWakeupDate:date];
+    [[NSNotificationCenter defaultCenter] postNotificationName: WAKEUP_RELOAD_EVENT object:self];
+}
+
+
+- (NSString*) getEMail
+{
+#pragma mark (TODO) Implement getEMail
+    return [_userSetting eMail];
+}
+
+- (void) setEMail: (NSString*) eMail
+{
+#pragma mark (TODO) Implement setEMail (check type)
+    if (nil == _userSetting) {
+        DLog(@"_userSetting is null");
+        assert(0);
+    }
+    [_userSetting setEMail:eMail];
 }
 
 @end

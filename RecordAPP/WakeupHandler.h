@@ -8,5 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
+#define WAKEUP_RELOAD_EVENT @"wakeupReloadEvent"
+
 @interface WakeupHandler : NSObject
 @end

@@ -8,7 +8,7 @@
 
 #import "UserSetting.h"
 #import "DebugUtil.h"
-#import "WakeupSettingHandler.h"
+#import "WakeupHandler.h"
 #import "EmailSettingHandler.h"
 #import "RecordSettingHandler.h"
 
@@ -25,7 +25,7 @@
     self = [super init];
     if (nil != self) {
         
-        _eMail = [[NSString alloc] initWithFormat:@"sfffaaa..."];
+        _eMail = [[NSString alloc] initWithFormat:@"sfffaaa@ssss"];
         _wakeupPeriod = 10;
         _nextWakeupDate = [[NSDate alloc] initWithTimeIntervalSinceNow:_wakeupPeriod];
         _runwakeup = FALSE;

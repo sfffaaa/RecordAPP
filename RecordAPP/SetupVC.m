@@ -11,11 +11,21 @@
 #import "DebugUtil.h"
 
 @interface SetupVC ()
+@property (weak, nonatomic) IBOutlet UITextField *recordLengthTextField;
+@property (weak, nonatomic) IBOutlet UISwitch *runWakeUpSwitch;
+@property (weak, nonatomic) IBOutlet UITextField *wakeUpNextTimeTextField;
+@property (weak, nonatomic) IBOutlet UITextField *wakeUpPeriodTextField;
+@property (weak, nonatomic) IBOutlet UITextField *emailTextField;
 @property (nonatomic, strong) SetupLevelHandler* levelHandler;
 @end
 
 @implementation SetupVC
 @synthesize levelHandler = _levelHandler;
+@synthesize recordLengthTextField = _recordLengthTextField;
+@synthesize runWakeUpSwitch = _runWakeUpSwitch;
+@synthesize wakeUpNextTimeTextField = _wakeUpNextTimeTextField;
+@synthesize wakeUpPeriodTextField = _wakeUpPeriodTextField;
+@synthesize emailTextField = _emailTextField;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -40,11 +50,15 @@
 {
     [super viewDidLoad];
 
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    _recordLengthTextField.text = [[NSString alloc] initWithFormat:@"%i", [[self levelHandler] getRecordPeiod]];
+    
+    [_runWakeUpSwitch setOn:[[self levelHandler] getRunWakeup]];
+    
+    _wakeUpNextTimeTextField.text = [[NSString alloc] initWithFormat:@"%@", [[self levelHandler] getNextWakeupTime]];
+    
+    _wakeUpPeriodTextField.text = [[NSString alloc] initWithFormat:@"%i", [[self levelHandler] getWakeupPeriod]];
+    
+    _emailTextField.text = [[NSString alloc] initWithFormat:@"%@", [[self levelHandler] getEMail]];
 }
 
 - (void)didReceiveMemoryWarning
@@ -64,7 +78,6 @@
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     [textField resignFirstResponder];
-    
     return YES;
 }
 
@@ -77,5 +90,10 @@
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
 }
 
+- (IBAction)switchWakeup:(id)sender {
+    if (2 == [sender tag]) {
+        [[self levelHandler] setRunWakeup:[(UISwitch*)sender isOn]];
+    }
+}
 
 @end

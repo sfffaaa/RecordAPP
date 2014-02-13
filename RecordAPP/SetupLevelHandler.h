@@ -23,4 +23,7 @@
 - (BOOL) getRunWakeup;
 - (void) setRunWakeup: (BOOL) flag;
 
+- (NSDate*) getNextWakeupTime;
+- (void) setNextWakeupTime: (NSDate*) date;
+
 @end
