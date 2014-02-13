@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface WakeupSettingHandler : NSObject
-@property (nonatomic, copy) NSDate* periodDate;
+@property (nonatomic) int* ;
 @property (nonatomic, copy) NSDate* nextWakeupDate;
 @property (nonatomic) BOOL runWakeUp;
 @end

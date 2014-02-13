@@ -22,7 +22,6 @@
 		24093093188D1C5C00B01D94 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 24093091188D1C5C00B01D94 /* InfoPlist.strings */; };
 		24093095188D1C5C00B01D94 /* RecordAPPTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 24093094188D1C5C00B01D94 /* RecordAPPTests.m */; };
 		240930A1188D1CDC00B01D94 /* BusinessLogicHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 240930A0188D1CDC00B01D94 /* BusinessLogicHandler.m */; };
-		240930A8188D30FF00B01D94 /* UserSettingHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 240930A7188D30FF00B01D94 /* UserSettingHandler.m */; };
 		24161B8F1893AC5E00BBFC56 /* EmailHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 24161B8E1893AC5E00BBFC56 /* EmailHandler.m */; };
 		24161B921893ACCA00BBFC56 /* WakeupHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 24161B911893ACCA00BBFC56 /* WakeupHandler.m */; };
 		24161B951893AD1E00BBFC56 /* RecordHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 24161B941893AD1E00BBFC56 /* RecordHandler.m */; };
@@ -55,6 +54,9 @@
 		24D17F7718A3D425005CBA4E /* RecordTime.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24D17F7618A3D425005CBA4E /* RecordTime.storyboard */; };
 		24D17F7B18A3EA11005CBA4E /* InitialVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 24D17F7A18A3EA11005CBA4E /* InitialVC.m */; };
 		24F16F4018A68F8600D4CA78 /* StatisticDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 24F16F3F18A68F8600D4CA78 /* StatisticDetailVC.m */; };
+		24F16F4A18ABC86000D4CA78 /* SetupVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 24F16F4918ABC86000D4CA78 /* SetupVC.m */; };
+		24F16F4D18ABDC0700D4CA78 /* SetupLevelHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 24F16F4C18ABDC0700D4CA78 /* SetupLevelHandler.m */; };
+		24F16F5218ABDCBD00D4CA78 /* UserSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = 24F16F5118ABDCBD00D4CA78 /* UserSetting.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,8 +92,6 @@
 		2409309F188D1CDC00B01D94 /* BusinessLogicHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessLogicHandler.h; sourceTree = "<group>"; };
 		240930A0188D1CDC00B01D94 /* BusinessLogicHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessLogicHandler.m; sourceTree = "<group>"; };
 		240930A3188D29F200B01D94 /* DebugUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DebugUtil.h; sourceTree = "<group>"; };
-		240930A6188D30FF00B01D94 /* UserSettingHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserSettingHandler.h; sourceTree = "<group>"; };
-		240930A7188D30FF00B01D94 /* UserSettingHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserSettingHandler.m; sourceTree = "<group>"; };
 		24161B8D1893AC5E00BBFC56 /* EmailHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmailHandler.h; sourceTree = "<group>"; };
 		24161B8E1893AC5E00BBFC56 /* EmailHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmailHandler.m; sourceTree = "<group>"; };
 		24161B901893ACCA00BBFC56 /* WakeupHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WakeupHandler.h; sourceTree = "<group>"; };
@@ -154,6 +154,12 @@
 		24D17F7A18A3EA11005CBA4E /* InitialVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InitialVC.m; sourceTree = "<group>"; };
 		24F16F3E18A68F8600D4CA78 /* StatisticDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatisticDetailVC.h; sourceTree = "<group>"; };
 		24F16F3F18A68F8600D4CA78 /* StatisticDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatisticDetailVC.m; sourceTree = "<group>"; };
+		24F16F4818ABC86000D4CA78 /* SetupVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetupVC.h; sourceTree = "<group>"; };
+		24F16F4918ABC86000D4CA78 /* SetupVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetupVC.m; sourceTree = "<group>"; };
+		24F16F4B18ABDC0700D4CA78 /* SetupLevelHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetupLevelHandler.h; sourceTree = "<group>"; };
+		24F16F4C18ABDC0700D4CA78 /* SetupLevelHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetupLevelHandler.m; sourceTree = "<group>"; };
+		24F16F5018ABDCBD00D4CA78 /* UserSetting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserSetting.h; sourceTree = "<group>"; };
+		24F16F5118ABDCBD00D4CA78 /* UserSetting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserSetting.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -297,8 +303,8 @@
 		240930A5188D30D800B01D94 /* UserSettingLevel */ = {
 			isa = PBXGroup;
 			children = (
-				240930A6188D30FF00B01D94 /* UserSettingHandler.h */,
-				240930A7188D30FF00B01D94 /* UserSettingHandler.m */,
+				24F16F4B18ABDC0700D4CA78 /* SetupLevelHandler.h */,
+				24F16F4C18ABDC0700D4CA78 /* SetupLevelHandler.m */,
 			);
 			name = UserSettingLevel;
 			sourceTree = "<group>";
@@ -410,8 +416,8 @@
 		24161BC21894058900BBFC56 /* Data Structure */ = {
 			isa = PBXGroup;
 			children = (
-				24161BC71894BE9400BBFC56 /* RecordInfo.h */,
-				24161BC81894BE9400BBFC56 /* RecordInfo.m */,
+				24F16F4F18ABDCAC00D4CA78 /* UserSetting */,
+				24F16F4E18ABDC9D00D4CA78 /* RecordInfo */,
 			);
 			name = "Data Structure";
 			sourceTree = "<group>";
@@ -437,6 +443,7 @@
 		24161BCE189561A000BBFC56 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				24F16F4118ABC6B800D4CA78 /* SetupVC */,
 				24F16F3D18A68F6500D4CA78 /* StatisticDetailVC */,
 				24AD06BA18A5FBBA00599DCE /* StatisticTableVC */,
 				24AD06B618A5C7CD00599DCE /* DreamVC */,
@@ -600,6 +607,33 @@
 			name = StatisticDetailVC;
 			sourceTree = "<group>";
 		};
+		24F16F4118ABC6B800D4CA78 /* SetupVC */ = {
+			isa = PBXGroup;
+			children = (
+				24F16F4818ABC86000D4CA78 /* SetupVC.h */,
+				24F16F4918ABC86000D4CA78 /* SetupVC.m */,
+			);
+			name = SetupVC;
+			sourceTree = "<group>";
+		};
+		24F16F4E18ABDC9D00D4CA78 /* RecordInfo */ = {
+			isa = PBXGroup;
+			children = (
+				24161BC71894BE9400BBFC56 /* RecordInfo.h */,
+				24161BC81894BE9400BBFC56 /* RecordInfo.m */,
+			);
+			name = RecordInfo;
+			sourceTree = "<group>";
+		};
+		24F16F4F18ABDCAC00D4CA78 /* UserSetting */ = {
+			isa = PBXGroup;
+			children = (
+				24F16F5018ABDCBD00D4CA78 /* UserSetting.h */,
+				24F16F5118ABDCBD00D4CA78 /* UserSetting.m */,
+			);
+			name = UserSetting;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -707,6 +741,7 @@
 				24161BCD1894C57500BBFC56 /* DBHandler.m in Sources */,
 				24D17F6A189D1C73005CBA4E /* RecordingInfoVC.m in Sources */,
 				24161B951893AD1E00BBFC56 /* RecordHandler.m in Sources */,
+				24F16F4A18ABC86000D4CA78 /* SetupVC.m in Sources */,
 				24AD06B918A5C88500599DCE /* DreamVC.m in Sources */,
 				24161BA51893B11A00BBFC56 /* RecordSettingHandler.m in Sources */,
 				24161BC11894032800BBFC56 /* StatisticDetailLevelHandler.m in Sources */,
@@ -723,6 +758,7 @@
 				24D17F6E189E6C05005CBA4E /* ListeningVC.m in Sources */,
 				24161BA81893B19300BBFC56 /* EmailSettingHandler.m in Sources */,
 				24161BC61894BE7C00BBFC56 /* RecordInfoLevelHandler.m in Sources */,
+				24F16F5218ABDCBD00D4CA78 /* UserSetting.m in Sources */,
 				24C703541896BFFD008DDBA6 /* EventHandler.m in Sources */,
 				24161BC91894BE9400BBFC56 /* RecordInfo.m in Sources */,
 				24093076188D1C5C00B01D94 /* main.m in Sources */,
@@ -733,8 +769,8 @@
 				24161BB21893F80100BBFC56 /* RecordFileHandler.m in Sources */,
 				24161BBD1894029300BBFC56 /* StatisticTableLevelHandler.m in Sources */,
 				2409307A188D1C5C00B01D94 /* RecordAppDelegate.m in Sources */,
+				24F16F4D18ABDC0700D4CA78 /* SetupLevelHandler.m in Sources */,
 				24C703581896C073008DDBA6 /* TimerHandler.m in Sources */,
-				240930A8188D30FF00B01D94 /* UserSettingHandler.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

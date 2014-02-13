@@ -70,6 +70,15 @@
 }
 
 - (IBAction)forTestPush:(id)sender {
+#pragma mark (TODO) Need remove
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"RecordTime" bundle:nil];
+    UIViewController *mainViewController = [storyboard instantiateViewControllerWithIdentifier:@"timeToRecord"];
+    UIWindow *window = [UIApplication sharedApplication].keyWindow;
+    [window.rootViewController presentViewController:mainViewController animated:YES completion:nil];
+
+//    [self addChildViewController:mainViewController];
+//    [self.view addSubview: mainViewController.view];
+
 }
 
 #pragma mark - event handler
