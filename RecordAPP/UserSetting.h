@@ -17,4 +17,6 @@
 //record setting handler
 @property (nonatomic) int recordPeriod;
 @property (nonatomic) int wakeupPeriod;
+
++ (void) UserDefaultRegister;
 @end

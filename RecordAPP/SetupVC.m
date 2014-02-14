@@ -77,6 +77,7 @@
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
+    CHECK_NOT_ENTER_HERE;
     [textField resignFirstResponder];
     return YES;
 }

@@ -10,6 +10,7 @@
 #import "BusinessLogicHandler.h"
 #import "InitializatorLevelHandler.h"
 #import "RecordingViewController.h"
+#import "UserSetting.h"
 #import "DebugUtil.h"
 
 @implementation RecordAppDelegate
@@ -18,12 +19,15 @@
 {
 #pragma mark (TODO) Need one VC for enter a icon page.
     
+//  Setup view controller
     [self.window makeKeyAndVisible];
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     UIViewController *mainViewController = [storyboard instantiateViewControllerWithIdentifier:@"initialView"];
     
     [self.window.rootViewController presentViewController:mainViewController animated:NO completion:nil];
-    
+
+//  Setup
+    [UserSetting UserDefaultRegister];
 /*
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"RecordTime" bundle:nil];
     UIViewController *mainViewController = [storyboard instantiateViewControllerWithIdentifier:@"timeToRecord"];

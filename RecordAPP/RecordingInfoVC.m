@@ -80,13 +80,13 @@
 //        CHECK_NOT_ENTER_HERE;
     }
 
-    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+#pragma mark (TODO) Need check why dismiss 2 controller;
+//    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
     UIWindow *window = [UIApplication sharedApplication].keyWindow;
 //    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
 //    UIViewController *mainViewController = [storyboard instantiateViewControllerWithIdentifier:@"test"];
 //    [window setRootViewController:mainViewController];
     [window.rootViewController dismissViewControllerAnimated:YES completion:nil];
-
 }
 
 #pragma mark - segue
