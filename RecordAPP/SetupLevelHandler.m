@@ -52,7 +52,9 @@
         assert(0);
     }
     [_userSetting setWakeupPeriod:date];
-    [[NSNotificationCenter defaultCenter] postNotificationName: WAKEUP_RELOAD_EVENT object:self];
+    if (TRUE == [_userSetting runwakeup]) {
+        [WakeupHandler emitWakeupReloadEvent];
+    }
 }
 
 - (BOOL) getRunWakeup
@@ -69,8 +71,11 @@
         assert(0);
     }
     [_userSetting setRunwakeup:flag];
-    
-    [[NSNotificationCenter defaultCenter] postNotificationName: WAKEUP_RELOAD_EVENT object:self];
+    if (TRUE == [_userSetting runwakeup]) {
+        [WakeupHandler emitWakeupStartEvent];
+    } else {
+        [WakeupHandler emitWakeupStopEvent];
+    }
 }
 
 - (NSDate*) getNextWakeupTime
@@ -87,7 +92,9 @@
         assert(0);
     }
     [_userSetting setNextWakeupDate:date];
-    [[NSNotificationCenter defaultCenter] postNotificationName: WAKEUP_RELOAD_EVENT object:self];
+    if (TRUE == [_userSetting runwakeup]) {
+        [WakeupHandler emitWakeupReloadEvent];
+    }
 }
 
 

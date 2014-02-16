@@ -9,6 +9,13 @@
 #import <Foundation/Foundation.h>
 
 #define WAKEUP_RELOAD_EVENT @"wakeupReloadEvent"
+#define WAKEUP_START_EVENT @"wakeupStartEvent"
+#define WAKEUP_STOP_EVNET @"wakeupStopEvent"
 
 @interface WakeupHandler : NSObject
++ (void) registHandler;
++ (void) emitWakeupStartEvent;
++ (void) emitWakeupReloadEvent;
++ (void) emitWakeupStopEvent;
++ (void) wakeupAction;
 @end

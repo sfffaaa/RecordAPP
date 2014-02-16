@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "WakeupHandler.h"
 
 @interface RecordAppDelegate : UIResponder <UIApplicationDelegate>
 
