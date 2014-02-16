@@ -13,9 +13,10 @@
 #define WAKEUP_STOP_EVNET @"wakeupStopEvent"
 
 @interface WakeupHandler : NSObject
-+ (void) registHandler;
+@property (nonatomic, strong) NSDate* nowWakeupDate;
++ (WakeupHandler*) getInst;
 + (void) emitWakeupStartEvent;
 + (void) emitWakeupReloadEvent;
 + (void) emitWakeupStopEvent;
-+ (void) wakeupAction;
++ (void) wakeUp;
 @end

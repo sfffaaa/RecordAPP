@@ -12,7 +12,7 @@
 
 @implementation WakeupHandler
 
-+ (void) registHandler
++ (WakeupHandler*) getInst
 {
     static WakeupHandler* inst = nil;
     static dispatch_once_t onceToken = 0;
@@ -22,12 +22,14 @@
             inst = [[WakeupHandler alloc] init];
         });
     }
+    return inst;
 }
 
 - (id) init
 {
     self = [super init];
     if (nil != self) {
+        _nowWakeupDate = nil;
 
         //heard event
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(start:) name:WAKEUP_START_EVENT object:nil];
@@ -56,8 +58,9 @@
 {
     [[UIApplication sharedApplication] cancelAllLocalNotifications];
     DLog(@"start");
-    [self setupLocalNotification];
-//    [self presentVC];
+    if (FALSE == [self setupLocalNotification]) {
+        CHECK_NOT_ENTER_HERE;
+    };
 }
 
 - (void) reload:(NSNotification*) notification
@@ -93,10 +96,9 @@
         notification.timeZone = [NSTimeZone defaultTimeZone];
         notification.applicationIconBadgeNumber = [[[UIApplication sharedApplication] scheduledLocalNotifications] count] + 1;
         notification.alertAction = [[NSString alloc] initWithFormat:@"Just for test"];
-        notification.alertBody = [[NSString alloc] initWithFormat:@"next date %@", [userSetting nextWakeupDate]];
-        DLog(@"now date %@", [[NSDate alloc] initWithTimeIntervalSinceNow:0]);
-        DLog(@"next date %@", [userSetting nextWakeupDate]);
         notification.fireDate= [[NSDate alloc] initWithTimeInterval:i*[userSetting wakeupPeriod] sinceDate:[userSetting nextWakeupDate]];
+        notification.alertBody = [[NSString alloc] initWithFormat:@"next date %@", notification.fireDate];
+
         
         [[UIApplication sharedApplication]   scheduleLocalNotification:notification];
 
@@ -105,8 +107,48 @@
     return TRUE;
 }
 
-+ (void) wakeupAction
++ (void) wakeUp
 {
+    WakeupHandler* wakeupHandler = [WakeupHandler getInst];
+    UserSetting* userSetting = [[UserSetting alloc] init];
+    
+    if (FALSE == [userSetting runwakeup]) {
+        return;
+    }
+    NSDate* nowDate = [[NSDate alloc] initWithTimeIntervalSinceNow:0];
+    NSDate* nextDate = [[NSDate alloc] initWithTimeInterval:0 sinceDate:[userSetting nextWakeupDate]];
+    if (NSOrderedDescending == [nowDate compare:nextDate] ||
+        NSOrderedSame == [nowDate compare:nextDate]) {
+        [wakeupHandler wakeupStartAction];
+    }
+}
+
+- (void) wakeupStartAction
+{
+    //1. cancel notification
+    [[UIApplication sharedApplication] cancelAllLocalNotifications];
+    
+    //2. setup now wakeup date in self
+    UserSetting* userSetting = [[UserSetting alloc] init];
+    [self setNowWakeupDate:[userSetting nextWakeupDate]];
+    
+    //3. setup the next date in user setup
+    NSDate* nextWakeupDate = [[NSDate alloc] initWithTimeInterval:0 sinceDate:[userSetting nextWakeupDate]];
+    NSDate* nowDate = [[NSDate alloc] initWithTimeIntervalSinceNow:0];
+    while (NSOrderedDescending == [nowDate compare:nextWakeupDate] ||
+           NSOrderedSame == [nowDate compare:nextWakeupDate]) {
+        nextWakeupDate = [[NSDate alloc] initWithTimeInterval:[userSetting wakeupPeriod] sinceDate:nextWakeupDate];
+    }
+    [userSetting setNextWakeupDate:nextWakeupDate];
+    DLog(@"test %@", nextWakeupDate);
+    
+    //4. schedule the new event
+    if (FALSE == [self setupLocalNotification]) {
+        CHECK_NOT_ENTER_HERE;
+    }
+    
+    //5. wake up the vc
+    [self presentVC];
 }
 
 @end

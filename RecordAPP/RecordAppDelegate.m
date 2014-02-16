@@ -30,7 +30,7 @@
 //    1. setup user default register
     [UserSetting UserDefaultRegister];
 //    2. setup wake upder handler
-    [WakeupHandler registHandler];
+    [WakeupHandler getInst];
 //    3.
     UILocalNotification *notification = [launchOptions objectForKey:UIApplicationLaunchOptionsLocalNotificationKey];
     if (notification) {
@@ -88,10 +88,13 @@
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
+    [WakeupHandler wakeUp];
+/*
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"RecordTime" bundle:nil];
     UIViewController *mainViewController = [storyboard instantiateViewControllerWithIdentifier:@"timeToRecord"];
 
     [self.window.rootViewController presentViewController:mainViewController animated:YES completion:nil];
+*/
 //    self.window.rootViewController = mainViewController;
 //    [self.window makeKeyAndVisible];
 
