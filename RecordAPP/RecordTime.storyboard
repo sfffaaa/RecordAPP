@@ -75,7 +75,7 @@
             </objects>
             <point key="canvasLocation" x="1221" y="-675"/>
         </scene>
-        <!--Recording InfoVC - Test-->
+        <!--Recording InfoVC - Date-->
         <scene sceneID="lIt-8V-EIb">
             <objects>
                 <viewController id="aLy-ll-oOY" customClass="RecordingInfoVC" sceneMemberID="viewController">
@@ -187,7 +187,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Test" id="E2s-RA-0Jr"/>
-                    <navigationItem key="navigationItem" id="ez7-0t-6Sd"/>
+                    <navigationItem key="navigationItem" title="Date" id="ez7-0t-6Sd"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Z6l-Ta-RcR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

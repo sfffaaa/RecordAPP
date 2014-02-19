@@ -8,6 +8,6 @@
 
 #import "BaseVC.h"
 
-@interface RecordingInfoVC : BaseVC
+@interface RecordingInfoVC : UIViewController
 
 @end

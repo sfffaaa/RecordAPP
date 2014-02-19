@@ -14,6 +14,7 @@
 
 @interface WakeupHandler : NSObject
 @property (nonatomic, strong) NSDate* nowWakeupDate;
+@property (nonatomic) BOOL setuped;
 + (WakeupHandler*) getInst;
 + (void) emitWakeupStartEvent;
 + (void) emitWakeupReloadEvent;

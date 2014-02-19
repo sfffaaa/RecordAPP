@@ -9,6 +9,7 @@
 #import "RecordingInfoVC.h"
 #import "RecordInfoLevelHandler.h"
 #import "ListeningVC.h"
+#import "WakeupHandler.h"
 #import "DebugUtil.h"
 
 @interface RecordingInfoVC ()
@@ -17,20 +18,11 @@
 
 @implementation RecordingInfoVC
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
     self = [super initWithCoder:aDecoder];
     if (nil != self) {
-        [self setBaseLevelHandler:[[RecordInfoLevelHandler alloc]initWithNowVC:self]];
+//        [self setBaseLevelHandler:[[RecordInfoLevelHandler alloc]initWithNowVC:self]];
     }
     return self;
 }
@@ -38,10 +30,15 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    UINavigationController *nc = [self navigationController];
-    [nc setNavigationBarHidden:TRUE];
+    self.title = [[NSString alloc] initWithFormat:@"%@", [[WakeupHandler getInst] nowWakeupDate]];
+    
+    [[WakeupHandler getInst] setSetuped:TRUE];
+}
 
-	// Do any additional setup after loading the view.
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [[WakeupHandler getInst] setSetuped:FALSE];
 }
 
 - (void)didReceiveMemoryWarning
@@ -51,34 +48,34 @@
 }
 - (IBAction)recordAgain:(id)sender
 {
-    if (nil == [self baseLevelHandler]) {
-        CHECK_NOT_ENTER_HERE;
-    }
-    RecordInfoLevelHandler* handler = (RecordInfoLevelHandler*)[self baseLevelHandler];
+//    if (nil == [self baseLevelHandler]) {
+//        CHECK_NOT_ENTER_HERE;
+//    }
+//    RecordInfoLevelHandler* handler = (RecordInfoLevelHandler*)[self baseLevelHandler];
 //    if (FALSE == [handler recordAgain]) {
 //        CHECK_NOT_ENTER_HERE;
 //    }
 }
 - (IBAction)listen:(id)sender
 {
-    if (nil == [self baseLevelHandler]) {
-        CHECK_NOT_ENTER_HERE;
-    }
-    RecordInfoLevelHandler* handler = (RecordInfoLevelHandler*)[self baseLevelHandler];
-    if (FALSE == [handler listen]) {
-        CHECK_NOT_ENTER_HERE;
-    }
+//    if (nil == [self baseLevelHandler]) {
+//        CHECK_NOT_ENTER_HERE;
+//    }
+//    RecordInfoLevelHandler* handler = (RecordInfoLevelHandler*)[self baseLevelHandler];
+//    if (FALSE == [handler listen]) {
+//        CHECK_NOT_ENTER_HERE;
+//    }
 }
 
 - (IBAction)submit:(id)sender
 {
-    if (nil == [self baseLevelHandler]) {
-        CHECK_NOT_ENTER_HERE;
-    }
-    RecordInfoLevelHandler* handler = (RecordInfoLevelHandler*)[self baseLevelHandler];
-    if (FALSE == [handler submit]) {
+//    if (nil == [self baseLevelHandler]) {
 //        CHECK_NOT_ENTER_HERE;
-    }
+//    }
+//    RecordInfoLevelHandler* handler = (RecordInfoLevelHandler*)[self baseLevelHandler];
+//    if (FALSE == [handler submit]) {
+//        CHECK_NOT_ENTER_HERE;
+//    }
 
 #pragma mark (TODO) Need check why dismiss 2 controller;
 //    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
