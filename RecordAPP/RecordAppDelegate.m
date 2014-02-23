@@ -9,7 +9,6 @@
 #import "RecordAppDelegate.h"
 #import "BusinessLogicHandler.h"
 #import "InitializatorLevelHandler.h"
-#import "RecordingViewController.h"
 #import "UserSetting.h"
 #import "DebugUtil.h"
 

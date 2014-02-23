@@ -40,14 +40,12 @@
 		24AD06B918A5C88500599DCE /* DreamVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 24AD06B818A5C88500599DCE /* DreamVC.m */; };
 		24AD06C318A5FDFB00599DCE /* StatisticTableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 24AD06C218A5FDFB00599DCE /* StatisticTableVC.m */; };
 		24AD06C518A6096700599DCE /* StatisticRecordInfo.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24AD06C418A6096700599DCE /* StatisticRecordInfo.xib */; };
-		24C7034A1896B63F008DDBA6 /* RecordingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24C703491896B63F008DDBA6 /* RecordingViewController.m */; };
 		24C703541896BFFD008DDBA6 /* EventHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 24C703531896BFFD008DDBA6 /* EventHandler.m */; };
 		24C703581896C073008DDBA6 /* TimerHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 24C703571896C073008DDBA6 /* TimerHandler.m */; };
 		24C7035C189949ED008DDBA6 /* InitializatorLevelHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 24C7035B189949ED008DDBA6 /* InitializatorLevelHandler.m */; };
 		24C7035F18994C11008DDBA6 /* BaseLevelHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 24C7035E18994C11008DDBA6 /* BaseLevelHandler.m */; };
 		24C7036D189A0E3F008DDBA6 /* BaseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 24C7036C189A0E3F008DDBA6 /* BaseVC.m */; };
 		24D17F6A189D1C73005CBA4E /* RecordingInfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 24D17F69189D1C73005CBA4E /* RecordingInfoVC.m */; };
-		24D17F6E189E6C05005CBA4E /* ListeningVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 24D17F6D189E6C05005CBA4E /* ListeningVC.m */; };
 		24D17F72189FA68C005CBA4E /* RecordInfoHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 24D17F71189FA68C005CBA4E /* RecordInfoHandler.m */; };
 		24D17F7518A1294C005CBA4E /* ListenLevelHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 24D17F7418A1294C005CBA4E /* ListenLevelHandler.m */; };
 		24D17F7718A3D425005CBA4E /* RecordTime.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24D17F7618A3D425005CBA4E /* RecordTime.storyboard */; };
@@ -56,6 +54,10 @@
 		24F16F4A18ABC86000D4CA78 /* SetupVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 24F16F4918ABC86000D4CA78 /* SetupVC.m */; };
 		24F16F4D18ABDC0700D4CA78 /* SetupLevelHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 24F16F4C18ABDC0700D4CA78 /* SetupLevelHandler.m */; };
 		24F16F5218ABDCBD00D4CA78 /* UserSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = 24F16F5118ABDCBD00D4CA78 /* UserSetting.m */; };
+		24F16F5F18B8994A00D4CA78 /* RecordActionLevelHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 24F16F5E18B8994A00D4CA78 /* RecordActionLevelHandler.m */; };
+		24F16F6318B8A0B600D4CA78 /* RecordActionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 24F16F6218B8A0B600D4CA78 /* RecordActionVC.m */; };
+		24F16F6618B8B5FD00D4CA78 /* RecordingAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 24F16F6518B8B5FD00D4CA78 /* RecordingAction.m */; };
+		24F16F6918B8B71E00D4CA78 /* ListeningAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 24F16F6818B8B71E00D4CA78 /* ListeningAction.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -125,8 +127,6 @@
 		24AD06C118A5FDFB00599DCE /* StatisticTableVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatisticTableVC.h; sourceTree = "<group>"; };
 		24AD06C218A5FDFB00599DCE /* StatisticTableVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatisticTableVC.m; sourceTree = "<group>"; };
 		24AD06C418A6096700599DCE /* StatisticRecordInfo.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StatisticRecordInfo.xib; sourceTree = "<group>"; };
-		24C703481896B63F008DDBA6 /* RecordingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordingViewController.h; sourceTree = "<group>"; };
-		24C703491896B63F008DDBA6 /* RecordingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordingViewController.m; sourceTree = "<group>"; };
 		24C703501896BBF8008DDBA6 /* RecordActionProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordActionProtocol.h; sourceTree = "<group>"; };
 		24C703521896BFFD008DDBA6 /* EventHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventHandler.h; sourceTree = "<group>"; };
 		24C703531896BFFD008DDBA6 /* EventHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventHandler.m; sourceTree = "<group>"; };
@@ -140,8 +140,6 @@
 		24C7036C189A0E3F008DDBA6 /* BaseVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseVC.m; sourceTree = "<group>"; };
 		24D17F68189D1C73005CBA4E /* RecordingInfoVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordingInfoVC.h; sourceTree = "<group>"; };
 		24D17F69189D1C73005CBA4E /* RecordingInfoVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordingInfoVC.m; sourceTree = "<group>"; };
-		24D17F6C189E6C05005CBA4E /* ListeningVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListeningVC.h; sourceTree = "<group>"; };
-		24D17F6D189E6C05005CBA4E /* ListeningVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListeningVC.m; sourceTree = "<group>"; };
 		24D17F70189FA68C005CBA4E /* RecordInfoHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordInfoHandler.h; sourceTree = "<group>"; };
 		24D17F71189FA68C005CBA4E /* RecordInfoHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordInfoHandler.m; sourceTree = "<group>"; };
 		24D17F7318A1294C005CBA4E /* ListenLevelHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListenLevelHandler.h; sourceTree = "<group>"; };
@@ -157,6 +155,14 @@
 		24F16F4C18ABDC0700D4CA78 /* SetupLevelHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetupLevelHandler.m; sourceTree = "<group>"; };
 		24F16F5018ABDCBD00D4CA78 /* UserSetting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserSetting.h; sourceTree = "<group>"; };
 		24F16F5118ABDCBD00D4CA78 /* UserSetting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserSetting.m; sourceTree = "<group>"; };
+		24F16F5D18B8994A00D4CA78 /* RecordActionLevelHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordActionLevelHandler.h; sourceTree = "<group>"; };
+		24F16F5E18B8994A00D4CA78 /* RecordActionLevelHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordActionLevelHandler.m; sourceTree = "<group>"; };
+		24F16F6118B8A0B600D4CA78 /* RecordActionVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordActionVC.h; sourceTree = "<group>"; };
+		24F16F6218B8A0B600D4CA78 /* RecordActionVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordActionVC.m; sourceTree = "<group>"; };
+		24F16F6418B8B5FD00D4CA78 /* RecordingAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordingAction.h; sourceTree = "<group>"; };
+		24F16F6518B8B5FD00D4CA78 /* RecordingAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordingAction.m; sourceTree = "<group>"; };
+		24F16F6718B8B71E00D4CA78 /* ListeningAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListeningAction.h; sourceTree = "<group>"; };
+		24F16F6818B8B71E00D4CA78 /* ListeningAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListeningAction.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -377,6 +383,8 @@
 				24C7034E1896B8E9008DDBA6 /* Base (Protocol) */,
 				24C7034D1896B8D6008DDBA6 /* Listening */,
 				24C7034C1896B897008DDBA6 /* Recording */,
+				24F16F5D18B8994A00D4CA78 /* RecordActionLevelHandler.h */,
+				24F16F5E18B8994A00D4CA78 /* RecordActionLevelHandler.m */,
 			);
 			name = "Recording/Listening Level";
 			sourceTree = "<group>";
@@ -444,9 +452,8 @@
 				24AD06B618A5C7CD00599DCE /* DreamVC */,
 				24D17F7818A3E9EF005CBA4E /* InitialVC */,
 				24C70367189A0650008DDBA6 /* BaseVC */,
-				24D17F6B189E6B30005CBA4E /* ListeningVC */,
 				24D17F64189D1C1B005CBA4E /* RecordingInfoVC */,
-				24C703471896B57A008DDBA6 /* RecordingVC */,
+				24F16F6018B8A09A00D4CA78 /* RecordActionVC */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -477,18 +484,11 @@
 			name = xib;
 			sourceTree = "<group>";
 		};
-		24C703471896B57A008DDBA6 /* RecordingVC */ = {
-			isa = PBXGroup;
-			children = (
-				24C703481896B63F008DDBA6 /* RecordingViewController.h */,
-				24C703491896B63F008DDBA6 /* RecordingViewController.m */,
-			);
-			name = RecordingVC;
-			sourceTree = "<group>";
-		};
 		24C7034C1896B897008DDBA6 /* Recording */ = {
 			isa = PBXGroup;
 			children = (
+				24F16F6418B8B5FD00D4CA78 /* RecordingAction.h */,
+				24F16F6518B8B5FD00D4CA78 /* RecordingAction.m */,
 				24161BAD1893DE3100BBFC56 /* RecordLevelHandler.h */,
 				24161BAE1893DE3100BBFC56 /* RecordLevelHandler.m */,
 			);
@@ -500,6 +500,8 @@
 			children = (
 				24D17F7318A1294C005CBA4E /* ListenLevelHandler.h */,
 				24D17F7418A1294C005CBA4E /* ListenLevelHandler.m */,
+				24F16F6718B8B71E00D4CA78 /* ListeningAction.h */,
+				24F16F6818B8B71E00D4CA78 /* ListeningAction.m */,
 			);
 			name = Listening;
 			sourceTree = "<group>";
@@ -566,15 +568,6 @@
 			name = RecordingInfoVC;
 			sourceTree = "<group>";
 		};
-		24D17F6B189E6B30005CBA4E /* ListeningVC */ = {
-			isa = PBXGroup;
-			children = (
-				24D17F6C189E6C05005CBA4E /* ListeningVC.h */,
-				24D17F6D189E6C05005CBA4E /* ListeningVC.m */,
-			);
-			name = ListeningVC;
-			sourceTree = "<group>";
-		};
 		24D17F6F189FA622005CBA4E /* RecordInfoHandler */ = {
 			isa = PBXGroup;
 			children = (
@@ -627,6 +620,15 @@
 				24F16F5118ABDCBD00D4CA78 /* UserSetting.m */,
 			);
 			name = UserSetting;
+			sourceTree = "<group>";
+		};
+		24F16F6018B8A09A00D4CA78 /* RecordActionVC */ = {
+			isa = PBXGroup;
+			children = (
+				24F16F6118B8A0B600D4CA78 /* RecordActionVC.h */,
+				24F16F6218B8A0B600D4CA78 /* RecordActionVC.m */,
+			);
+			name = RecordActionVC;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -736,20 +738,21 @@
 				24161BCD1894C57500BBFC56 /* DBHandler.m in Sources */,
 				24D17F6A189D1C73005CBA4E /* RecordingInfoVC.m in Sources */,
 				24161B951893AD1E00BBFC56 /* RecordHandler.m in Sources */,
+				24F16F6918B8B71E00D4CA78 /* ListeningAction.m in Sources */,
 				24F16F4A18ABC86000D4CA78 /* SetupVC.m in Sources */,
 				24AD06B918A5C88500599DCE /* DreamVC.m in Sources */,
 				24161BA51893B11A00BBFC56 /* RecordSettingHandler.m in Sources */,
+				24F16F6618B8B5FD00D4CA78 /* RecordingAction.m in Sources */,
 				24161BC11894032800BBFC56 /* StatisticDetailLevelHandler.m in Sources */,
 				24093080188D1C5C00B01D94 /* RecordViewController.m in Sources */,
 				24C7035C189949ED008DDBA6 /* InitializatorLevelHandler.m in Sources */,
 				240930A1188D1CDC00B01D94 /* BusinessLogicHandler.m in Sources */,
-				24C7034A1896B63F008DDBA6 /* RecordingViewController.m in Sources */,
 				24AD06C318A5FDFB00599DCE /* StatisticTableVC.m in Sources */,
 				24F16F4018A68F8600D4CA78 /* StatisticDetailVC.m in Sources */,
+				24F16F5F18B8994A00D4CA78 /* RecordActionLevelHandler.m in Sources */,
 				24161BA21893AE8900BBFC56 /* DatabaseHandler.m in Sources */,
 				24C7035F18994C11008DDBA6 /* BaseLevelHandler.m in Sources */,
 				24D17F7518A1294C005CBA4E /* ListenLevelHandler.m in Sources */,
-				24D17F6E189E6C05005CBA4E /* ListeningVC.m in Sources */,
 				24161BA81893B19300BBFC56 /* EmailSettingHandler.m in Sources */,
 				24161BC61894BE7C00BBFC56 /* RecordInfoLevelHandler.m in Sources */,
 				24F16F5218ABDCBD00D4CA78 /* UserSetting.m in Sources */,
@@ -757,6 +760,7 @@
 				24161BC91894BE9400BBFC56 /* RecordInfo.m in Sources */,
 				24093076188D1C5C00B01D94 /* main.m in Sources */,
 				24161BAF1893DE3100BBFC56 /* RecordLevelHandler.m in Sources */,
+				24F16F6318B8A0B600D4CA78 /* RecordActionVC.m in Sources */,
 				24161B921893ACCA00BBFC56 /* WakeupHandler.m in Sources */,
 				24D17F7B18A3EA11005CBA4E /* InitialVC.m in Sources */,
 				24C7036D189A0E3F008DDBA6 /* BaseVC.m in Sources */,

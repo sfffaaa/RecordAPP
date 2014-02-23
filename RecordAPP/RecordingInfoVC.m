@@ -8,37 +8,43 @@
 
 #import "RecordingInfoVC.h"
 #import "RecordInfoLevelHandler.h"
-#import "ListeningVC.h"
-#import "WakeupHandler.h"
 #import "DebugUtil.h"
 
+#pragma mark (TODO) WakeupHandler should hide into levelHandler;
+
 @interface RecordingInfoVC ()
+@property (nonatomic, weak) RecordInfoLevelHandler* levelHandler;
 
 @end
 
 @implementation RecordingInfoVC
+@synthesize levelHandler = _levelHandler;
 
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
     self = [super initWithCoder:aDecoder];
     if (nil != self) {
-//        [self setBaseLevelHandler:[[RecordInfoLevelHandler alloc]initWithNowVC:self]];
+        _levelHandler = [RecordInfoLevelHandler getInst];
     }
     return self;
 }
 
 - (void)viewDidLoad
 {
+    if (FALSE == [_levelHandler setUp]) {
+        CHECK_NOT_ENTER_HERE;
+    };
+
     [super viewDidLoad];
-    self.title = [[NSString alloc] initWithFormat:@"%@", [[WakeupHandler getInst] nowWakeupDate]];
-    
-    [[WakeupHandler getInst] setSetuped:TRUE];
+    self.title = [[NSString alloc] initWithFormat:@"%@", [_levelHandler date]];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    [[WakeupHandler getInst] setSetuped:FALSE];
+    if (FALSE == [_levelHandler setDown]) {
+        CHECK_NOT_ENTER_HERE;
+    };
 }
 
 - (void)didReceiveMemoryWarning
@@ -46,53 +52,28 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-- (IBAction)recordAgain:(id)sender
-{
-//    if (nil == [self baseLevelHandler]) {
-//        CHECK_NOT_ENTER_HERE;
-//    }
-//    RecordInfoLevelHandler* handler = (RecordInfoLevelHandler*)[self baseLevelHandler];
-//    if (FALSE == [handler recordAgain]) {
-//        CHECK_NOT_ENTER_HERE;
-//    }
-}
-- (IBAction)listen:(id)sender
-{
-//    if (nil == [self baseLevelHandler]) {
-//        CHECK_NOT_ENTER_HERE;
-//    }
-//    RecordInfoLevelHandler* handler = (RecordInfoLevelHandler*)[self baseLevelHandler];
-//    if (FALSE == [handler listen]) {
-//        CHECK_NOT_ENTER_HERE;
-//    }
-}
 
 - (IBAction)submit:(id)sender
 {
-//    if (nil == [self baseLevelHandler]) {
-//        CHECK_NOT_ENTER_HERE;
-//    }
-//    RecordInfoLevelHandler* handler = (RecordInfoLevelHandler*)[self baseLevelHandler];
-//    if (FALSE == [handler submit]) {
-//        CHECK_NOT_ENTER_HERE;
-//    }
-
-#pragma mark (TODO) Need check why dismiss 2 controller;
-//    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
     UIWindow *window = [UIApplication sharedApplication].keyWindow;
-//    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-//    UIViewController *mainViewController = [storyboard instantiateViewControllerWithIdentifier:@"test"];
-//    [window setRootViewController:mainViewController];
     [window.rootViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - segue
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
+    if (FALSE == [_levelHandler setActionWakupDate]) {
+        CHECK_NOT_ENTER_HERE;
+    }
+
     if ([[segue identifier] isEqualToString:@"toListen"]) {
-        RecordInfoLevelHandler* handler = (RecordInfoLevelHandler*)sender;
-        ListeningVC *vc = [segue destinationViewController];
-        [handler setNextVC:vc];
+        if (FALSE == [_levelHandler setAction:LISTEN_ACTION]) {
+            CHECK_NOT_ENTER_HERE;
+        };
+    } else if ([[segue identifier] isEqualToString:@"toRecord"]) {
+        if (FALSE == [_levelHandler setAction:RECORD_ACTION]) {
+            CHECK_NOT_ENTER_HERE;
+        }
     }
 }
 @end
