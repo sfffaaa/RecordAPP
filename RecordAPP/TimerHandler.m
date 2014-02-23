@@ -55,6 +55,7 @@ END:
     [self setDuration:0];
     [self setRemainTime:0];
     [_timer invalidate];
+    
     [[NSNotificationCenter defaultCenter] postNotificationName:TIMER_STOP_EVENT object:self];
     
     return TRUE;

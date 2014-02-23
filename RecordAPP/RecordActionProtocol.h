@@ -20,10 +20,11 @@ typedef enum _ACTION_PROTOCOL_
 
 - (int) getTotalTime;
 - (int) getRemainTime;
-- (BOOL) setFilePath: (NSString*) filePath;
+- (BOOL) setFilePath: (NSURL*) fileURL;
 - (NSString*) getFilePath;
 
 - (BOOL) start;
 - (BOOL) stop;
+- (BOOL) prepare;
 
 @end

@@ -67,33 +67,59 @@ typedef enum _ACTION_STATUS_
     return [userSetting recordPeriod];
 }
 
+- (NSURL*) getFileURL
+{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    NSString* file = [[NSString alloc] initWithFormat:@"%@.m4a", [dateFormatter stringFromDate:_wakeupTime]];
+    
+    NSArray *pathComponents = [NSArray arrayWithObjects:
+                               [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject],
+                               file,
+                               nil];
+    NSURL *outputFileURL = [NSURL fileURLWithPathComponents:pathComponents];
+    return outputFileURL;
+}
+
 - (BOOL) start
 {
     //Timer start
-    if (FALSE == [[self timerHandler] timeToStart:[self getRecordTime]]) {
+    if (FALSE == [_timerHandler timeToStart:[self getRecordTime]]) {
         DLog(@"Cannot start the timer");
         CHECK_NOT_ENTER_HERE;
     }
     _status = ACTION_STATUS;
+
     //Record or listen start;
+    if (FALSE == [_action start]) {
+        CHECK_NOT_ENTER_HERE;
+    }
+
     return TRUE;
 }
 
 - (BOOL) stop
 {
-    //Timer stop
-    //Record or listen stop;
+    if (FALSE == [_action stop]) {
+        CHECK_NOT_ENTER_HERE;
+    }
     _status = NON_STATUS;
     return TRUE;
 }
 
 - (BOOL) prepareStart
 {
-    if (FALSE == [[self timerHandler] timeToStart:[self getPerpareTime]]) {
-        DLog(@"Cannot start the timer");
+    if (FALSE == [_timerHandler timeToStart:[self getPerpareTime]]) {
         CHECK_NOT_ENTER_HERE;
     }
     _status = PREPARE_STATUS;
+    if (FALSE == [_action setFilePath:[self getFileURL]]) {
+        CHECK_NOT_ENTER_HERE;
+    }
+    if (FALSE == [_action prepare]) {
+        CHECK_NOT_ENTER_HERE;
+    }
+
     return TRUE;
 }
 
