@@ -55,6 +55,9 @@
 
 - (IBAction)submit:(id)sender
 {
+    if (FALSE == [_levelHandler submit]) {
+        CHECK_NOT_ENTER_HERE;
+    }
     UIWindow *window = [UIApplication sharedApplication].keyWindow;
     [window.rootViewController dismissViewControllerAnimated:YES completion:nil];
 }

@@ -57,6 +57,13 @@
 		24F16F6618B8B5FD00D4CA78 /* RecordingAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 24F16F6518B8B5FD00D4CA78 /* RecordingAction.m */; };
 		24F16F6918B8B71E00D4CA78 /* ListeningAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 24F16F6818B8B71E00D4CA78 /* ListeningAction.m */; };
 		24F16F6B18B9E06500D4CA78 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24F16F6A18B9E06500D4CA78 /* AVFoundation.framework */; };
+		24F16F7A18BCEE2E00D4CA78 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 24F16F7018BCEE2E00D4CA78 /* FMDatabase.m */; };
+		24F16F7B18BCEE2E00D4CA78 /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 24F16F7218BCEE2E00D4CA78 /* FMDatabaseAdditions.m */; };
+		24F16F7C18BCEE2E00D4CA78 /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = 24F16F7418BCEE2E00D4CA78 /* FMDatabasePool.m */; };
+		24F16F7D18BCEE2E00D4CA78 /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 24F16F7618BCEE2E00D4CA78 /* FMDatabaseQueue.m */; };
+		24F16F7E18BCEE2E00D4CA78 /* fmdb.m in Sources */ = {isa = PBXBuildFile; fileRef = 24F16F7718BCEE2E00D4CA78 /* fmdb.m */; };
+		24F16F7F18BCEE2E00D4CA78 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 24F16F7918BCEE2E00D4CA78 /* FMResultSet.m */; };
+		24F16F8118BCF1B900D4CA78 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 24F16F8018BCF1B900D4CA78 /* libsqlite3.0.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -159,6 +166,18 @@
 		24F16F6718B8B71E00D4CA78 /* ListeningAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListeningAction.h; sourceTree = "<group>"; };
 		24F16F6818B8B71E00D4CA78 /* ListeningAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListeningAction.m; sourceTree = "<group>"; };
 		24F16F6A18B9E06500D4CA78 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		24F16F6F18BCEE2E00D4CA78 /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
+		24F16F7018BCEE2E00D4CA78 /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
+		24F16F7118BCEE2E00D4CA78 /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseAdditions.h; sourceTree = "<group>"; };
+		24F16F7218BCEE2E00D4CA78 /* FMDatabaseAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseAdditions.m; sourceTree = "<group>"; };
+		24F16F7318BCEE2E00D4CA78 /* FMDatabasePool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabasePool.h; sourceTree = "<group>"; };
+		24F16F7418BCEE2E00D4CA78 /* FMDatabasePool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabasePool.m; sourceTree = "<group>"; };
+		24F16F7518BCEE2E00D4CA78 /* FMDatabaseQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseQueue.h; sourceTree = "<group>"; };
+		24F16F7618BCEE2E00D4CA78 /* FMDatabaseQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseQueue.m; sourceTree = "<group>"; };
+		24F16F7718BCEE2E00D4CA78 /* fmdb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = fmdb.m; sourceTree = "<group>"; };
+		24F16F7818BCEE2E00D4CA78 /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
+		24F16F7918BCEE2E00D4CA78 /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
+		24F16F8018BCF1B900D4CA78 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -166,6 +185,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				24F16F8118BCF1B900D4CA78 /* libsqlite3.0.dylib in Frameworks */,
 				24F16F6B18B9E06500D4CA78 /* AVFoundation.framework in Frameworks */,
 				2409306C188D1C5C00B01D94 /* CoreGraphics.framework in Frameworks */,
 				2409306E188D1C5C00B01D94 /* UIKit.framework in Frameworks */,
@@ -208,6 +228,7 @@
 		24093068188D1C5C00B01D94 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				24F16F8018BCF1B900D4CA78 /* libsqlite3.0.dylib */,
 				24F16F6A18B9E06500D4CA78 /* AVFoundation.framework */,
 				24093069188D1C5C00B01D94 /* Foundation.framework */,
 				2409306B188D1C5C00B01D94 /* CoreGraphics.framework */,
@@ -220,6 +241,7 @@
 		2409306F188D1C5C00B01D94 /* RecordAPP */ = {
 			isa = PBXGroup;
 			children = (
+				24F16F6C18BCEDFF00D4CA78 /* Open Source */,
 				240930A2188D29DD00B01D94 /* Globol */,
 				24161BC21894058900BBFC56 /* Data Structure */,
 				240930A4188D30CB00B01D94 /* BusinessLogic */,
@@ -625,6 +647,32 @@
 			name = RecordActionVC;
 			sourceTree = "<group>";
 		};
+		24F16F6C18BCEDFF00D4CA78 /* Open Source */ = {
+			isa = PBXGroup;
+			children = (
+				24F16F6E18BCEE2E00D4CA78 /* fmdb-src */,
+			);
+			name = "Open Source";
+			sourceTree = "<group>";
+		};
+		24F16F6E18BCEE2E00D4CA78 /* fmdb-src */ = {
+			isa = PBXGroup;
+			children = (
+				24F16F6F18BCEE2E00D4CA78 /* FMDatabase.h */,
+				24F16F7018BCEE2E00D4CA78 /* FMDatabase.m */,
+				24F16F7118BCEE2E00D4CA78 /* FMDatabaseAdditions.h */,
+				24F16F7218BCEE2E00D4CA78 /* FMDatabaseAdditions.m */,
+				24F16F7318BCEE2E00D4CA78 /* FMDatabasePool.h */,
+				24F16F7418BCEE2E00D4CA78 /* FMDatabasePool.m */,
+				24F16F7518BCEE2E00D4CA78 /* FMDatabaseQueue.h */,
+				24F16F7618BCEE2E00D4CA78 /* FMDatabaseQueue.m */,
+				24F16F7718BCEE2E00D4CA78 /* fmdb.m */,
+				24F16F7818BCEE2E00D4CA78 /* FMResultSet.h */,
+				24F16F7918BCEE2E00D4CA78 /* FMResultSet.m */,
+			);
+			path = "fmdb-src";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -729,11 +777,14 @@
 				24161B8F1893AC5E00BBFC56 /* EmailHandler.m in Sources */,
 				24D17F72189FA68C005CBA4E /* RecordInfoHandler.m in Sources */,
 				24161BB61893F98A00BBFC56 /* EncourageHandler.m in Sources */,
+				24F16F7A18BCEE2E00D4CA78 /* FMDatabase.m in Sources */,
 				24161BCD1894C57500BBFC56 /* DBHandler.m in Sources */,
 				24D17F6A189D1C73005CBA4E /* RecordingInfoVC.m in Sources */,
+				24F16F7B18BCEE2E00D4CA78 /* FMDatabaseAdditions.m in Sources */,
 				24161B951893AD1E00BBFC56 /* RecordHandler.m in Sources */,
 				24F16F6918B8B71E00D4CA78 /* ListeningAction.m in Sources */,
 				24F16F4A18ABC86000D4CA78 /* SetupVC.m in Sources */,
+				24F16F7E18BCEE2E00D4CA78 /* fmdb.m in Sources */,
 				24AD06B918A5C88500599DCE /* DreamVC.m in Sources */,
 				24161BA51893B11A00BBFC56 /* RecordSettingHandler.m in Sources */,
 				24F16F6618B8B5FD00D4CA78 /* RecordingAction.m in Sources */,
@@ -741,10 +792,12 @@
 				24093080188D1C5C00B01D94 /* RecordViewController.m in Sources */,
 				24C7035C189949ED008DDBA6 /* InitializatorLevelHandler.m in Sources */,
 				240930A1188D1CDC00B01D94 /* BusinessLogicHandler.m in Sources */,
+				24F16F7D18BCEE2E00D4CA78 /* FMDatabaseQueue.m in Sources */,
 				24AD06C318A5FDFB00599DCE /* StatisticTableVC.m in Sources */,
 				24F16F4018A68F8600D4CA78 /* StatisticDetailVC.m in Sources */,
 				24F16F5F18B8994A00D4CA78 /* RecordActionLevelHandler.m in Sources */,
 				24161BA21893AE8900BBFC56 /* DatabaseHandler.m in Sources */,
+				24F16F7C18BCEE2E00D4CA78 /* FMDatabasePool.m in Sources */,
 				24C7035F18994C11008DDBA6 /* BaseLevelHandler.m in Sources */,
 				24161BA81893B19300BBFC56 /* EmailSettingHandler.m in Sources */,
 				24161BC61894BE7C00BBFC56 /* RecordInfoLevelHandler.m in Sources */,
@@ -759,6 +812,7 @@
 				24161BB21893F80100BBFC56 /* RecordFileHandler.m in Sources */,
 				24161BBD1894029300BBFC56 /* StatisticTableLevelHandler.m in Sources */,
 				2409307A188D1C5C00B01D94 /* RecordAppDelegate.m in Sources */,
+				24F16F7F18BCEE2E00D4CA78 /* FMResultSet.m in Sources */,
 				24F16F4D18ABDC0700D4CA78 /* SetupLevelHandler.m in Sources */,
 				24C703581896C073008DDBA6 /* TimerHandler.m in Sources */,
 			);

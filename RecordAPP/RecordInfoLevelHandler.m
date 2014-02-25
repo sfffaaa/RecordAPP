@@ -72,8 +72,36 @@
 - (BOOL) setActionWakupDate
 {
     RecordActionLevelHandler* handler = [RecordActionLevelHandler getInst];
-    [handler setWakeupTime:_date];
+    [handler setFileURL:[self getFileURL]];
+    
     return TRUE;
 }
+
+- (BOOL) submit
+{
+    //stat whether the file is exist or not
+    if (NO == [[NSFileManager defaultManager] fileExistsAtPath:[[self getFileURL] path]]) {
+        CHECK_NOT_ENTER_HERE;
+        return FALSE;
+    }
+    //Add information to db
+    
+    return TRUE;
+}
+
+- (NSURL*) getFileURL
+{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd-HH:mm"];
+    NSString* file = [[NSString alloc] initWithFormat:@"%@.m4a", [dateFormatter stringFromDate:_date]];
+    
+    NSArray *pathComponents = [NSArray arrayWithObjects:
+                               [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject],
+                               file,
+                               nil];
+    NSURL *outputFileURL = [NSURL fileURLWithPathComponents:pathComponents];
+    return outputFileURL;
+}
+
 
 @end

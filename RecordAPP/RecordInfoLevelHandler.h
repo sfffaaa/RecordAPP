@@ -20,4 +20,6 @@
 - (BOOL) setActionWakupDate;
 - (BOOL) setUp;
 - (BOOL) setDown;
+- (BOOL) submit;
+
 @end

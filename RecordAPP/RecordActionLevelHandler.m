@@ -27,7 +27,7 @@ typedef enum _ACTION_STATUS_
 
 @implementation RecordActionLevelHandler
 @synthesize action = _action;
-@synthesize wakeupTime = _wakeupTime;
+@synthesize fileURL = _fileURL;
 @synthesize timerHandler = _timerHandler;
 @synthesize status = _status;
 
@@ -49,7 +49,7 @@ typedef enum _ACTION_STATUS_
     self = [super init];
     if (nil != self) {
         _action = nil;
-        _wakeupTime = nil;
+        _fileURL = nil;
         _timerHandler = [[TimerHandler alloc] init];
         _status = NON_STATUS;
     }
@@ -65,20 +65,6 @@ typedef enum _ACTION_STATUS_
 {
     UserSetting* userSetting = [[UserSetting alloc] init];
     return [userSetting recordPeriod];
-}
-
-- (NSURL*) getFileURL
-{
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
-    NSString* file = [[NSString alloc] initWithFormat:@"%@.m4a", [dateFormatter stringFromDate:_wakeupTime]];
-    
-    NSArray *pathComponents = [NSArray arrayWithObjects:
-                               [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject],
-                               file,
-                               nil];
-    NSURL *outputFileURL = [NSURL fileURLWithPathComponents:pathComponents];
-    return outputFileURL;
 }
 
 - (BOOL) start
@@ -113,7 +99,10 @@ typedef enum _ACTION_STATUS_
         CHECK_NOT_ENTER_HERE;
     }
     _status = PREPARE_STATUS;
-    if (FALSE == [_action setFilePath:[self getFileURL]]) {
+    if (nil == _fileURL) {
+        CHECK_NOT_ENTER_HERE;
+    }
+    if (FALSE == [_action setFilePath: _fileURL]) {
         CHECK_NOT_ENTER_HERE;
     }
     if (FALSE == [_action prepare]) {
@@ -132,5 +121,25 @@ typedef enum _ACTION_STATUS_
 - (BOOL) isPrepare
 {
     return _status == PREPARE_STATUS;
+}
+
+#pragma mark (TODO) Should connect to storyboard "stop".
+- (void) manualStop
+{
+    if (ACTION_STATUS == _status) {
+        if (FALSE == [_timerHandler stop]) {
+            CHECK_NOT_ENTER_HERE;
+        };
+        if (FALSE == [self stop]) {
+            CHECK_NOT_ENTER_HERE;
+        }
+    } else if (PREPARE_STATUS == _status) {
+        if (FALSE == [_timerHandler stop]) {
+            CHECK_NOT_ENTER_HERE;
+        };
+        if (FALSE == [self prepareStop]) {
+            CHECK_NOT_ENTER_HERE;
+        }
+    }
 }
 @end

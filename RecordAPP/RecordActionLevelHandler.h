@@ -11,7 +11,7 @@
 
 @interface RecordActionLevelHandler : NSObject
 @property (nonatomic, strong) id<RecordActionProtocol> action;
-@property (nonatomic, weak) NSDate* wakeupTime;
+@property (nonatomic, strong) NSURL* fileURL;
 
 + (RecordActionLevelHandler*) getInst;
 - (int) getPerpareTime;
