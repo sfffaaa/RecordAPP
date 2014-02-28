@@ -11,8 +11,11 @@
 #import "RecordingAction.h"
 #import "ListeningAction.h"
 #import "WakeupHandler.h"
-#import "DebugUtil.h"
+#import "DBHandler.h"
 #import "RecordInfo.h"
+#import "DebugUtil.h"
+#import "Util.h"
+#import <AVFoundation/AVFoundation.h>
 
 @interface RecordInfoLevelHandler()
 @end
@@ -72,7 +75,7 @@
 - (BOOL) setActionWakupDate
 {
     RecordActionLevelHandler* handler = [RecordActionLevelHandler getInst];
-    [handler setFileURL:[self getFileURL]];
+    [handler setFileURL:[Util getFileURLFromDate:_date]];
     
     return TRUE;
 }
@@ -80,28 +83,47 @@
 - (BOOL) submit
 {
     //stat whether the file is exist or not
-    if (NO == [[NSFileManager defaultManager] fileExistsAtPath:[[self getFileURL] path]]) {
+    if (NO == [[NSFileManager defaultManager] fileExistsAtPath:[[Util getFileURLFromDate:_date] path]]) {
         CHECK_NOT_ENTER_HERE;
         return FALSE;
     }
     //Add information to db
+    RecordInfo* info = nil;
+    if (nil == (info = [self composeRecordInfo])) {
+        CHECK_NOT_ENTER_HERE
+        return FALSE;
+    }
+    DBHandler* handler = [[DBHandler alloc] init];
+    if (nil == handler) {
+        CHECK_NOT_ENTER_HERE;
+        return FALSE;
+    }
+    if (FALSE == [handler push:info]) {
+        CHECK_NOT_ENTER_HERE;
+        return FALSE;
+    }
     
     return TRUE;
 }
 
-- (NSURL*) getFileURL
+- (RecordInfo*) composeRecordInfo
 {
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"yyyy-MM-dd-HH:mm"];
-    NSString* file = [[NSString alloc] initWithFormat:@"%@.m4a", [dateFormatter stringFromDate:_date]];
-    
-    NSArray *pathComponents = [NSArray arrayWithObjects:
-                               [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject],
-                               file,
-                               nil];
-    NSURL *outputFileURL = [NSURL fileURLWithPathComponents:pathComponents];
-    return outputFileURL;
-}
+    RecordInfo* info = [[RecordInfo alloc] init];
+    if (nil == info) {
+        CHECK_NOT_ENTER_HERE;
+        return nil;
+    }
+    [info setDate:_date];
+#pragma mark (TODO) setup the score bar
+    [info setScore:2];
 
+    AVURLAsset* audioAsset = [AVURLAsset URLAssetWithURL:[Util getFileURLFromDate:_date] options:nil];
+    CMTime audioDuration = audioAsset.duration;
+    float audioDurationSeconds = CMTimeGetSeconds(audioDuration);
+#pragma mark (TODO) when leave the recording, should stop recording, or now will get 0 length.
+    [info setLength:audioDurationSeconds];
+    
+    return info;
+}
 
 @end

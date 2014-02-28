@@ -17,8 +17,8 @@
 @implementation RecordInfo
 
 @synthesize name = _name;
-@synthesize recordPath = _recordPath;
-@synthesize briefExplain = _briefExplain;
+//@synthesize recordPath = _recordPath;
+//@synthesize briefExplain = _briefExplain;
 @synthesize score = _score;
 @synthesize date = _date;
 @synthesize isValid = _isValid;
@@ -28,8 +28,8 @@
     self = [super init];
     if (nil != self) {
         _name = [[NSString alloc] initWithFormat:DEBUG_RECORDINFO_NAME];
-        _recordPath = [[NSString alloc] initWithFormat:DEBUG_RECORDINFO_PATH];
-        _briefExplain = [[NSString alloc] initWithFormat:DEBUG_RECORDINFO_BRIEF_EXPLAIN];
+//        _recordPath = [[NSString alloc] initWithFormat:DEBUG_RECORDINFO_PATH];
+//        _briefExplain = [[NSString alloc] initWithFormat:DEBUG_RECORDINFO_BRIEF_EXPLAIN];
         _date = [[NSDate alloc] initWithTimeIntervalSinceNow:0];
         _score = DEBUG_RECORDINFO_SCORE;
         _isValid = TRUE;

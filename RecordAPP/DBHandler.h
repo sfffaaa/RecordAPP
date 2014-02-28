@@ -7,7 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "FMDatabase.h"
+#import "RecordInfo.h"
 
 @interface DBHandler : NSObject
+//get inst
+- (NSString*) convertToID: (RecordInfo*) info;
+
+- (BOOL) push: (RecordInfo*) info;
+- (RecordInfo*) get: (NSDate*) date;
+- (NSArray*) selectAll;
 
 @end

@@ -61,9 +61,9 @@
 		24F16F7B18BCEE2E00D4CA78 /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 24F16F7218BCEE2E00D4CA78 /* FMDatabaseAdditions.m */; };
 		24F16F7C18BCEE2E00D4CA78 /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = 24F16F7418BCEE2E00D4CA78 /* FMDatabasePool.m */; };
 		24F16F7D18BCEE2E00D4CA78 /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 24F16F7618BCEE2E00D4CA78 /* FMDatabaseQueue.m */; };
-		24F16F7E18BCEE2E00D4CA78 /* fmdb.m in Sources */ = {isa = PBXBuildFile; fileRef = 24F16F7718BCEE2E00D4CA78 /* fmdb.m */; };
 		24F16F7F18BCEE2E00D4CA78 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 24F16F7918BCEE2E00D4CA78 /* FMResultSet.m */; };
 		24F16F8118BCF1B900D4CA78 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 24F16F8018BCF1B900D4CA78 /* libsqlite3.0.dylib */; };
+		24F16F8518C0BB3700D4CA78 /* Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 24F16F8418C0BB3700D4CA78 /* Util.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -174,10 +174,11 @@
 		24F16F7418BCEE2E00D4CA78 /* FMDatabasePool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabasePool.m; sourceTree = "<group>"; };
 		24F16F7518BCEE2E00D4CA78 /* FMDatabaseQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseQueue.h; sourceTree = "<group>"; };
 		24F16F7618BCEE2E00D4CA78 /* FMDatabaseQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseQueue.m; sourceTree = "<group>"; };
-		24F16F7718BCEE2E00D4CA78 /* fmdb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = fmdb.m; sourceTree = "<group>"; };
 		24F16F7818BCEE2E00D4CA78 /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
 		24F16F7918BCEE2E00D4CA78 /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
 		24F16F8018BCF1B900D4CA78 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
+		24F16F8318C0BB3700D4CA78 /* Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Util.h; sourceTree = "<group>"; };
+		24F16F8418C0BB3700D4CA78 /* Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Util.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -335,6 +336,7 @@
 		24161B961893AD2700BBFC56 /* Functional Handler */ = {
 			isa = PBXGroup;
 			children = (
+				24F16F8218C0BB2200D4CA78 /* Util */,
 				24D17F6F189FA622005CBA4E /* RecordInfoHandler */,
 				24C703551896C061008DDBA6 /* TimerHandler */,
 				24C703511896BFDD008DDBA6 /* EventHandler */,
@@ -666,11 +668,19 @@
 				24F16F7418BCEE2E00D4CA78 /* FMDatabasePool.m */,
 				24F16F7518BCEE2E00D4CA78 /* FMDatabaseQueue.h */,
 				24F16F7618BCEE2E00D4CA78 /* FMDatabaseQueue.m */,
-				24F16F7718BCEE2E00D4CA78 /* fmdb.m */,
 				24F16F7818BCEE2E00D4CA78 /* FMResultSet.h */,
 				24F16F7918BCEE2E00D4CA78 /* FMResultSet.m */,
 			);
 			path = "fmdb-src";
+			sourceTree = "<group>";
+		};
+		24F16F8218C0BB2200D4CA78 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				24F16F8318C0BB3700D4CA78 /* Util.h */,
+				24F16F8418C0BB3700D4CA78 /* Util.m */,
+			);
+			name = Util;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -776,6 +786,7 @@
 			files = (
 				24161B8F1893AC5E00BBFC56 /* EmailHandler.m in Sources */,
 				24D17F72189FA68C005CBA4E /* RecordInfoHandler.m in Sources */,
+				24F16F8518C0BB3700D4CA78 /* Util.m in Sources */,
 				24161BB61893F98A00BBFC56 /* EncourageHandler.m in Sources */,
 				24F16F7A18BCEE2E00D4CA78 /* FMDatabase.m in Sources */,
 				24161BCD1894C57500BBFC56 /* DBHandler.m in Sources */,
@@ -784,7 +795,6 @@
 				24161B951893AD1E00BBFC56 /* RecordHandler.m in Sources */,
 				24F16F6918B8B71E00D4CA78 /* ListeningAction.m in Sources */,
 				24F16F4A18ABC86000D4CA78 /* SetupVC.m in Sources */,
-				24F16F7E18BCEE2E00D4CA78 /* fmdb.m in Sources */,
 				24AD06B918A5C88500599DCE /* DreamVC.m in Sources */,
 				24161BA51893B11A00BBFC56 /* RecordSettingHandler.m in Sources */,
 				24F16F6618B8B5FD00D4CA78 /* RecordingAction.m in Sources */,

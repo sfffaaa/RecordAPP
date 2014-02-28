@@ -11,9 +11,10 @@
 @interface RecordInfo : NSObject
 @property (nonatomic) BOOL isValid;
 @property (nonatomic, strong) NSString* name;
-@property (nonatomic, strong) NSString* recordPath;
-@property (nonatomic, strong) NSString* briefExplain;
+//@property (nonatomic, strong) NSString* recordPath;
+//@property (nonatomic, strong) NSString* briefExplain;
 @property (nonatomic, strong) NSDate* date;
 @property (nonatomic) int score;
+@property (nonatomic) float length;
 
 @end
