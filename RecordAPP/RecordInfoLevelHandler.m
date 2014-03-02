@@ -13,9 +13,8 @@
 #import "WakeupHandler.h"
 #import "DBHandler.h"
 #import "RecordInfo.h"
+#import "AudioFileHandler.h"
 #import "DebugUtil.h"
-#import "Util.h"
-#import <AVFoundation/AVFoundation.h>
 
 @interface RecordInfoLevelHandler()
 @end
@@ -75,7 +74,7 @@
 - (BOOL) setActionWakupDate
 {
     RecordActionLevelHandler* handler = [RecordActionLevelHandler getInst];
-    [handler setFileURL:[Util getFileURLFromDate:_date]];
+    [handler setFileURL:[AudioFileHandler getFileURLFromDate:_date]];
     
     return TRUE;
 }
@@ -83,7 +82,7 @@
 - (BOOL) submit
 {
     //stat whether the file is exist or not
-    if (NO == [[NSFileManager defaultManager] fileExistsAtPath:[[Util getFileURLFromDate:_date] path]]) {
+    if (NO == [[NSFileManager defaultManager] fileExistsAtPath:[[AudioFileHandler getFileURLFromDate:_date] path]]) {
         CHECK_NOT_ENTER_HERE;
         return FALSE;
     }
@@ -93,7 +92,7 @@
         CHECK_NOT_ENTER_HERE
         return FALSE;
     }
-    DBHandler* handler = [[DBHandler alloc] init];
+    DBHandler* handler = [DBHandler getInst];
     if (nil == handler) {
         CHECK_NOT_ENTER_HERE;
         return FALSE;
@@ -102,6 +101,7 @@
         CHECK_NOT_ENTER_HERE;
         return FALSE;
     }
+    [[NSNotificationCenter defaultCenter] postNotificationName: RELOAD_EVENT object:self];
     
     return TRUE;
 }
@@ -117,11 +117,13 @@
 #pragma mark (TODO) setup the score bar
     [info setScore:2];
 
-    AVURLAsset* audioAsset = [AVURLAsset URLAssetWithURL:[Util getFileURLFromDate:_date] options:nil];
-    CMTime audioDuration = audioAsset.duration;
-    float audioDurationSeconds = CMTimeGetSeconds(audioDuration);
 #pragma mark (TODO) when leave the recording, should stop recording, or now will get 0 length.
-    [info setLength:audioDurationSeconds];
+    float audioSecond = [AudioFileHandler getAudioLengthFromDate:_date];
+    if (0 == audioSecond) {
+        CHECK_NOT_ENTER_HERE;
+        return nil;
+    }
+    [info setLength:audioSecond];
     
     return info;
 }

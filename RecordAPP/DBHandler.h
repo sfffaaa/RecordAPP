@@ -11,11 +11,13 @@
 #import "RecordInfo.h"
 
 @interface DBHandler : NSObject
-//get inst
++ (DBHandler*) getInst;
+
 - (NSString*) convertToID: (RecordInfo*) info;
 
 - (BOOL) push: (RecordInfo*) info;
 - (RecordInfo*) get: (NSDate*) date;
 - (NSArray*) selectAll;
+- (BOOL) remove: (RecordInfo*) info;
 
 @end

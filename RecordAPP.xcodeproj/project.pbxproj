@@ -39,6 +39,7 @@
 		24AD06B918A5C88500599DCE /* DreamVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 24AD06B818A5C88500599DCE /* DreamVC.m */; };
 		24AD06C318A5FDFB00599DCE /* StatisticTableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 24AD06C218A5FDFB00599DCE /* StatisticTableVC.m */; };
 		24AD06C518A6096700599DCE /* StatisticRecordInfo.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24AD06C418A6096700599DCE /* StatisticRecordInfo.xib */; };
+		24BED5C418C3776E00E140EA /* AudioFileHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 24BED5C318C3776E00E140EA /* AudioFileHandler.m */; };
 		24C703541896BFFD008DDBA6 /* EventHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 24C703531896BFFD008DDBA6 /* EventHandler.m */; };
 		24C703581896C073008DDBA6 /* TimerHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 24C703571896C073008DDBA6 /* TimerHandler.m */; };
 		24C7035C189949ED008DDBA6 /* InitializatorLevelHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 24C7035B189949ED008DDBA6 /* InitializatorLevelHandler.m */; };
@@ -131,6 +132,8 @@
 		24AD06C118A5FDFB00599DCE /* StatisticTableVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatisticTableVC.h; sourceTree = "<group>"; };
 		24AD06C218A5FDFB00599DCE /* StatisticTableVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatisticTableVC.m; sourceTree = "<group>"; };
 		24AD06C418A6096700599DCE /* StatisticRecordInfo.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StatisticRecordInfo.xib; sourceTree = "<group>"; };
+		24BED5C218C3776E00E140EA /* AudioFileHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioFileHandler.h; sourceTree = "<group>"; };
+		24BED5C318C3776E00E140EA /* AudioFileHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioFileHandler.m; sourceTree = "<group>"; };
 		24C703501896BBF8008DDBA6 /* RecordActionProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordActionProtocol.h; sourceTree = "<group>"; };
 		24C703521896BFFD008DDBA6 /* EventHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventHandler.h; sourceTree = "<group>"; };
 		24C703531896BFFD008DDBA6 /* EventHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventHandler.m; sourceTree = "<group>"; };
@@ -337,6 +340,7 @@
 			isa = PBXGroup;
 			children = (
 				24F16F8218C0BB2200D4CA78 /* Util */,
+				24BED5C118C3775400E140EA /* AudioFileHandler */,
 				24D17F6F189FA622005CBA4E /* RecordInfoHandler */,
 				24C703551896C061008DDBA6 /* TimerHandler */,
 				24C703511896BFDD008DDBA6 /* EventHandler */,
@@ -496,6 +500,15 @@
 				24AD06C218A5FDFB00599DCE /* StatisticTableVC.m */,
 			);
 			name = StatisticTableVC;
+			sourceTree = "<group>";
+		};
+		24BED5C118C3775400E140EA /* AudioFileHandler */ = {
+			isa = PBXGroup;
+			children = (
+				24BED5C218C3776E00E140EA /* AudioFileHandler.h */,
+				24BED5C318C3776E00E140EA /* AudioFileHandler.m */,
+			);
+			name = AudioFileHandler;
 			sourceTree = "<group>";
 		};
 		24C7033B18957092008DDBA6 /* xib */ = {
@@ -789,6 +802,7 @@
 				24F16F8518C0BB3700D4CA78 /* Util.m in Sources */,
 				24161BB61893F98A00BBFC56 /* EncourageHandler.m in Sources */,
 				24F16F7A18BCEE2E00D4CA78 /* FMDatabase.m in Sources */,
+				24BED5C418C3776E00E140EA /* AudioFileHandler.m in Sources */,
 				24161BCD1894C57500BBFC56 /* DBHandler.m in Sources */,
 				24D17F6A189D1C73005CBA4E /* RecordingInfoVC.m in Sources */,
 				24F16F7B18BCEE2E00D4CA78 /* FMDatabaseAdditions.m in Sources */,

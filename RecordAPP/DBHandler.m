@@ -10,6 +10,7 @@
 #import "FMDatabase.h"
 #import "FMDatabaseAdditions.h"
 #import "RecordInfo.h"
+#import "Util.h"
 #import "DebugUtil.h"
 
 #define DB_NAME @"dbtest.db"
@@ -27,6 +28,18 @@
 
 @implementation DBHandler
 @synthesize db = _db;
+
++ (DBHandler*) getInst
+{
+    static DBHandler* inst = nil;
+    static dispatch_once_t onceToken = 0;
+    if (nil == inst) {
+        dispatch_once(&onceToken, ^{
+            inst = [[DBHandler alloc] init];
+        });
+    }
+    return inst;
+}
 
 - (id) init
 {
@@ -54,9 +67,7 @@
     if (nil == info) {
         CHECK_NOT_ENTER_HERE;
     }
-    NSString* dbID = nil;
-    dbID = [[NSString alloc] initWithFormat:@"%@", [info date]];
-    return dbID;
+    return [Util stringFromDate:[info date]];
 }
 
 //return false: no entry
@@ -92,7 +103,7 @@
     }
     
     dbID = [[NSString alloc] initWithFormat:@"%@", [self convertToID:info]];
-    sqlCmd = [[NSString alloc] initWithFormat:@"insert into %@ (%@, %@, %@, %@) values (\'%@\', \'%@\', \'%f\', \'%i\');", RECORD_TABLE, RECORD_ID, RECORD_DATE, RECORD_LENGTH, RECORD_SCORE, dbID, [info date], [info length], [info score]];
+    sqlCmd = [[NSString alloc] initWithFormat:@"insert into %@ (%@, %@, %@, %@) values (\'%@\', \'%@\', \'%f\', \'%i\');", RECORD_TABLE, RECORD_ID, RECORD_DATE, RECORD_LENGTH, RECORD_SCORE, dbID, [Util stringFromDate:[info date]], [info length], [info score]];
 
     if (FALSE == [_db beginTransaction]) {
         CHECK_NOT_ENTER_HERE;
@@ -156,7 +167,7 @@ END:
         goto END;
     }
     
-    [info setDate:[rs dateForColumn:RECORD_DATE]];
+    [info setDate:[Util dateFromString:[rs stringForColumn:RECORD_DATE]]];
     [info setLength:[[rs objectForColumnName:RECORD_LENGTH] floatValue]];
     [info setScore:[[rs objectForColumnName:RECORD_SCORE] intValue]];
     [info setIsValid:TRUE];

@@ -9,13 +9,19 @@
 #import "StatisticTableVC.h"
 #import "StatisticTableLevelHandler.h"
 #import "StatisticDetailVC.h"
+#import "RecordInfoLevelHandler.h"
 #import "RecordInfo.h"
+#import "Util.h"
 #import "DebugUtil.h"
 
 #pragma mark (FEATURE) Need has filter for no record time
 
 #define VALID_RECORD_INFO_HEIGHT 106
 #define INVALID_RECORD_INFO_HEIGHT 20
+
+#define kRecordTableViewDateTextTag 1
+#define kRecordTableViewScoreTextTag 2
+#define kRecordTableViewLengthTextTag 3
 
 @interface StatisticTableVC ()
 @property (nonatomic, strong) StatisticTableLevelHandler* levelHandler;
@@ -30,6 +36,7 @@
     self = [super initWithCoder:aDecoder];
     if (self) {
         _levelHandler = [StatisticTableLevelHandler getInst];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTable:) name:RELOAD_EVENT object:nil];
     }
     return self;
 }
@@ -37,7 +44,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -45,11 +52,23 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
+- (void) viewWillDisappear: (BOOL)animated
+{
+    [super viewWillDisappear:animated];
+//    [[NSNotificationCenter defaultCenter] removeObserver:self name:RELOAD_EVENT object:nil];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+- (void) reloadTable:(NSNotification*) notification
+{
+    [_tableView reloadData];
+}
+
 
 #pragma mark - UITableViewDelegate
 
@@ -76,7 +95,12 @@
     if (nil == cell) {
         cell = [[[NSBundle mainBundle] loadNibNamed:@"StatisticRecordInfo" owner:self options:nil] objectAtIndex:0];
     }
-    // Configure the cell...
+    
+    ((UILabel*)[cell viewWithTag:kRecordTableViewDateTextTag]).text = [[NSString alloc]initWithFormat:@"%@", [Util displayStringFromDate:[info date]]];
+    ((UILabel*)[cell viewWithTag:kRecordTableViewScoreTextTag]).text = [[NSString alloc]initWithFormat:@"%i", [info score]];
+    DLog(@"test %f", [info length]);
+    ((UILabel*)[cell viewWithTag:kRecordTableViewLengthTextTag]).text = [[NSString alloc]initWithFormat:@"%.0f", [info length]];
+
 #pragma mark (TODO) Connect tableviewcell with record info
     return cell;
 }
@@ -91,6 +115,19 @@
         height = INVALID_RECORD_INFO_HEIGHT;
     }
     return height;
+}
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    return YES;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        RecordInfo* info = [[[self levelHandler] getInfoArray] objectAtIndex:[indexPath row]];
+        if (FALSE == [[self levelHandler] removeInfo: info]) {
+            CHECK_NOT_ENTER_HERE;
+        }
+    }
 }
 
 - (IBAction)filter:(id)sender

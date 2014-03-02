@@ -7,6 +7,9 @@
 //
 
 #import "StatisticTableLevelHandler.h"
+#import "RecordInfoLevelHandler.h"
+#import "DBHandler.h"
+#import "AudioFileHandler.h"
 #import "DebugUtil.h"
 #import "RecordInfo.h"
 
@@ -63,21 +66,58 @@
 
 - (NSInteger) getCount
 {
-#pragma mark (TODO) Implement getCount
-    return 1;
+    NSArray* infos = [self getInfoArray];
+    if (nil == infos) {
+        CHECK_NOT_ENTER_HERE;
+        return 0;
+    }
+    return [infos count];
 }
 //if cmptr == nil; date latest is first
 - (NSArray*)getInfoArray
 {
-#pragma mark (TODO) Implement getInfoArray
-    NSArray* infos = [[NSArray alloc] initWithObjects:[[RecordInfo alloc] init], nil];
-    return infos;
-    
     NSArray* rawInfos = nil;
+    DBHandler* dbHandler = [DBHandler getInst];
+    if (nil == (rawInfos = [dbHandler selectAll])) {
+        CHECK_NOT_ENTER_HERE;
+        return nil;
+    }
     if (nil == [self fillBehavior]) {
         CHECK_NOT_ENTER_HERE;
+        return nil;
     }
     return [[self fillBehavior] fillArray:rawInfos];
+}
+
+- (BOOL) removeInfo: (RecordInfo*) info
+{
+    if (nil == info) {
+        CHECK_NOT_ENTER_HERE;
+        return FALSE;
+    }
+    if (FALSE == [info isValid]) {
+        return TRUE;
+    }
+    
+//  Remove file
+    if (FALSE == [AudioFileHandler removeAudioFile:info]) {
+        CHECK_NOT_ENTER_HERE;
+        return FALSE;
+    }
+    
+//  Remove db
+    DBHandler* dbHandler = [DBHandler getInst];
+    if (nil == dbHandler) {
+        CHECK_NOT_ENTER_HERE;
+        return FALSE;
+    }
+    if (FALSE == [dbHandler remove:info]) {
+        CHECK_NOT_ENTER_HERE;
+        return FALSE;
+    }
+    [[NSNotificationCenter defaultCenter] postNotificationName: RELOAD_EVENT object:self];
+    
+    return TRUE;
 }
 
 - (void)sortArray:(NSComparator)cmptr

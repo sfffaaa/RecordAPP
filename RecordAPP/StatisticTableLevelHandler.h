@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "RecordInfo.h"
 
 @protocol RecordInfoFillProtocol <NSObject>
 - (NSArray*) fillArray: (NSArray*) array;
@@ -23,6 +24,7 @@
 + (StatisticTableLevelHandler*) getInst;
 - (NSInteger) getCount;
 - (NSArray*) getInfoArray;
+- (BOOL) removeInfo: (RecordInfo*) info;
 - (void) sortArray:(NSComparator)cmptr;
 - (BOOL) setRecordFillBehavior:(id<RecordInfoFillProtocol>) behavior;
 @end

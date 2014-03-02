@@ -10,6 +10,7 @@
 #import "RecordInfo.h"
 
 @interface Util : NSObject
-+ (NSURL*) getFileURLFromInfo: (RecordInfo*) info;
-+ (NSURL*) getFileURLFromDate: (NSDate*) date;
++ (NSDate*) dateFromString: (NSString*) dateString;
++ (NSString*) stringFromDate: (NSDate*) date;
++ (NSString*) displayStringFromDate: (NSDate*) date;
 @end
