@@ -9,12 +9,14 @@
 #import "StatisticDetailVC.h"
 #import "StatisticDetailLevelHandler.h"
 #import "RecordInfo.h"
+#import "Util.h"
 #import "TimerHandler.h"
 #import "DebugUtil.h"
 
 #define kTimeLabelTag 1
 
 #pragma mark (TODO) Change button color when touch
+#pragma mark (TODO) Duplicate code with RecordActionVC
 
 @interface StatisticDetailVC ()
 @property (nonatomic, weak) StatisticDetailLevelHandler* levelHandler;
@@ -38,13 +40,12 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(timerTick:) name:TIMER_TICK_EVENT object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(timerStop:) name:TIMER_STOP_EVENT object:nil];
 
-	// Do any additional setup after loading the view.
-#pragma mark (TODO) Configure record info to vc
-    if (nil == [[self levelHandler] info]) {
-        DLog(@"info isn't correct");
+    NSString* title = [Util displayStringFromDate:[[[self levelHandler] info] date]];
+    if (nil == title) {
         CHECK_NOT_ENTER_HERE;
     }
-    ((UILabel*)[self.view viewWithTag:kTimeLabelTag]).text = [[NSString alloc] initWithFormat:@"%f", [[self levelHandler] getRecordTime]];
+    [self setTitle:title];
+    ((UILabel*)[self.view viewWithTag:kTimeLabelTag]).text = [[NSString alloc] initWithFormat:@"%.0f", [[[self levelHandler] info] length]];
 }
 
 - (void)didReceiveMemoryWarning
@@ -59,7 +60,7 @@
 }
 
 - (IBAction)listenStart:(id)sender {
-    if (FALSE == [[self levelHandler] start]) {
+    if (FALSE == [[self levelHandler] prepareStart]) {
         DLog(@"cannot start listen");
     }
 }
@@ -67,18 +68,6 @@
     if (false == [[self levelHandler] stop]) {
         DLog(@"cannot stop listen");
     }
-}
-
-- (IBAction)forTestPush:(id)sender {
-#pragma mark (TODO) Need remove
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"RecordTime" bundle:nil];
-    UIViewController *mainViewController = [storyboard instantiateViewControllerWithIdentifier:@"timeToRecord"];
-    UIWindow *window = [UIApplication sharedApplication].keyWindow;
-    [window.rootViewController presentViewController:mainViewController animated:YES completion:nil];
-
-//    [self addChildViewController:mainViewController];
-//    [self.view addSubview: mainViewController.view];
-
 }
 
 #pragma mark - event handler
@@ -97,7 +86,31 @@
 
 - (void)timerStop:(NSNotification*) notification
 {
-    ((UILabel*)[self.view viewWithTag:kTimeLabelTag]).text = [[NSString alloc] initWithFormat:@"%f", [[self levelHandler] getRecordTime]];
+    if (TRUE == [_levelHandler isPrepare]) {
+        [self prepareStop];
+    } else {
+        [self actionStop];
+    }
+}
+
+- (void) prepareStop
+{
+    if (FALSE == [_levelHandler prepareStop]) {
+        CHECK_NOT_ENTER_HERE;
+    }
+    ((UILabel*)[self.view viewWithTag:kTimeLabelTag]).text = [[NSString alloc] initWithFormat:@"%.0f", [[self levelHandler] getRecordTime]];
+    if (FALSE == [_levelHandler start]) {
+        CHECK_NOT_ENTER_HERE;
+    }
+}
+
+- (void) actionStop
+{
+    if (FALSE == [_levelHandler stop]) {
+        CHECK_NOT_ENTER_HERE;
+    }
+    ((UILabel*)[self.view viewWithTag:kTimeLabelTag]).text = [[NSString alloc] initWithFormat:@"%i", [[self levelHandler] getPerpareTime]];
+    
 }
 
 @end

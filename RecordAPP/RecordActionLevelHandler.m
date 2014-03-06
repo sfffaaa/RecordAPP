@@ -124,22 +124,27 @@ typedef enum _ACTION_STATUS_
 }
 
 #pragma mark (TODO) Should connect to storyboard "stop".
-- (void) manualStop
+- (BOOL) manualStop
 {
     if (ACTION_STATUS == _status) {
         if (FALSE == [_timerHandler stop]) {
             CHECK_NOT_ENTER_HERE;
+            return FALSE;
         };
         if (FALSE == [self stop]) {
             CHECK_NOT_ENTER_HERE;
+            return FALSE;
         }
     } else if (PREPARE_STATUS == _status) {
         if (FALSE == [_timerHandler stop]) {
             CHECK_NOT_ENTER_HERE;
+            return FALSE;
         };
         if (FALSE == [self prepareStop]) {
             CHECK_NOT_ENTER_HERE;
+            return FALSE;
         }
     }
+    return TRUE;
 }
 @end

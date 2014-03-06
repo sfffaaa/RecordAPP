@@ -7,14 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ActionLevelToVCProtocol.h"
 #import "RecordInfo.h"
 
-@interface StatisticDetailLevelHandler : NSObject
+@interface StatisticDetailLevelHandler : NSObject <ActionLevelToVCProtocol>
 @property (nonatomic, strong) RecordInfo* info;
 
 + (StatisticDetailLevelHandler*) getInst;
-- (BOOL) start;
-- (BOOL) stop;
-- (float) getRecordTime;
 
 @end

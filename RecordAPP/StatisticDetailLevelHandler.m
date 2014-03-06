@@ -7,23 +7,25 @@
 //
 
 #import "StatisticDetailLevelHandler.h"
+#import "RecordActionLevelHandler.h"
 #import "RecordInfo.h"
+#import "ListeningAction.h"
 #import "DebugUtil.h"
+#import "AudioFileHandler.h"
 #import "TimerHandler.h"
 
 @interface StatisticDetailLevelHandler()
-@property (nonatomic, strong) TimerHandler* timerHandler;
+@property (nonatomic, strong) RecordActionLevelHandler* recordActionHandler;
 @end
 
 @implementation StatisticDetailLevelHandler
-@synthesize timerHandler = _timerHandler;
+@synthesize recordActionHandler = _recordActionHandler;
 @synthesize info = _info;
 
 + (StatisticDetailLevelHandler*) getInst
 {
     static StatisticDetailLevelHandler* inst = nil;
     static dispatch_once_t onceToken = 0;
-    //[TODO] -> Change to the new handler
     if (nil == inst) {
         dispatch_once(&onceToken, ^{
             inst = [[StatisticDetailLevelHandler alloc] init];
@@ -36,40 +38,79 @@
 {
     self = [super init];
     if (nil != self) {
-        if (nil == [self timerHandler]) {
-            [self setTimerHandler:[[TimerHandler alloc] init]];
+        if (nil == _recordActionHandler) {
+            _recordActionHandler = [[RecordActionLevelHandler alloc] init];
+            [_recordActionHandler setAction:[[ListeningAction alloc] init]];
         }
     }
     return self;
 }
 
+- (int) getPerpareTime
+{
+    return [_recordActionHandler getPerpareTime];
+}
+
 - (float) getRecordTime
 {
-#pragma mark (TODO) Shold get Record Time by Functional handler (should here?)
-    return 5;
+    return [_recordActionHandler getRecordTime];
+}
+
+- (BOOL) prepareStart
+{
+    if (nil == _info || nil == [_info date]) {
+        DLog("wron param in [%@] or [%@]", _info, [_info date]);
+        CHECK_NOT_ENTER_HERE;
+        return FALSE;
+    }
+    [_recordActionHandler setFileURL:[AudioFileHandler getFileURLFromDate:[_info date]]];
+    
+    if (FALSE == [_recordActionHandler prepareStart]) {
+        CHECK_NOT_ENTER_HERE;
+        return FALSE;
+    }
+    return TRUE;
 }
 
 - (BOOL) start
 {
-    if (nil == [self timerHandler]) {
-        DLog(@"Doesn't have timer");
+    if (FALSE == [_recordActionHandler start]) {
         CHECK_NOT_ENTER_HERE;
+        return FALSE;
     }
-    if (FALSE == [[self timerHandler] timeToStart:[self getRecordTime]]) {
-        DLog(@"Cannot start the timer");
+    return TRUE;
+}
+
+- (BOOL) prepareStop
+{
+    if (FALSE == [_recordActionHandler prepareStop]) {
         CHECK_NOT_ENTER_HERE;
+        return FALSE;
     }
     return TRUE;
 }
 
 - (BOOL) stop
 {
-    if (FALSE == [[self timerHandler] stop]) {
-        DLog(@"Cannot stop the timer");
+    if (FALSE == [_recordActionHandler stop]) {
         CHECK_NOT_ENTER_HERE;
+        return FALSE;
     }
     return TRUE;
 }
 
+- (BOOL) isPrepare
+{
+    return [_recordActionHandler isPrepare];
+}
+
+- (BOOL) manualStop
+{
+    if (false == [_recordActionHandler manualStop]) {
+        CHECK_NOT_ENTER_HERE;
+        return FALSE;
+    }
+    return TRUE;
+}
 
 @end

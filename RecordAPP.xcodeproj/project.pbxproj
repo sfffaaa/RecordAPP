@@ -134,6 +134,7 @@
 		24AD06C418A6096700599DCE /* StatisticRecordInfo.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StatisticRecordInfo.xib; sourceTree = "<group>"; };
 		24BED5C218C3776E00E140EA /* AudioFileHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioFileHandler.h; sourceTree = "<group>"; };
 		24BED5C318C3776E00E140EA /* AudioFileHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioFileHandler.m; sourceTree = "<group>"; };
+		24BED5C518C7881500E140EA /* ActionLevelToVCProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionLevelToVCProtocol.h; sourceTree = "<group>"; };
 		24C703501896BBF8008DDBA6 /* RecordActionProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordActionProtocol.h; sourceTree = "<group>"; };
 		24C703521896BFFD008DDBA6 /* EventHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventHandler.h; sourceTree = "<group>"; };
 		24C703531896BFFD008DDBA6 /* EventHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventHandler.m; sourceTree = "<group>"; };
@@ -541,6 +542,7 @@
 			isa = PBXGroup;
 			children = (
 				24C703501896BBF8008DDBA6 /* RecordActionProtocol.h */,
+				24BED5C518C7881500E140EA /* ActionLevelToVCProtocol.h */,
 			);
 			name = "Base (Protocol)";
 			sourceTree = "<group>";
