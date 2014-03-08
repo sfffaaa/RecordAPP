@@ -8,6 +8,7 @@
 
 #import "RecordingAction.h"
 #import <AVFoundation/AVFoundation.h>
+#import "UserSetting.h"
 #import "DebugUtil.h"
 
 @interface RecordingAction()
@@ -26,8 +27,23 @@
     return TRUE;
 }
 
+- (RECORD_ACTION_TYPE) getActionType;
+{
+    return RECORD_ACTION;
+}
+
+- (int) getTotalTime
+{
+    UserSetting* userSetting = [[UserSetting alloc] init];
+    return [userSetting recordPeriod];
+}
+
 - (BOOL) prepare
 {
+    if (nil == _urlFilePath) {
+        CHECK_NOT_ENTER_HERE;
+        return FALSE;
+    }
     AVAudioSession *session = [AVAudioSession sharedInstance];
     [session setCategory:AVAudioSessionCategoryPlayAndRecord error:nil];
     NSMutableDictionary *recordSetting = [[NSMutableDictionary alloc] init];
@@ -38,6 +54,7 @@
     _recorder = [[AVAudioRecorder alloc] initWithURL:_urlFilePath settings:recordSetting error:NULL];
     if (nil == _recorder) {
         CHECK_NOT_ENTER_HERE;
+        return FALSE;
     }
     _recorder.meteringEnabled = YES;
     [_recorder prepareToRecord];

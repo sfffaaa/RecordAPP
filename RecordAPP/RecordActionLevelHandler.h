@@ -13,7 +13,9 @@
 #import "ActionLevelToVCProtocol.h"
 
 @interface RecordActionLevelHandler : NSObject <ActionLevelToVCProtocol>
+#pragma mark (TODO) Change the action to array.
 @property (nonatomic, strong) id<RecordActionProtocol> action;
+@property (nonatomic, strong) id<RecordActionProtocol> prepareAction;
 @property (nonatomic, strong) NSURL* fileURL;
 
 + (RecordActionLevelHandler*) getInst;

@@ -40,7 +40,9 @@
 #pragma mark (TODO) Configure record info to vc
     ((UILabel*)[self.view viewWithTag:kTimeLabelTag]).text = [[NSString alloc] initWithFormat:@"%i", [[self levelHandler] getPerpareTime]];
     
-    [_levelHandler prepareStart];
+    if (FALSE == [_levelHandler prepareStart]) {
+        CHECK_NOT_ENTER_HERE;
+    };
 }
 
 - (void)didReceiveMemoryWarning
@@ -75,7 +77,7 @@
     if (FALSE == [_levelHandler prepareStop]) {
         CHECK_NOT_ENTER_HERE;
     }
-    ((UILabel*)[self.view viewWithTag:kTimeLabelTag]).text = [[NSString alloc] initWithFormat:@"%.0f", [[self levelHandler] getRecordTime]];
+    ((UILabel*)[self.view viewWithTag:kTimeLabelTag]).text = [[NSString alloc] initWithFormat:@"%.0f", [[self levelHandler] getActionTime]];
     if (FALSE == [_levelHandler start]) {
         CHECK_NOT_ENTER_HERE;
     }

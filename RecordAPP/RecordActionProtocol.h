@@ -9,7 +9,9 @@
 #import <Foundation/Foundation.h>
 typedef enum _ACTION_PROTOCOL_
 {
-    UNKNOW_ACTION = -1,
+    ERROR_ACTION = -1,
+    NO_ACTION,
+    PREPARE_ACTION,
     RECORD_ACTION,
     LISTEN_ACTION
 } RECORD_ACTION_TYPE;
@@ -19,9 +21,7 @@ typedef enum _ACTION_PROTOCOL_
 - (RECORD_ACTION_TYPE) getActionType;
 
 - (int) getTotalTime;
-- (int) getRemainTime;
 - (BOOL) setFilePath: (NSURL*) fileURL;
-- (NSString*) getFilePath;
 
 - (BOOL) start;
 - (BOOL) stop;

@@ -12,7 +12,7 @@
 
 - (int) getPerpareTime;
 #pragma mark (TODO) Change the name (not precise)
-- (float) getRecordTime;
+- (float) getActionTime;
 
 - (BOOL) start;
 - (BOOL) stop;

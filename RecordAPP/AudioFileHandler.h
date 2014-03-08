@@ -12,6 +12,8 @@
 @interface AudioFileHandler : NSObject
 + (float) getAudioLengthFromInfo: (RecordInfo*) info;
 + (float) getAudioLengthFromDate: (NSDate*) date;
++ (float) getAudioLengthFromURL: (NSURL*) dateURL;
+
 + (BOOL) removeAudioFile: (RecordInfo*) info;
 + (NSURL*) getFileURLFromInfo: (RecordInfo*) info;
 + (NSURL*) getFileURLFromDate: (NSDate*) date;

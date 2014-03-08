@@ -65,10 +65,6 @@
 #pragma mark - segue
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if (FALSE == [_levelHandler setActionWakupDate]) {
-        CHECK_NOT_ENTER_HERE;
-    }
-
     if ([[segue identifier] isEqualToString:@"toListen"]) {
         if (FALSE == [_levelHandler setAction:LISTEN_ACTION]) {
             CHECK_NOT_ENTER_HERE;
@@ -77,6 +73,9 @@
         if (FALSE == [_levelHandler setAction:RECORD_ACTION]) {
             CHECK_NOT_ENTER_HERE;
         }
+    }
+    if (FALSE == [_levelHandler setActionWakupDate]) {
+        CHECK_NOT_ENTER_HERE;
     }
 }
 @end

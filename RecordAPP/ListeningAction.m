@@ -8,6 +8,7 @@
 
 #import "ListeningAction.h"
 #import <AVFoundation/AVFoundation.h>
+#import "AudioFileHandler.h"
 #import "DebugUtil.h"
 
 @interface ListeningAction()
@@ -27,6 +28,21 @@
     }
     _urlFilePath = fileURL;
     return TRUE;
+}
+
+- (RECORD_ACTION_TYPE) getActionType;
+{
+    return LISTEN_ACTION;
+}
+
+- (int) getTotalTime
+{
+    if (nil == _urlFilePath) {
+        CHECK_NOT_ENTER_HERE;
+        return 0;
+    }
+    float audioSecond = [AudioFileHandler getAudioLengthFromURL:_urlFilePath];
+    return audioSecond;
 }
 
 - (BOOL) prepare

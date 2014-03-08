@@ -54,10 +54,24 @@
 
 + (float) getAudioLengthFromDate: (NSDate*) date
 {
-    AVURLAsset* audioAsset = [AVURLAsset URLAssetWithURL:[AudioFileHandler getFileURLFromDate:date] options:nil];
+    if (nil == date) {
+        CHECK_NOT_ENTER_HERE;
+        return 0;
+    }
+    return [AudioFileHandler getAudioLengthFromURL:[AudioFileHandler getFileURLFromDate:date]];
+}
+
++ (float) getAudioLengthFromURL: (NSURL*) dateURL
+{
+    if (nil == dateURL) {
+        CHECK_NOT_ENTER_HERE;
+        return 0;
+    }
+    AVURLAsset* audioAsset = [AVURLAsset URLAssetWithURL:dateURL options:nil];
     CMTime audioDuration = audioAsset.duration;
     return CMTimeGetSeconds(audioDuration);
 }
+
 
 
 + (BOOL) removeAudioFile: (RecordInfo*) info

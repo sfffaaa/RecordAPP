@@ -53,7 +53,7 @@
 
 - (float) getRecordTime
 {
-    return [_recordActionHandler getRecordTime];
+    return [_recordActionHandler getActionTime];
 }
 
 - (BOOL) prepareStart

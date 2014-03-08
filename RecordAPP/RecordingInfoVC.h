@@ -6,7 +6,7 @@
 //  Copyright (c) 2014年 sfffaaa. All rights reserved.
 //
 
-#import "BaseVC.h"
+#import <UIKit/UIKit.h>
 
 @interface RecordingInfoVC : UIViewController
 

@@ -9,20 +9,14 @@
 #import "RecordActionLevelHandler.h"
 #import "TimerHandler.h"
 #import "UserSetting.h"
+#import "DummyAction.h"
 #import "DebugUtil.h"
-
-typedef enum _ACTION_STATUS_
-{
-    NON_STATUS = -1,
-    PREPARE_STATUS,
-    ACTION_STATUS
-} ACTIONS_STATUS;
 
 #define PREPARE_TIME 3
 
 @interface RecordActionLevelHandler()
 @property (nonatomic, strong) TimerHandler* timerHandler;
-@property (nonatomic) ACTIONS_STATUS status;
+@property (nonatomic) RECORD_ACTION_TYPE status;
 @end
 
 @implementation RecordActionLevelHandler
@@ -30,6 +24,17 @@ typedef enum _ACTION_STATUS_
 @synthesize fileURL = _fileURL;
 @synthesize timerHandler = _timerHandler;
 @synthesize status = _status;
+
+- (void) setFileURL:(NSURL *)fileURL
+{
+    if (FALSE == [_action setFilePath: fileURL]) {
+        CHECK_NOT_ENTER_HERE;
+    }
+    if (FALSE == [_prepareAction setFilePath: fileURL]) {
+        CHECK_NOT_ENTER_HERE;
+    }
+    _fileURL = fileURL;
+}
 
 + (RecordActionLevelHandler*) getInst
 {
@@ -51,100 +56,192 @@ typedef enum _ACTION_STATUS_
         _action = nil;
         _fileURL = nil;
         _timerHandler = [[TimerHandler alloc] init];
-        _status = NON_STATUS;
+        _prepareAction = [[DummyAction alloc] init];
+        _status = NO_ACTION;
     }
     return self;
 }
 
 - (int) getPerpareTime
 {
-    return PREPARE_TIME;
+    if (nil == _prepareAction) {
+        CHECK_NOT_ENTER_HERE
+        return 0;
+    }
+    return [_prepareAction getTotalTime];
 }
 
-- (float) getRecordTime
+- (float) getActionTime
 {
-    UserSetting* userSetting = [[UserSetting alloc] init];
-    return [userSetting recordPeriod];
+    if (nil == _action) {
+        CHECK_NOT_ENTER_HERE;
+        return 0;
+    }
+    return [_action getTotalTime];
+}
+
+- (BOOL) actionStart: (id<RecordActionProtocol>) specificAction
+{
+    BOOL ret = FALSE;
+    RECORD_ACTION_TYPE actionStatus = ERROR_ACTION;
+    if (nil == specificAction) {
+        CHECK_NOT_ENTER_HERE;
+        goto END;
+    }
+    if (NO_ACTION != _status) {
+        CHECK_NOT_ENTER_HERE;
+        goto END;
+    }
+    if (nil == _fileURL) {
+        CHECK_NOT_ENTER_HERE;
+    }
+    if (FALSE == [specificAction prepare]) {
+        CHECK_NOT_ENTER_HERE;
+        goto END;
+    }
+    //Timer start
+    if (FALSE == [_timerHandler timeToStart:[specificAction getTotalTime]]) {
+        DLog(@"Cannot start the timer");
+        CHECK_NOT_ENTER_HERE;
+        goto END;
+    }
+    
+    //action start;
+    if (FALSE == [specificAction start]) {
+        CHECK_NOT_ENTER_HERE;
+        goto END;
+    }
+    actionStatus = [specificAction getActionType];
+    ret = TRUE;
+    
+END:
+    _status = actionStatus;
+    return ret;
+}
+
+- (BOOL) actionStop: (id<RecordActionProtocol>) specificAction
+{
+    BOOL ret = FALSE;
+    
+    if (NO_ACTION == _status) {
+        ret = TRUE;
+        goto END;
+    }
+    if (nil == specificAction) {
+        CHECK_NOT_ENTER_HERE;
+        goto END;
+    }
+    if ([specificAction getActionType] != _status) {
+        CHECK_NOT_ENTER_HERE;
+        goto END;
+    }
+    if (FALSE == [specificAction stop]) {
+        CHECK_NOT_ENTER_HERE;
+        goto END;
+    }
+    ret = TRUE;
+    
+END:
+    if (TRUE == ret) {
+        _status = NO_ACTION;
+    } else {
+        _status = ERROR_ACTION;
+    }
+
+    return ret;
+}
+
+- (BOOL) actionMaunalStop: (id<RecordActionProtocol>) specificAction
+{
+    BOOL ret = FALSE;
+    if (nil == specificAction) {
+        CHECK_NOT_ENTER_HERE;
+        goto END;
+    }
+    if ([specificAction getActionType] != _status) {
+        CHECK_NOT_ENTER_HERE;
+        goto END;
+    }
+    if (FALSE == [_timerHandler stop]) {
+        CHECK_NOT_ENTER_HERE;
+        goto END;
+    }
+    if (FALSE == [specificAction stop]) {
+        CHECK_NOT_ENTER_HERE;
+        goto END;
+    }
+    ret = TRUE;
+    
+END:
+    if (TRUE == ret) {
+        _status = NO_ACTION;
+    } else {
+        _status = ERROR_ACTION;
+    }
+    
+    return ret;
 }
 
 - (BOOL) start
 {
-    //Timer start
-    if (FALSE == [_timerHandler timeToStart:[self getRecordTime]]) {
-        DLog(@"Cannot start the timer");
+    if (FALSE == [self actionStart:_action]) {
         CHECK_NOT_ENTER_HERE;
+        return FALSE;
     }
-    _status = ACTION_STATUS;
-
-    //Record or listen start;
-    if (FALSE == [_action start]) {
-        CHECK_NOT_ENTER_HERE;
-    }
-
     return TRUE;
 }
 
 - (BOOL) stop
 {
-    if (FALSE == [_action stop]) {
+    if (FALSE == [self actionStop:_action]) {
         CHECK_NOT_ENTER_HERE;
+        return FALSE;
     }
-    _status = NON_STATUS;
     return TRUE;
 }
 
 - (BOOL) prepareStart
 {
-    if (FALSE == [_timerHandler timeToStart:[self getPerpareTime]]) {
+    if (FALSE == [self actionStart:_prepareAction]) {
         CHECK_NOT_ENTER_HERE;
+        return FALSE;
     }
-    _status = PREPARE_STATUS;
-    if (nil == _fileURL) {
-        CHECK_NOT_ENTER_HERE;
-    }
-    if (FALSE == [_action setFilePath: _fileURL]) {
-        CHECK_NOT_ENTER_HERE;
-    }
-    if (FALSE == [_action prepare]) {
-        CHECK_NOT_ENTER_HERE;
-    }
-
     return TRUE;
 }
 
 - (BOOL) prepareStop
 {
-    _status = NON_STATUS;
+    if (FALSE == [self actionStop:_prepareAction]) {
+        CHECK_NOT_ENTER_HERE;
+        return FALSE;
+    }
     return TRUE;
-}
-
-- (BOOL) isPrepare
-{
-    return _status == PREPARE_STATUS;
 }
 
 #pragma mark (TODO) Should connect to storyboard "stop".
 - (BOOL) manualStop
 {
-    if (ACTION_STATUS == _status) {
-        if (FALSE == [_timerHandler stop]) {
-            CHECK_NOT_ENTER_HERE;
-            return FALSE;
-        };
-        if (FALSE == [self stop]) {
+    if (ERROR_ACTION == _status) {
+        DLog(@"Error action doesn't need stop");
+    } else if (NO_ACTION == _status) {
+        
+        // do nothing
+    } else if (PREPARE_ACTION == _status) {
+        if (FALSE == [self actionMaunalStop:_prepareAction]) {
             CHECK_NOT_ENTER_HERE;
             return FALSE;
         }
-    } else if (PREPARE_STATUS == _status) {
-        if (FALSE == [_timerHandler stop]) {
-            CHECK_NOT_ENTER_HERE;
-            return FALSE;
-        };
-        if (FALSE == [self prepareStop]) {
+    } else {
+        if (FALSE == [self actionMaunalStop:_action]) {
             CHECK_NOT_ENTER_HERE;
             return FALSE;
         }
     }
     return TRUE;
+}
+
+- (BOOL) isPrepare
+{
+    return _status == PREPARE_ACTION;
 }
 @end
