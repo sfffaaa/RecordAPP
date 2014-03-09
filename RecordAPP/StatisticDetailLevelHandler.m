@@ -34,6 +34,12 @@
     return inst;
 }
 
+- (void) setInfo:(RecordInfo *)info
+{
+    _info = info;
+    [_recordActionHandler setFileURL:[AudioFileHandler getFileURLFromDate:[_info date]]];
+}
+
 - (id) init
 {
     self = [super init];
@@ -46,44 +52,20 @@
     return self;
 }
 
-- (int) getPerpareTime
-{
-    return [_recordActionHandler getPerpareTime];
-}
-
-- (float) getRecordTime
+- (float) getActionTime
 {
     return [_recordActionHandler getActionTime];
 }
 
-- (BOOL) prepareStart
+- (BOOL) start
 {
     if (nil == _info || nil == [_info date]) {
         DLog("wron param in [%@] or [%@]", _info, [_info date]);
         CHECK_NOT_ENTER_HERE;
         return FALSE;
     }
-    [_recordActionHandler setFileURL:[AudioFileHandler getFileURLFromDate:[_info date]]];
-    
-    if (FALSE == [_recordActionHandler prepareStart]) {
-        CHECK_NOT_ENTER_HERE;
-        return FALSE;
-    }
-    return TRUE;
-}
 
-- (BOOL) start
-{
     if (FALSE == [_recordActionHandler start]) {
-        CHECK_NOT_ENTER_HERE;
-        return FALSE;
-    }
-    return TRUE;
-}
-
-- (BOOL) prepareStop
-{
-    if (FALSE == [_recordActionHandler prepareStop]) {
         CHECK_NOT_ENTER_HERE;
         return FALSE;
     }
@@ -101,7 +83,7 @@
 
 - (BOOL) isPrepare
 {
-    return [_recordActionHandler isPrepare];
+    return FALSE;
 }
 
 - (BOOL) manualStop
@@ -112,5 +94,22 @@
     }
     return TRUE;
 }
+
+- (int) getPerpareTime
+{
+    CHECK_NOT_ENTER_HERE;
+    return FALSE;
+}
+- (BOOL) prepareStart
+{
+    CHECK_NOT_ENTER_HERE;
+    return FALSE;
+}
+- (BOOL) prepareStop
+{
+    CHECK_NOT_ENTER_HERE;
+    return FALSE;
+}
+
 
 @end

@@ -224,7 +224,6 @@ END:
     if (ERROR_ACTION == _status) {
         DLog(@"Error action doesn't need stop");
     } else if (NO_ACTION == _status) {
-        
         // do nothing
     } else if (PREPARE_ACTION == _status) {
         if (FALSE == [self actionMaunalStop:_prepareAction]) {

@@ -45,7 +45,8 @@
         CHECK_NOT_ENTER_HERE;
     }
     [self setTitle:title];
-    ((UILabel*)[self.view viewWithTag:kTimeLabelTag]).text = [[NSString alloc] initWithFormat:@"%.0f", [[[self levelHandler] info] length]];
+    
+    ((UILabel*)[self.view viewWithTag:kTimeLabelTag]).text = [[NSString alloc] initWithFormat:@"%.0f", [[self levelHandler] getActionTime]];
 }
 
 - (void)didReceiveMemoryWarning
@@ -60,12 +61,12 @@
 }
 
 - (IBAction)listenStart:(id)sender {
-    if (FALSE == [[self levelHandler] prepareStart]) {
+    if (FALSE == [[self levelHandler] start]) {
         DLog(@"cannot start listen");
     }
 }
 - (IBAction)listenStop:(id)sender {
-    if (false == [[self levelHandler] stop]) {
+    if (false == [[self levelHandler] manualStop]) {
         DLog(@"cannot stop listen");
     }
 }
@@ -80,28 +81,13 @@
         CHECK_NOT_ENTER_HERE;
     }
     //And show it.
-    ((UILabel*)[self.view viewWithTag:kTimeLabelTag]).text = [[NSString alloc] initWithFormat:@"%f", value];
+    ((UILabel*)[self.view viewWithTag:kTimeLabelTag]).text = [[NSString alloc] initWithFormat:@"%0.f", value];
     
 }
 
 - (void)timerStop:(NSNotification*) notification
 {
-    if (TRUE == [_levelHandler isPrepare]) {
-        [self prepareStop];
-    } else {
-        [self actionStop];
-    }
-}
-
-- (void) prepareStop
-{
-    if (FALSE == [_levelHandler prepareStop]) {
-        CHECK_NOT_ENTER_HERE;
-    }
-    ((UILabel*)[self.view viewWithTag:kTimeLabelTag]).text = [[NSString alloc] initWithFormat:@"%.0f", [[self levelHandler] getActionTime]];
-    if (FALSE == [_levelHandler start]) {
-        CHECK_NOT_ENTER_HERE;
-    }
+    [self actionStop];
 }
 
 - (void) actionStop
@@ -109,8 +95,7 @@
     if (FALSE == [_levelHandler stop]) {
         CHECK_NOT_ENTER_HERE;
     }
-    ((UILabel*)[self.view viewWithTag:kTimeLabelTag]).text = [[NSString alloc] initWithFormat:@"%i", [[self levelHandler] getPerpareTime]];
-    
+    ((UILabel*)[self.view viewWithTag:kTimeLabelTag]).text = [[NSString alloc] initWithFormat:@"%0.f", [[self levelHandler] getActionTime]];
 }
 
 @end
