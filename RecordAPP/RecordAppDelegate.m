@@ -35,6 +35,7 @@
     if (notification) {
         application.applicationIconBadgeNumber = 0;
     }
+    self.window.backgroundColor = [UIColor whiteColor];
 /*
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"RecordTime" bundle:nil];
     UIViewController *mainViewController = [storyboard instantiateViewControllerWithIdentifier:@"timeToRecord"];

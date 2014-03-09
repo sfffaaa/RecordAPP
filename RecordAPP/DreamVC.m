@@ -7,15 +7,7 @@
 //
 
 #import "DreamVC.h"
-
-#define MINIMUM_SCALE 0.5
-#define MAXIMUM_SCALE 1.5
-
-#define IMAGE_ALL_WIDTH 320
-#define IMAGE_ALL_HEIGHT 1126
-
-#define IMAGE_HALF_WIDTH 160
-#define IMAGE_HALF_HEIGHT 563
+#import "DebugUtil.h"
 
 @interface DreamVC ()
 
@@ -30,6 +22,22 @@
         // Custom initialization
     }
     return self;
+}
+
+-(UIStatusBarStyle)preferredStatusBarStyle
+{
+    return UIStatusBarStyleDefault;
+}
+
+-(void)viewWillLayoutSubviews{
+    
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) {
+        self.view.clipsToBounds = YES;
+        CGRect screenRect = [[UIScreen mainScreen] bounds];
+        CGFloat screenHeight = screenRect.size.height;
+        self.view.frame =  CGRectMake(0, 20, self.view.frame.size.width,screenHeight - 20);
+        self.view.bounds = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
+    }
 }
 
 - (void)viewDidLoad
@@ -51,58 +59,59 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (BOOL) isAllowPanX:(float) center halfwidth:(float) half totalwidth:(float) total transition:(float) tran
+- (void)handlePan:(UIPanGestureRecognizer *)gestureRecognizer
 {
-    return false;
-    if (tran > 0) {
-        if (center - half - tran > 0) {
-            return true;
-        } else {
-            return false;
+    UIView *view = [gestureRecognizer view];
+    
+    switch (gestureRecognizer.state) {
+        case UIGestureRecognizerStateBegan:{
+            break;
         }
-    } else {
-        if (center + half - tran < total) {
-            return true;
-        } else {
-            return false;
+        case UIGestureRecognizerStateChanged:{
+            CGPoint translation = [gestureRecognizer translationInView:self.view];
+            //Disable x axis
+            translation.x = 0;
+            view.center = CGPointMake(gestureRecognizer.view.center.x + translation.x, gestureRecognizer.view.center.y + translation.y);
+            [gestureRecognizer setTranslation:CGPointMake(0, 0) inView:self.view];
+            break;
         }
-    }
-}
+        case UIGestureRecognizerStateCancelled:{
+            break;
+        }
+        case UIGestureRecognizerStateFailed:{
+            break;
+        }
+        case UIGestureRecognizerStatePossible:{
+            break;
+        }
+        case UIGestureRecognizerStateEnded:{
 
-- (BOOL) isAllowPanY:(float) center halfwidth:(float) half totalwidth:(float) total transition:(float) tran
-{
-    if (tran > 0) {
-        if (center + half + tran < total + 10) {
-            return true;
-        } else {
-            return false;
-        }
-    } else {
-        if (center + tran > 0 - 170) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-    return true;
-}
+            CGPoint velocity = [gestureRecognizer velocityInView:self.view];
+            //Disable x axis
+            velocity.x = 0;
+            CGFloat magnitude = sqrtf((velocity.x * velocity.x) + (velocity.y * velocity.y));
+            
+            CGFloat slideMult = magnitude / 600;
+            
+            float slideFactor = 0.1 * slideMult;
+            
+            CGPoint finalPoint = CGPointMake(view.center.x + (velocity.x * slideFactor), view.center.y + (velocity.y * slideFactor));
 
-- (void) handlePan:(UIPanGestureRecognizer*) recognizer
-{
-#pragma mark (TODO) Fix Y-axis pan recognizer
-    UIView* imageView = [self.view.subviews objectAtIndex:0];
-    CGPoint translation = [recognizer translationInView:imageView];
-    
-    if (FALSE == [self isAllowPanX:imageView.center.x halfwidth:IMAGE_HALF_WIDTH totalwidth:IMAGE_ALL_WIDTH transition:translation.x]) {
-        translation.x = 0;
+            finalPoint.x = MIN(MAX(finalPoint.x, 0), self.view.bounds.size.width);
+            //Below point is tunning
+            finalPoint.y = MIN(MAX(finalPoint.y, -65), self.view.bounds.size.height + 15);
+            
+            [UIView animateWithDuration:slideFactor * 2 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+                view.center = finalPoint;
+            } completion:nil];
+            
+            break;
+        }
+        default:{
+            CHECK_NOT_ENTER_HERE;
+            break;
+        }
     }
-    if (FALSE == [self isAllowPanY:imageView.center.y halfwidth:IMAGE_HALF_HEIGHT totalwidth:IMAGE_ALL_HEIGHT transition:translation.y]) {
-        translation.y = 0;
-    }
-    
-    recognizer.view.center = CGPointMake(recognizer.view.center.x + translation.x, recognizer.view.center.y + translation.y);
-    
-    [recognizer setTranslation:CGPointZero inView:imageView];
 }
 
 @end
