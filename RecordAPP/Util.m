@@ -62,5 +62,15 @@
     return destDateString;
 }
 
++ (UIColor*) userClickableButtonColor
+{
+    return [UIColor colorWithRed:0 green:0.478431 blue:1.0 alpha:1.0];
+}
+
++ (UIColor*) userDisableButtonColor
+{
+    return [UIColor grayColor];
+}
+
 
 @end

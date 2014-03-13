@@ -21,6 +21,7 @@
 
 @implementation RecordInfoLevelHandler
 @synthesize date = _date;
+@synthesize score = _score;
 @synthesize timerHandler = _timerHandler;
 
 + (RecordInfoLevelHandler*) getInst
@@ -41,6 +42,7 @@
     self = [super init];
     if (nil != self) {
         _date = nil;
+        _score = 0;
         _timerHandler = [[TimerHandler alloc] init];
     }
     return self;
@@ -79,9 +81,21 @@
     return TRUE;
 }
 
+- (BOOL) isRecorded
+{
+    if (NO == [[NSFileManager defaultManager] fileExistsAtPath:[[AudioFileHandler getFileURLFromDate:_date] path]]) {
+        return FALSE;
+    }
+    return TRUE;
+}
+
 - (BOOL) submit
 {
     //stat whether the file is exist or not
+    if (FALSE == [self isRecorded]) {
+        DLog(@"Cannot submit because not record yet");
+        return FALSE;
+    }
     if (NO == [[NSFileManager defaultManager] fileExistsAtPath:[[AudioFileHandler getFileURLFromDate:_date] path]]) {
         CHECK_NOT_ENTER_HERE;
         return FALSE;
@@ -115,7 +129,7 @@
     }
     [info setDate:_date];
 #pragma mark (TODO) setup the score bar
-    [info setScore:2];
+    [info setScore:_score];
 
 #pragma mark (TODO) when leave the recording, should stop recording, or now will get 0 length.
     float audioSecond = [AudioFileHandler getAudioLengthFromDate:_date];

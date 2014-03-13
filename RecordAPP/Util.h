@@ -13,4 +13,7 @@
 + (NSDate*) dateFromString: (NSString*) dateString;
 + (NSString*) stringFromDate: (NSDate*) date;
 + (NSString*) displayStringFromDate: (NSDate*) date;
+
++ (UIColor*) userClickableButtonColor;
++ (UIColor*) userDisableButtonColor;
 @end

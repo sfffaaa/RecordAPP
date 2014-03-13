@@ -13,11 +13,13 @@
 #define RELOAD_EVENT @"reload_event"
 
 @interface RecordInfoLevelHandler : NSObject
+@property (nonatomic) int score;
 @property (nonatomic, strong) NSDate* date;
 @property (nonatomic, strong) TimerHandler* timerHandler;
 
 + (RecordInfoLevelHandler*) getInst;
 
+- (BOOL) isRecorded;
 - (BOOL) setAction:(RECORD_ACTION_TYPE) actionType;
 - (BOOL) setActionWakupDate;
 - (BOOL) setUp;

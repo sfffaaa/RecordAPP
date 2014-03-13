@@ -10,4 +10,6 @@
 
 @interface RecordingInfoVC : UIViewController
 
+@property (weak, nonatomic) IBOutlet UISlider *slider;
+- (IBAction)unwindToRecordInfoVC:(UIStoryboardSegue *)unwindSegue;
 @end

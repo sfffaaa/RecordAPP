@@ -7,10 +7,17 @@
 //
 
 #import "RecordingInfoVC.h"
+#import "RecordActionVC.h"
 #import "RecordInfoLevelHandler.h"
 #import "DebugUtil.h"
+#import "Util.h"
 
 #pragma mark (TODO) WakeupHandler should hide into levelHandler;
+
+#define kHappinessLabelTag 1
+#define kRecordButtonTag 2
+#define kListenButtonTag 3
+#define kSubmitButtonTag 4
 
 @interface RecordingInfoVC ()
 @property (nonatomic, weak) RecordInfoLevelHandler* levelHandler;
@@ -19,6 +26,7 @@
 
 @implementation RecordingInfoVC
 @synthesize levelHandler = _levelHandler;
+@synthesize slider = _slider;
 
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
@@ -37,6 +45,7 @@
 
     [super viewDidLoad];
     self.title = [[NSString alloc] initWithFormat:@"%@", [_levelHandler date]];
+    [self updateButton];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -55,6 +64,11 @@
 
 - (IBAction)submit:(id)sender
 {
+    if (FALSE == [_levelHandler isRecorded]) {
+        DLog(@"Not recorded yet");
+        return;
+    }
+    [_levelHandler setScore:(int)[_slider value]];
     if (FALSE == [_levelHandler submit]) {
         CHECK_NOT_ENTER_HERE;
     }
@@ -62,20 +76,65 @@
     [window.rootViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (IBAction)happinessChange:(UISlider *)sender {
+    int theValue = lroundf(sender.value);
+    [_slider setValue:theValue animated:YES];
+    ((UILabel*)[self.view viewWithTag:kHappinessLabelTag]).text = [[NSString alloc] initWithFormat:@"%i", theValue];
+}
+
+- (void) updateButton
+{
+    if (FALSE == [_levelHandler isRecorded]) {
+        UIButton* button = ((UIButton*)[self.view viewWithTag:kRecordButtonTag]);
+        [button setTitleColor:[Util userClickableButtonColor] forState:UIControlStateNormal];
+        button = ((UIButton*)[self.view viewWithTag:kListenButtonTag]);
+        [button setTitleColor:[Util userDisableButtonColor] forState:UIControlStateNormal];
+        button = ((UIButton*)[self.view viewWithTag:kSubmitButtonTag]);
+        [button setTitleColor:[Util userDisableButtonColor] forState:UIControlStateNormal];
+    } else {
+        UIButton* button = ((UIButton*)[self.view viewWithTag:kRecordButtonTag]);
+        [button setTitleColor:[Util userClickableButtonColor] forState:UIControlStateNormal];
+        button = ((UIButton*)[self.view viewWithTag:kListenButtonTag]);
+        [button setTitleColor:[Util userClickableButtonColor] forState:UIControlStateNormal];
+        button = ((UIButton*)[self.view viewWithTag:kSubmitButtonTag]);
+        [button setTitleColor:[Util userClickableButtonColor] forState:UIControlStateNormal];
+    }
+}
+
 #pragma mark - segue
+- (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
+{
+    if ([identifier isEqualToString:@"toListen"]) {
+        if (FALSE == [_levelHandler isRecorded]) {
+            DLog(@"Not recorded yet");
+            return FALSE;
+        }
+    }
+    return TRUE;
+}
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([[segue identifier] isEqualToString:@"toListen"]) {
         if (FALSE == [_levelHandler setAction:LISTEN_ACTION]) {
             CHECK_NOT_ENTER_HERE;
         };
+        if (FALSE == [_levelHandler setActionWakupDate]) {
+            CHECK_NOT_ENTER_HERE;
+        }
     } else if ([[segue identifier] isEqualToString:@"toRecord"]) {
         if (FALSE == [_levelHandler setAction:RECORD_ACTION]) {
             CHECK_NOT_ENTER_HERE;
         }
-    }
-    if (FALSE == [_levelHandler setActionWakupDate]) {
-        CHECK_NOT_ENTER_HERE;
+        if (FALSE == [_levelHandler setActionWakupDate]) {
+            CHECK_NOT_ENTER_HERE;
+        }
     }
 }
+
+- (IBAction) unwindToRecordInfoVC:(UIStoryboardSegue *)unwindSegue
+{
+    [self updateButton];
+}
+
 @end
