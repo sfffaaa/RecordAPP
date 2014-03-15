@@ -38,6 +38,11 @@
     return [userSetting recordPeriod];
 }
 
+- (NSString*) getActionName
+{
+    return [[NSString alloc] initWithFormat:@"Record"];
+}
+
 - (BOOL) prepare
 {
     if (nil == _urlFilePath) {

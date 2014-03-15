@@ -24,6 +24,11 @@
     return PREPARE_TIME;
 }
 
+- (NSString*) getActionName
+{
+    return [[NSString alloc] initWithFormat:@"Prepare"];
+}
+
 - (RECORD_ACTION_TYPE) getActionType
 {
     return PREPARE_ACTION;

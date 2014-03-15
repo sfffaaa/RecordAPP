@@ -12,6 +12,7 @@
 #import "DebugUtil.h"
 
 #define kTimeLabelTag 1
+#define kActionLabelTag 2
 
 @interface RecordActionVC ()
 @end
@@ -36,11 +37,11 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(timerStop:) name:TIMER_STOP_EVENT object:nil];
     
 #pragma mark (TODO) Configure record info to vc
-    ((UILabel*)[self.view viewWithTag:kTimeLabelTag]).text = [[NSString alloc] initWithFormat:@"%i", [[self levelHandler] getPerpareTime]];
-    
     if (FALSE == [_levelHandler prepareStart]) {
         CHECK_NOT_ENTER_HERE;
     };
+    ((UILabel*)[self.view viewWithTag:kTimeLabelTag]).text = [[NSString alloc] initWithFormat:@"%i s", [_levelHandler getPerpareTime]];
+    ((UILabel*)[self.view viewWithTag:kActionLabelTag]).text = [[NSString alloc] initWithFormat:@"%@", [_levelHandler getPrepareName]];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -64,7 +65,7 @@
         CHECK_NOT_ENTER_HERE;
     }
     //And show it.
-    ((UILabel*)[self.view viewWithTag:kTimeLabelTag]).text = [[NSString alloc] initWithFormat:@"%.0f", value];
+    ((UILabel*)[self.view viewWithTag:kTimeLabelTag]).text = [[NSString alloc] initWithFormat:@"%.0f s", value];
 }
 
 - (void)timerStop:(NSNotification*) notification
@@ -90,6 +91,8 @@
     if (FALSE == [_levelHandler start]) {
         CHECK_NOT_ENTER_HERE;
     }
+    ((UILabel*)[self.view viewWithTag:kTimeLabelTag]).text = [[NSString alloc] initWithFormat:@"%.0f s", [[self levelHandler] getActionTime]];
+    ((UILabel*)[self.view viewWithTag:kActionLabelTag]).text = [[NSString alloc] initWithFormat:@"%@", [_levelHandler getActionName]];
 }
 
 - (void) prepareStop
@@ -97,7 +100,6 @@
     if (FALSE == [_levelHandler prepareStop]) {
         CHECK_NOT_ENTER_HERE;
     }
-    ((UILabel*)[self.view viewWithTag:kTimeLabelTag]).text = [[NSString alloc] initWithFormat:@"%.0f", [[self levelHandler] getActionTime]];
 }
 
 - (void) actionStop
@@ -105,8 +107,8 @@
     if (FALSE == [_levelHandler stop]) {
         CHECK_NOT_ENTER_HERE;
     }
-    ((UILabel*)[self.view viewWithTag:kTimeLabelTag]).text = [[NSString alloc] initWithFormat:@"%i", [[self levelHandler] getPerpareTime]];
-
+    ((UILabel*)[self.view viewWithTag:kTimeLabelTag]).text = [[NSString alloc] initWithFormat:@"%i s", [_levelHandler getPerpareTime]];
+    ((UILabel*)[self.view viewWithTag:kActionLabelTag]).text = [[NSString alloc] initWithFormat:@"%@", [_levelHandler getPrepareName]];
 }
 
 @end

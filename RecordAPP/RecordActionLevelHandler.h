@@ -19,5 +19,7 @@
 @property (nonatomic, strong) NSURL* fileURL;
 
 + (RecordActionLevelHandler*) getInst;
+- (NSString*) getPrepareName;
+- (NSString*) getActionName;
 
 @end

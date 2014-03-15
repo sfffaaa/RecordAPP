@@ -45,6 +45,11 @@
     return audioSecond;
 }
 
+- (NSString*) getActionName
+{
+    return [[NSString alloc] initWithFormat:@"Listen"];
+}
+
 - (BOOL) prepare
 {
     _player = [[AVAudioPlayer alloc] initWithContentsOfURL:_urlFilePath error:nil];

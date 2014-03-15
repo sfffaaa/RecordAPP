@@ -71,6 +71,15 @@
     return [_prepareAction getTotalTime];
 }
 
+- (NSString*) getPrepareName
+{
+    if (nil == _prepareAction) {
+        CHECK_NOT_ENTER_HERE;
+        return nil;
+    }
+    return [_prepareAction getActionName];
+}
+
 - (float) getActionTime
 {
     if (nil == _action) {
@@ -78,6 +87,15 @@
         return 0;
     }
     return [_action getTotalTime];
+}
+
+- (NSString*) getActionName
+{
+    if (nil == _action) {
+        CHECK_NOT_ENTER_HERE;
+        return 0;
+    }
+    return [_action getActionName];
 }
 
 - (BOOL) actionStart: (id<RecordActionProtocol>) specificAction
