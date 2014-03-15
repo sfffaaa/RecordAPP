@@ -78,7 +78,7 @@
         CHECK_NOT_ENTER_HERE;
         return TRUE;
     }
-    NSString* cmd = [[NSString alloc] initWithFormat:@"select count(%@) from %@ where %@ = %@ limit 1", RECORD_DATE, RECORD_TABLE, RECORD_ID, [self convertToID:info]];
+    NSString* cmd = [[NSString alloc] initWithFormat:@"select count(%@) from %@ where %@ = \'%@\' limit 1", RECORD_DATE, RECORD_TABLE, RECORD_ID, [self convertToID:info]];
 
     if (0 == [_db intForQuery:cmd]) {
         return FALSE;

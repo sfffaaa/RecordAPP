@@ -73,11 +73,12 @@
     return TRUE;
 }
 
-- (BOOL) setActionWakupDate
+- (BOOL) setActionWakupDate: (id)nextHandler;
 {
-#pragma mark (TODO) Need to move.
-    RecordActionLevelHandler* handler = [RecordActionLevelHandler getInst];
-    [handler setFileURL:[AudioFileHandler getFileURLFromDate:_date]];
+    if (TRUE == [nextHandler isKindOfClass:[RecordActionLevelHandler class]]) {
+        RecordActionLevelHandler* handler = nextHandler;
+        [handler setDate:_date];
+    }
     
     return TRUE;
 }

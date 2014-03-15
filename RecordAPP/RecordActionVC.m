@@ -9,6 +9,7 @@
 #import "RecordActionVC.h"
 #import "TimerHandler.h"
 #import "RecordingInfoVC.h"
+#import "Util.h"
 #import "DebugUtil.h"
 
 #define kTimeLabelTag 1
@@ -42,6 +43,7 @@
     };
     ((UILabel*)[self.view viewWithTag:kTimeLabelTag]).text = [[NSString alloc] initWithFormat:@"%i s", [_levelHandler getPerpareTime]];
     ((UILabel*)[self.view viewWithTag:kActionLabelTag]).text = [[NSString alloc] initWithFormat:@"%@", [_levelHandler getPrepareName]];
+    self.title = [[NSString alloc] initWithFormat:@"%@", [Util displayStringFromDate:[_levelHandler date]]];
 }
 
 - (void)viewWillDisappear:(BOOL)animated

@@ -44,7 +44,7 @@
     };
 
     [super viewDidLoad];
-    self.title = [[NSString alloc] initWithFormat:@"%@", [_levelHandler date]];
+    self.title = [[NSString alloc] initWithFormat:@"%@", [Util displayStringFromDate:[_levelHandler date]]];
     [self updateButton];
 }
 
@@ -119,14 +119,16 @@
         if (FALSE == [_levelHandler setAction:LISTEN_ACTION]) {
             CHECK_NOT_ENTER_HERE;
         };
-        if (FALSE == [_levelHandler setActionWakupDate]) {
+        RecordActionVC* vc = segue.destinationViewController;
+        if (FALSE == [_levelHandler setActionWakupDate: [vc levelHandler]]) {
             CHECK_NOT_ENTER_HERE;
         }
     } else if ([[segue identifier] isEqualToString:@"toRecord"]) {
+        RecordActionVC* vc = segue.destinationViewController;
         if (FALSE == [_levelHandler setAction:RECORD_ACTION]) {
             CHECK_NOT_ENTER_HERE;
         }
-        if (FALSE == [_levelHandler setActionWakupDate]) {
+        if (FALSE == [_levelHandler setActionWakupDate: [vc levelHandler]]) {
             CHECK_NOT_ENTER_HERE;
         }
     }

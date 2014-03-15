@@ -9,6 +9,7 @@
 #import "RecordActionLevelHandler.h"
 #import "TimerHandler.h"
 #import "UserSetting.h"
+#import "AudioFileHandler.h"
 #import "DummyAction.h"
 #import "DebugUtil.h"
 
@@ -24,6 +25,13 @@
 @synthesize fileURL = _fileURL;
 @synthesize timerHandler = _timerHandler;
 @synthesize status = _status;
+@synthesize date = _date;
+
+- (void) setDate:(NSDate *)date
+{
+    _date = date;
+    [self setFileURL:[AudioFileHandler getFileURLFromDate:_date]];
+}
 
 - (void) setFileURL:(NSURL *)fileURL
 {
