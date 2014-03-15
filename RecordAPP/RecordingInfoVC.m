@@ -134,6 +134,10 @@
 
 - (IBAction) unwindToRecordInfoVC:(UIStoryboardSegue *)unwindSegue
 {
+    if (TRUE == [unwindSegue.sourceViewController isKindOfClass:[RecordActionVC class]]) {
+        RecordActionVC* sourceViewController = unwindSegue.sourceViewController;
+        [sourceViewController manualStop];
+    }
     [self updateButton];
 }
 

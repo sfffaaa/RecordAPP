@@ -50,13 +50,14 @@ END:
     return TRUE;
 }
 
-- (BOOL) stop
+- (BOOL) stop:(BOOL) needSendEvent
 {
     [self setDuration:0];
     [self setRemainTime:0];
     [_timer invalidate];
-    
-    [[NSNotificationCenter defaultCenter] postNotificationName:TIMER_STOP_EVENT object:self];
+    if (TRUE == needSendEvent) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:TIMER_STOP_EVENT object:self];
+    }
     
     return TRUE;
 }
@@ -65,7 +66,7 @@ END:
 {
     _remainTime--;
     if (0 >= _remainTime) {
-        if (FALSE == [self stop]) {
+        if (FALSE == [self stop: TRUE]) {
             DLog(@"cannot stop");
             CHECK_NOT_ENTER_HERE;
         }

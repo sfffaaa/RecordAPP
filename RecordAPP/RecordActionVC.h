@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RecordActionLevelHandler.h"
 
 @interface RecordActionVC : UIViewController
+@property (nonatomic, weak) RecordActionLevelHandler* levelHandler;
+
+- (void)manualStop;
 
 @end

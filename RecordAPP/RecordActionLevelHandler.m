@@ -162,7 +162,7 @@ END:
         CHECK_NOT_ENTER_HERE;
         goto END;
     }
-    if (FALSE == [_timerHandler stop]) {
+    if (FALSE == [_timerHandler stop: FALSE]) {
         CHECK_NOT_ENTER_HERE;
         goto END;
     }
@@ -221,6 +221,10 @@ END:
 #pragma mark (TODO) Should connect to storyboard "stop".
 - (BOOL) manualStop
 {
+    if (FALSE == [_timerHandler stop: FALSE]) {
+        CHECK_NOT_ENTER_HERE;
+        return FALSE;
+    }
     if (ERROR_ACTION == _status) {
         DLog(@"Error action doesn't need stop");
     } else if (NO_ACTION == _status) {

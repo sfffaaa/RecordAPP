@@ -16,6 +16,6 @@
 
 + (BOOL) getRemainTimeFromEvent:(NSNotification*) notification float:(float*)value;
 - (BOOL) timeToStart: (float) time;
-- (BOOL) stop;
+- (BOOL) stop: (BOOL) needSendEvent;
 
 @end

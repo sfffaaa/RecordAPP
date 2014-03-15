@@ -8,14 +8,12 @@
 
 #import "RecordActionVC.h"
 #import "TimerHandler.h"
-#import "RecordActionLevelHandler.h"
 #import "RecordingInfoVC.h"
 #import "DebugUtil.h"
 
 #define kTimeLabelTag 1
 
 @interface RecordActionVC ()
-@property (nonatomic, weak) RecordActionLevelHandler* levelHandler;
 @end
 
 @implementation RecordActionVC
@@ -45,6 +43,12 @@
     };
 }
 
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:TIMER_TICK_EVENT object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:TIMER_STOP_EVENT object:nil];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -67,8 +71,24 @@
 {
     if (TRUE == [_levelHandler isPrepare]) {
         [self prepareStop];
+        [self actionStart];
     } else {
         [self actionStop];
+    }
+}
+
+- (void)manualStop
+{
+    if (FALSE == [_levelHandler manualStop]) {
+        CHECK_NOT_ENTER_HERE;
+        return;
+    }
+}
+
+- (void)actionStart
+{
+    if (FALSE == [_levelHandler start]) {
+        CHECK_NOT_ENTER_HERE;
     }
 }
 
@@ -78,9 +98,6 @@
         CHECK_NOT_ENTER_HERE;
     }
     ((UILabel*)[self.view viewWithTag:kTimeLabelTag]).text = [[NSString alloc] initWithFormat:@"%.0f", [[self levelHandler] getActionTime]];
-    if (FALSE == [_levelHandler start]) {
-        CHECK_NOT_ENTER_HERE;
-    }
 }
 
 - (void) actionStop
