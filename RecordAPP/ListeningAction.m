@@ -12,7 +12,7 @@
 #import "DebugUtil.h"
 
 @interface ListeningAction()
-@property (nonatomic, weak) NSURL* urlFilePath;
+@property (nonatomic, strong) NSURL* urlFilePath;
 @property (nonatomic, strong) AVAudioPlayer *player;
 @end
 

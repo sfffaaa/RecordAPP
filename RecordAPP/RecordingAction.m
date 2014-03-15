@@ -12,7 +12,7 @@
 #import "DebugUtil.h"
 
 @interface RecordingAction()
-@property (nonatomic, weak) NSURL* urlFilePath;
+@property (nonatomic, strong) NSURL* urlFilePath;
 @property (nonatomic, strong) AVAudioRecorder *recorder;
 @end
 

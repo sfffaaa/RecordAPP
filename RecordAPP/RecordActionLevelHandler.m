@@ -22,7 +22,6 @@
 
 @implementation RecordActionLevelHandler
 @synthesize action = _action;
-@synthesize fileURL = _fileURL;
 @synthesize timerHandler = _timerHandler;
 @synthesize status = _status;
 @synthesize date = _date;
@@ -30,18 +29,13 @@
 - (void) setDate:(NSDate *)date
 {
     _date = date;
-    [self setFileURL:[AudioFileHandler getFileURLFromDate:_date]];
-}
-
-- (void) setFileURL:(NSURL *)fileURL
-{
+    NSURL* fileURL = [AudioFileHandler getFileURLFromDate:date];
     if (FALSE == [_action setFilePath: fileURL]) {
         CHECK_NOT_ENTER_HERE;
     }
     if (FALSE == [_prepareAction setFilePath: fileURL]) {
         CHECK_NOT_ENTER_HERE;
     }
-    _fileURL = fileURL;
 }
 
 + (RecordActionLevelHandler*) getInst
@@ -62,7 +56,6 @@
     self = [super init];
     if (nil != self) {
         _action = nil;
-        _fileURL = nil;
         _timerHandler = [[TimerHandler alloc] init];
         _prepareAction = [[DummyAction alloc] init];
         _status = NO_ACTION;
@@ -117,9 +110,6 @@
     if (NO_ACTION != _status) {
         CHECK_NOT_ENTER_HERE;
         goto END;
-    }
-    if (nil == _fileURL) {
-        CHECK_NOT_ENTER_HERE;
     }
     if (FALSE == [specificAction prepare]) {
         CHECK_NOT_ENTER_HERE;

@@ -21,7 +21,7 @@
 
 - (BOOL) isRecorded;
 - (BOOL) setAction:(RECORD_ACTION_TYPE) actionType;
-- (BOOL) setActionWakupDate;
+- (BOOL) setActionWakupDate: (id)nextHandler;
 - (BOOL) setUp;
 - (BOOL) setDown;
 - (BOOL) submit;

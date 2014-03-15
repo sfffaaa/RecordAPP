@@ -37,7 +37,7 @@
 - (void) setInfo:(RecordInfo *)info
 {
     _info = info;
-    [_recordActionHandler setFileURL:[AudioFileHandler getFileURLFromDate:[_info date]]];
+    [_recordActionHandler setDate:[_info date]];
 }
 
 - (id) init
