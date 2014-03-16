@@ -213,7 +213,7 @@ END:
 - (NSArray*) selectAll
 {
     NSMutableArray* tmpArray = [[NSMutableArray alloc] init];
-    NSString* sqlCmd = [[NSString alloc] initWithFormat:@"select %@ from %@;", COLUME_ALL, RECORD_TABLE];
+    NSString* sqlCmd = [[NSString alloc] initWithFormat:@"select %@ from %@ order by %@ DESC;", COLUME_ALL, RECORD_TABLE, RECORD_DATE];
     FMResultSet* rs = [_db executeQuery:sqlCmd];
     RecordInfo* info = nil;
     while ([rs next]) {
