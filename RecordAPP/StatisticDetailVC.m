@@ -40,11 +40,11 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(timerTick:) name:TIMER_TICK_EVENT object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(timerStop:) name:TIMER_STOP_EVENT object:nil];
 
-    NSString* title = [Util displayStringFromDate:[[[self levelHandler] info] date]];
-    if (nil == title) {
+    [self setTitle:[Util displayStringFromDate:[[[self levelHandler] info] date]]];
+    
+    if (FALSE == [_levelHandler prepareActions]) {
         CHECK_NOT_ENTER_HERE;
     }
-    [self setTitle:title];
     
     ((UILabel*)[self.view viewWithTag:kTimeLabelTag]).text = [[NSString alloc] initWithFormat:@"%.0f", [[self levelHandler] getActionTime]];
 }

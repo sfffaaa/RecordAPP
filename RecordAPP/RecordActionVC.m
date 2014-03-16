@@ -36,6 +36,9 @@
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(timerTick:) name:TIMER_TICK_EVENT object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(timerStop:) name:TIMER_STOP_EVENT object:nil];
+    if (FALSE == [_levelHandler prepareActions]) {
+        CHECK_NOT_ENTER_HERE;
+    }
     
 #pragma mark (TODO) Configure record info to vc
     if (FALSE == [_levelHandler prepareStart]) {

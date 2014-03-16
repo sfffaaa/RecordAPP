@@ -52,6 +52,11 @@
     return self;
 }
 
+- (BOOL) prepareActions
+{
+    return [_recordActionHandler prepareActions];
+}
+
 - (float) getActionTime
 {
     return [_recordActionHandler getActionTime];

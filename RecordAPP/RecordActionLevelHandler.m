@@ -63,6 +63,27 @@
     return self;
 }
 
+- (BOOL) prepareActions
+{
+    if (nil == _prepareAction) {
+        CHECK_NOT_ENTER_HERE;
+        return FALSE;
+    }
+    if (FALSE == [_prepareAction prepare]) {
+        CHECK_NOT_ENTER_HERE;
+        return FALSE;
+    }
+    if (nil == _action) {
+        CHECK_NOT_ENTER_HERE;
+        return FALSE;
+    }
+    if (FALSE == [_action prepare]) {
+        CHECK_NOT_ENTER_HERE;
+        return FALSE;
+    }
+    return TRUE;
+}
+
 - (int) getPerpareTime
 {
     if (nil == _prepareAction) {
@@ -108,10 +129,6 @@
         goto END;
     }
     if (NO_ACTION != _status) {
-        CHECK_NOT_ENTER_HERE;
-        goto END;
-    }
-    if (FALSE == [specificAction prepare]) {
         CHECK_NOT_ENTER_HERE;
         goto END;
     }

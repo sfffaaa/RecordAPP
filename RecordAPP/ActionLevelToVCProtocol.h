@@ -17,6 +17,8 @@
 - (BOOL) start;
 - (BOOL) stop;
 
+- (BOOL) prepareActions;
+
 - (BOOL) prepareStart;
 - (BOOL) prepareStop;
 
