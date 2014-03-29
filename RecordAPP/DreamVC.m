@@ -7,6 +7,7 @@
 //
 
 #import "DreamVC.h"
+#import "Util.h"
 #import "DebugUtil.h"
 
 @interface DreamVC ()
@@ -29,14 +30,10 @@
     return UIStatusBarStyleDefault;
 }
 
--(void)viewWillLayoutSubviews{
-    
-    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) {
-        self.view.clipsToBounds = YES;
-        CGRect screenRect = [[UIScreen mainScreen] bounds];
-        CGFloat screenHeight = screenRect.size.height;
-        self.view.frame =  CGRectMake(0, 20, self.view.frame.size.width,screenHeight - 20);
-        self.view.bounds = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
+-(void)viewWillLayoutSubviews
+{
+    if (FALSE == [Util seperateViewStatusBar:self.view]) {
+        CHECK_NOT_ENTER_HERE;
     }
 }
 

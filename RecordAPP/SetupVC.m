@@ -9,6 +9,7 @@
 #import "SetupVC.h"
 #import "SetupLevelHandler.h"
 #import "DebugUtil.h"
+#import "Util.h"
 
 @interface SetupVC ()
 @property (weak, nonatomic) IBOutlet UITextField *recordLengthTextField;
@@ -44,6 +45,13 @@
         _levelHandler = [[SetupLevelHandler alloc] init];
     }
     return self;
+}
+
+-(void)viewWillLayoutSubviews
+{
+    if (FALSE == [Util seperateViewStatusBar:self.view]) {
+        CHECK_NOT_ENTER_HERE;
+    }
 }
 
 - (void)viewDidLoad

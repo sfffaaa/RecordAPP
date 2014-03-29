@@ -16,4 +16,5 @@
 
 + (UIColor*) userClickableButtonColor;
 + (UIColor*) userDisableButtonColor;
++ (BOOL) seperateViewStatusBar: (UIView*) view;
 @end

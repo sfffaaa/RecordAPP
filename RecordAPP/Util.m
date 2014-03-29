@@ -72,5 +72,16 @@
     return [UIColor grayColor];
 }
 
++ (BOOL) seperateViewStatusBar: (UIView*) view
+{
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) {
+        view.clipsToBounds = YES;
+        CGRect screenRect = [[UIScreen mainScreen] bounds];
+        CGFloat screenHeight = screenRect.size.height;
+        view.frame =  CGRectMake(0, 20, view.frame.size.width,screenHeight - 20);
+        view.bounds = CGRectMake(0, 0, view.frame.size.width, view.frame.size.height);
+    }
+    return TRUE;
+}
 
 @end
