@@ -7,8 +7,8 @@
 //
 
 #import "RecordingAction.h"
+#import "RecordPeriodSetupElement.h"
 #import <AVFoundation/AVFoundation.h>
-#import "UserSetting.h"
 #import "DebugUtil.h"
 
 @interface RecordingAction()
@@ -32,10 +32,11 @@
     return RECORD_ACTION;
 }
 
+#pragma mark (TODO) Need to check the return value with integer.
 - (int) getTotalTime
 {
-    UserSetting* userSetting = [[UserSetting alloc] init];
-    return [userSetting recordPeriod];
+    RecordPeriodSetupElement* recordSetup = [[RecordPeriodSetupElement alloc] init];
+    return [recordSetup getRecordPeriod];
 }
 
 - (NSString*) getActionName

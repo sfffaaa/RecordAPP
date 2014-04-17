@@ -9,7 +9,6 @@
 #import "RecordAppDelegate.h"
 #import "BusinessLogicHandler.h"
 #import "InitializatorLevelHandler.h"
-#import "UserSetting.h"
 #import "DebugUtil.h"
 
 @implementation RecordAppDelegate
@@ -26,11 +25,9 @@
     [self.window.rootViewController presentViewController:mainViewController animated:NO completion:nil];
 
 //  Setup
-//    1. setup user default register
-    [UserSetting UserDefaultRegister];
-//    2. setup wake upder handler
+//    1. setup wake upder handler
     [WakeupHandler getInst];
-//    3.
+//    2.
     UILocalNotification *notification = [launchOptions objectForKey:UIApplicationLaunchOptionsLocalNotificationKey];
     if (notification) {
         application.applicationIconBadgeNumber = 0;

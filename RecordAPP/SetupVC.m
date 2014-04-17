@@ -41,8 +41,8 @@
 {
     self = [super initWithCoder:aDecoder];
     if (self) {
-#pragma mark (TODO) singleton?
         _levelHandler = [[SetupLevelHandler alloc] init];
+        [[self levelHandler] setupDefaultUserSetting];
     }
     return self;
 }
@@ -57,16 +57,19 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    _recordLengthTextField.text = [[NSString alloc] initWithFormat:@"%i", [[self levelHandler] getRecordPeiod]];
     
-    [_runWakeUpSwitch setOn:[[self levelHandler] getRunWakeup]];
+    [[[self levelHandler] recordPeriodElement] setInputDelegate:_recordLengthTextField];
+    [[[self levelHandler] runWakeupElement] setInputDelegate:_runWakeUpSwitch];
+    [[[self levelHandler] nextWakeupPeriodElement] setInputDelegate:_wakeUpNextTimeTextField];
+    [[[self levelHandler] wakeupPeriodElement] setInputDelegate:_wakeUpPeriodTextField];
+    [[[self levelHandler] emailElement] setInputDelegate:_emailTextField];
     
-    _wakeUpNextTimeTextField.text = [[NSString alloc] initWithFormat:@"%@", [[self levelHandler] getNextWakeupTime]];
+    if (FALSE == [[self levelHandler] initAllInputView]) {
+        CHECK_NOT_ENTER_HERE;
+    };
     
-    _wakeUpPeriodTextField.text = [[NSString alloc] initWithFormat:@"%i", [[self levelHandler] getWakeupPeriod]];
-    
-    _emailTextField.text = [[NSString alloc] initWithFormat:@"%@", [[self levelHandler] getEMail]];
+    UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
+    [self.view addGestureRecognizer:tap];
 }
 
 - (void)didReceiveMemoryWarning
@@ -75,34 +78,18 @@
     // Dispose of any resources that can be recreated.
 }
 
-
-#pragma mark - Text delegate
-#pragma mark (TODO) picker view + focus
-- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
+- (void)handleTap:(UITapGestureRecognizer *)recognizer
 {
-    return YES;
-}
-
-- (BOOL)textFieldShouldReturn:(UITextField *)textField
-{
-    CHECK_NOT_ENTER_HERE;
-    [textField resignFirstResponder];
-    return YES;
-}
-
-- (BOOL)textViewShouldBeginEditing:(UITextView *)textView
-{
-    return YES;
-}
-
-#pragma mark (TODO) Remove keyboard
--(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    [[[self levelHandler] recordPeriodElement] dismissInputView];
+    [[[self levelHandler] runWakeupElement] dismissInputView];
+    [[[self levelHandler] nextWakeupPeriodElement] dismissInputView];
+    [[[self levelHandler] wakeupPeriodElement] dismissInputView];
+    [[[self levelHandler] emailElement] dismissInputView];
 }
 
 - (IBAction)switchWakeup:(id)sender {
     if (2 == [sender tag]) {
-        [[self levelHandler] setRunWakeup:[(UISwitch*)sender isOn]];
+        [[[self levelHandler] runWakeupElement] setElementValue:[NSNumber numberWithBool:[(UISwitch*)sender isOn]]];
     }
 }
-
 @end

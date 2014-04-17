@@ -8,7 +8,6 @@
 
 #import "RecordActionLevelHandler.h"
 #import "TimerHandler.h"
-#import "UserSetting.h"
 #import "AudioFileHandler.h"
 #import "DummyAction.h"
 #import "DebugUtil.h"

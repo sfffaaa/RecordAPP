@@ -8,110 +8,70 @@
 
 #import "SetupLevelHandler.h"
 #import "WakeupHandler.h"
+#import "CreateSetupElementFactory.h"
+#import "RunWakeupSetupElement.h"
 #import "DebugUtil.h"
 
+@interface SetupLevelHandler()
+@property (nonatomic, strong) NSMutableArray* setupArray;
+
+@end
+
 @implementation SetupLevelHandler
-@synthesize userSetting = _userSetting;
+@synthesize wakeupPeriodElement = _wakeupPeriodElement;
+@synthesize runWakeupElement = _runWakeupElement;
+@synthesize recordPeriodElement = _recordPeriodElement;
+@synthesize nextWakeupPeriodElement = _nextWakeupPeriodElement;
+@synthesize emailElement = _emailElement;
+@synthesize setupArray = _setupArray;
 
 - (id) init
 {
     self = [super init];
     if (nil != self) {
-        _userSetting = [[UserSetting alloc] init];
+        CreateSetupElementFactory* setupFactory = [[CreateSetupElementFactory alloc] init];
+        _wakeupPeriodElement = [setupFactory createSetupElement:@"WakeupPeriodSetupElement"];
+        _runWakeupElement = [setupFactory createSetupElement:@"RunWakeupSetupElement"];
+        _recordPeriodElement = [setupFactory createSetupElement:@"RecordPeriodSetupElement"];
+        _nextWakeupPeriodElement = [setupFactory createSetupElement:@"NextWakeupTimeSetupElement"];
+        _emailElement = [setupFactory createSetupElement:@"EMailSetupElement"];
+        
+        _setupArray = [[NSMutableArray alloc] initWithObjects:_wakeupPeriodElement, _runWakeupElement, _recordPeriodElement, _nextWakeupPeriodElement, _emailElement, nil];
     }
     return self;
 }
 
-- (int) getRecordPeiod
+- (BOOL) initAllInputView
 {
-#pragma mark (TODO) Implement getRecordPeiod
-    return [_userSetting recordPeriod];
-}
-
-- (void) setRecordPeriod: (int) second
-{
-#pragma mark (TODO) Implement setRecordPeriod (check type)
-    if (nil == _userSetting) {
-        DLog(@"_userSetting is null");
-        assert(0);
+    if (nil == _setupArray) {
+        CHECK_NOT_ENTER_HERE;
+        return FALSE;
     }
-    [_userSetting setRecordPeriod:second];
-}
-
-- (int) getWakeupPeriod
-{
-#pragma mark (TODO) Implement getPeriodDate
-    return [_userSetting wakeupPeriod];
-}
-
-- (void) setWakeupPeriod: (int) date
-{
-#pragma mark (TODO) Implement setPeriodDate (check type)
-    if (nil == _userSetting) {
-        DLog(@"_userSetting is null");
-        assert(0);
+    for (id<SetupElementProtocol> obj in _setupArray) {
+        [obj initInputView];
     }
-    [_userSetting setWakeupPeriod:date];
-    if (TRUE == [_userSetting runwakeup]) {
-        [WakeupHandler emitWakeupReloadEvent];
-    }
+    return TRUE;
 }
 
-- (BOOL) getRunWakeup
+- (BOOL) setupDefaultUserSetting
 {
-#pragma mark (TODO) Implement getRunWakeup
-    return [_userSetting runwakeup];
-}
-
-- (void) setRunWakeup: (BOOL) flag
-{
-#pragma mark (TODO) Implement setRunWakeup (check type)
-    if (nil == _userSetting) {
-        DLog(@"_userSetting is null");
-        assert(0);
+    if (nil == _setupArray) {
+        CHECK_NOT_ENTER_HERE;
+        return FALSE;
     }
-    [_userSetting setRunwakeup:flag];
-    if (TRUE == [_userSetting runwakeup]) {
-        [WakeupHandler emitWakeupStartEvent];
-    } else {
-        [WakeupHandler emitWakeupStopEvent];
+    NSMutableDictionary* defaultDict = [[NSMutableDictionary alloc] init];
+    for (id<SetupElementProtocol> obj in _setupArray) {
+        NSArray* defaultArray = [obj returnDefaultKeyValue];
+        if (nil == defaultArray) {
+            CHECK_NOT_ENTER_HERE;
+            return FALSE;
+        }
+        [defaultDict setObject:[defaultArray objectAtIndex:DEFAULT_SETUP_VALUE_INDEX] forKey:[defaultArray objectAtIndex:DEFAULT_SETUP_KEY_INDEX]];
     }
-}
+    [[NSUserDefaults standardUserDefaults] registerDefaults:defaultDict];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 
-- (NSDate*) getNextWakeupTime
-{
-#pragma mark (TODO) Implement getRunWakeup
-    return [_userSetting nextWakeupDate];
-}
-
-- (void) setNextWakeupTime: (NSDate*) date
-{
-#pragma mark (TODO) Implement setRunWakeup (check type)
-    if (nil == _userSetting) {
-        DLog(@"_userSetting is null");
-        assert(0);
-    }
-    [_userSetting setNextWakeupDate:date];
-    if (TRUE == [_userSetting runwakeup]) {
-        [WakeupHandler emitWakeupReloadEvent];
-    }
-}
-
-
-- (NSString*) getEMail
-{
-#pragma mark (TODO) Implement getEMail
-    return [_userSetting eMail];
-}
-
-- (void) setEMail: (NSString*) eMail
-{
-#pragma mark (TODO) Implement setEMail (check type)
-    if (nil == _userSetting) {
-        DLog(@"_userSetting is null");
-        assert(0);
-    }
-    [_userSetting setEMail:eMail];
+    return TRUE;
 }
 
 @end

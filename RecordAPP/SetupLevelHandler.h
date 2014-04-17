@@ -7,23 +7,18 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "UserSetting.h"
+#import "WakeupPeriodSetupElement.h"
+#import "RunWakeupSetupElement.h"
+#import "RecordPeriodSetupElement.h"
+#import "NextWakeupTimeSetupElement.h"
 
 @interface SetupLevelHandler : NSObject
-@property (nonatomic, strong) UserSetting* userSetting;
-- (NSString*) getEMail;
-- (void) setEMail: (NSString*) eMail;
+@property (nonatomic, strong) id<SetupElementProtocol> wakeupPeriodElement;
+@property (nonatomic, strong) id<SetupElementProtocol> runWakeupElement;
+@property (nonatomic, strong) id<SetupElementProtocol> recordPeriodElement;
+@property (nonatomic, strong) id<SetupElementProtocol> nextWakeupPeriodElement;
+@property (nonatomic, strong) id<SetupElementProtocol> emailElement;
 
-- (int) getWakeupPeriod;
-- (void) setWakeupPeriod: (int) date;
-
-- (int) getRecordPeiod;
-- (void) setRecordPeriod: (int) second;
-
-- (BOOL) getRunWakeup;
-- (void) setRunWakeup: (BOOL) flag;
-
-- (NSDate*) getNextWakeupTime;
-- (void) setNextWakeupTime: (NSDate*) date;
-
+- (BOOL) initAllInputView;
+- (BOOL) setupDefaultUserSetting;
 @end

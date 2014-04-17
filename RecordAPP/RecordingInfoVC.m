@@ -77,9 +77,9 @@
 }
 
 - (IBAction)happinessChange:(UISlider *)sender {
-    int theValue = lroundf(sender.value);
+    long int theValue = lroundf(sender.value);
     [_slider setValue:theValue animated:YES];
-    ((UILabel*)[self.view viewWithTag:kHappinessLabelTag]).text = [[NSString alloc] initWithFormat:@"%i", theValue];
+    ((UILabel*)[self.view viewWithTag:kHappinessLabelTag]).text = [[NSString alloc] initWithFormat:@"%li", theValue];
 }
 
 - (void) updateButton
