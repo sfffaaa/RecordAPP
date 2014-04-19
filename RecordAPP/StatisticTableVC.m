@@ -55,7 +55,6 @@
 - (void) viewWillDisappear: (BOOL)animated
 {
     [super viewWillDisappear:animated];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:RELOAD_EVENT object:nil];
 }
 
 - (void)didReceiveMemoryWarning

@@ -78,7 +78,6 @@
 - (void) viewWillDisappear: (BOOL)animated
 {
     [super viewWillDisappear:animated];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:RELOAD_EVENT object:nil];
 }
 
 - (void) reloadSetupElement:(NSNotification*) notification
@@ -86,7 +85,6 @@
     if (FALSE == [[self levelHandler] reloadSetupElement]) {
         CHECK_NOT_ENTER_HERE;
     }
-    _emailTextField.text = [[NSString alloc] initWithFormat:@"asdfsdf"];
 }
 
 - (void)didReceiveMemoryWarning

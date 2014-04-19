@@ -25,12 +25,18 @@
     self = [super init];
     if (nil != self) {
         _email = [[NSUserDefaults standardUserDefaults] stringForKey:USER_SETUP_EMAIL_KEY];
+        if (nil == _email) {
+            _email = [[NSString alloc] initWithFormat:@"%@", USER_SETUP_EMAIL_DEFAULT];
+        }
     }
     return self;
 }
 
 - (NSString*) getEmail
 {
+    if (nil == _email) {
+        CHECK_NOT_ENTER_HERE;
+    }
     return [[NSString alloc] initWithString:_email];
 }
 
