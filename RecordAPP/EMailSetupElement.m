@@ -98,4 +98,10 @@
     return YES;
 }
 
+//protocol
+- (void) reloadElement
+{
+    return;
+}
+
 @end

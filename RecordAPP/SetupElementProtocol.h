@@ -18,6 +18,8 @@
 - (void) dismissInputView;
 - (void) setInputDelegate: (id) inputView;
 
+- (void) reloadElement;
+
 - (id) getElementValue;
 - (void) setElementValue: (id) value;
 

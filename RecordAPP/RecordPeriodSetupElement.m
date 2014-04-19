@@ -256,4 +256,18 @@
         [_textField resignFirstResponder];
     }
 }
+
+//protocol
+- (void) reloadElement
+{
+    if (nil == _textField) {
+        CHECK_NOT_ENTER_HERE;
+        return;
+    }
+    NSInteger recordPeriod = [[NSUserDefaults standardUserDefaults] integerForKey:USER_SETUP_RECORD_PERIOD_KEY];
+    [self setPeriod:_recordPeriodArray value:recordPeriod];
+    [self setPeriod:_recordTempPeriodArray value:recordPeriod];
+    
+    _textField.text = (NSString*)[self getTextString];
+}
 @end

@@ -85,4 +85,8 @@
     return;
 }
 
+- (void) reloadElement
+{
+    return;
+}
 @end

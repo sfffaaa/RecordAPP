@@ -21,4 +21,6 @@
 
 - (BOOL) initAllInputView;
 - (BOOL) setupDefaultUserSetting;
+- (BOOL) reloadSetupElement;
+
 @end

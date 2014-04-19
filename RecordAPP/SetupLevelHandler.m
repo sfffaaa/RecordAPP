@@ -53,6 +53,18 @@
     return TRUE;
 }
 
+- (BOOL) reloadSetupElement
+{
+    if (nil == _setupArray) {
+        CHECK_NOT_ENTER_HERE;
+        return FALSE;
+    }
+    for (id<SetupElementProtocol> obj in _setupArray) {
+        [obj reloadElement];
+    }
+    return TRUE;
+}
+
 - (BOOL) setupDefaultUserSetting
 {
     if (nil == _setupArray) {

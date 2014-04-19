@@ -8,6 +8,7 @@
 
 #import "NextWakeupTimeSetupElement.h"
 #import "RunWakeupSetupElement.h"
+#import "RecordInfoLevelHandler.h"
 #import "WakeupHandler.h"
 #import "DebugUtil.h"
 
@@ -145,5 +146,17 @@
     if (TRUE == [_textField isFirstResponder]) {
         [_textField resignFirstResponder];
     }
+}
+
+//protocol
+- (void) reloadElement
+{
+    if (nil == _textField) {
+        CHECK_NOT_ENTER_HERE;
+        return;
+    }
+    _nextWakeupDate = [[NSDate alloc] initWithTimeInterval:0 sinceDate:(NSDate*)[[NSUserDefaults standardUserDefaults] objectForKey:USER_SETUP_NEXT_WAKEUP_DATE_KEY]];
+    
+    _textField.text = (NSString*)[self getTextString];
 }
 @end

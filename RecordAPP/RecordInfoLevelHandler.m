@@ -14,6 +14,8 @@
 #import "DBHandler.h"
 #import "RecordInfo.h"
 #import "AudioFileHandler.h"
+#import "NextWakeupTimeSetupElement.h"
+#import "WakeupPeriodSetupElement.h"
 #import "DebugUtil.h"
 
 @interface RecordInfoLevelHandler()
@@ -117,6 +119,15 @@
         CHECK_NOT_ENTER_HERE;
         return FALSE;
     }
+    NextWakeupTimeSetupElement* nextWakeupTimeSetupElement = [[NextWakeupTimeSetupElement alloc] init];
+    WakeupPeriodSetupElement* wakeupPeriodSetupElement = [[WakeupPeriodSetupElement alloc] init];
+    NSDate* date = [_date dateByAddingTimeInterval:0];
+    
+    while (NSOrderedAscending == [date compare:[NSDate date]] ||
+           NSOrderedSame == [date compare:[NSDate date]]) {
+        date = [date dateByAddingTimeInterval:[wakeupPeriodSetupElement getWakeupPeriod]];
+    }
+    [nextWakeupTimeSetupElement setElementValue:date];
     [[NSNotificationCenter defaultCenter] postNotificationName: RELOAD_EVENT object:self];
     
     return TRUE;

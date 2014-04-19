@@ -276,4 +276,19 @@
 {
     _textField = inputView;
 }
+
+//protocol
+- (void) reloadElement
+{
+    if (nil == _textField) {
+        CHECK_NOT_ENTER_HERE;
+        return;
+    }
+    NSInteger wakeupPeriod = [[NSUserDefaults standardUserDefaults] integerForKey:USER_SETUP_WAKEUP_PERIOD_KEY];
+    [self setPeriod:_wakeupPeriodArray value:wakeupPeriod];
+    [self setPeriod:_wakeupTempPeriodArray value:wakeupPeriod];
+    
+    _textField.text = (NSString*)[self getTextString];
+}
+
 @end
