@@ -14,7 +14,6 @@
 		24093076188D1C5C00B01D94 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 24093075188D1C5C00B01D94 /* main.m */; };
 		2409307A188D1C5C00B01D94 /* RecordAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 24093079188D1C5C00B01D94 /* RecordAppDelegate.m */; };
 		2409307D188D1C5C00B01D94 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2409307B188D1C5C00B01D94 /* Main.storyboard */; };
-		24093080188D1C5C00B01D94 /* RecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2409307F188D1C5C00B01D94 /* RecordViewController.m */; };
 		24093082188D1C5C00B01D94 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24093081188D1C5C00B01D94 /* Images.xcassets */; };
 		24093089188D1C5C00B01D94 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24093088188D1C5C00B01D94 /* XCTest.framework */; };
 		2409308A188D1C5C00B01D94 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24093069188D1C5C00B01D94 /* Foundation.framework */; };
@@ -95,8 +94,6 @@
 		24093078188D1C5C00B01D94 /* RecordAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RecordAppDelegate.h; sourceTree = "<group>"; };
 		24093079188D1C5C00B01D94 /* RecordAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RecordAppDelegate.m; sourceTree = "<group>"; };
 		2409307C188D1C5C00B01D94 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		2409307E188D1C5C00B01D94 /* RecordViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RecordViewController.h; sourceTree = "<group>"; };
-		2409307F188D1C5C00B01D94 /* RecordViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RecordViewController.m; sourceTree = "<group>"; };
 		24093081188D1C5C00B01D94 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		24093087188D1C5C00B01D94 /* RecordAPPTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RecordAPPTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		24093088188D1C5C00B01D94 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -278,8 +275,6 @@
 				24093079188D1C5C00B01D94 /* RecordAppDelegate.m */,
 				2409307B188D1C5C00B01D94 /* Main.storyboard */,
 				24D17F7618A3D425005CBA4E /* RecordTime.storyboard */,
-				2409307E188D1C5C00B01D94 /* RecordViewController.h */,
-				2409307F188D1C5C00B01D94 /* RecordViewController.m */,
 				24093081188D1C5C00B01D94 /* Images.xcassets */,
 				24093070188D1C5C00B01D94 /* Supporting Files */,
 			);
@@ -907,7 +902,6 @@
 				24F37D4418F5B239006286D6 /* RunWakeupSetupElement.m in Sources */,
 				24F16F6618B8B5FD00D4CA78 /* RecordingAction.m in Sources */,
 				24161BC11894032800BBFC56 /* StatisticDetailLevelHandler.m in Sources */,
-				24093080188D1C5C00B01D94 /* RecordViewController.m in Sources */,
 				24C7035C189949ED008DDBA6 /* InitializatorLevelHandler.m in Sources */,
 				240930A1188D1CDC00B01D94 /* BusinessLogicHandler.m in Sources */,
 				24BED5C918C8BB1F00E140EA /* DummyAction.m in Sources */,

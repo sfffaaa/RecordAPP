@@ -14,5 +14,6 @@
 
 @interface InitializatorLevelHandler : NSObject
 - (BOOL) setStatus;
+- (BOOL) wakeup;
 
 @end

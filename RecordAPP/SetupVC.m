@@ -68,7 +68,10 @@
     if (FALSE == [[self levelHandler] initAllInputView]) {
         CHECK_NOT_ENTER_HERE;
     };
-    
+    if (FALSE == [[self levelHandler] reloadSetupElement]) {
+        CHECK_NOT_ENTER_HERE;
+    }
+
     UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
     [self.view addGestureRecognizer:tap];
     

@@ -54,7 +54,10 @@
     
     //Remove notification
     [[NSNotificationCenter defaultCenter] removeObserver:self name:INITIAL_EVENT object:nil];
-
+    
+    if (FALSE == [[self levelHandler] wakeup]) {
+        CHECK_NOT_ENTER_HERE;
+    }
 }
 
 @end

@@ -6,6 +6,7 @@
 //  Copyright (c) 2014年 sfffaaa. All rights reserved.
 //
 #import "InitializatorLevelHandler.h"
+#import "WakeupHandler.h"
 #import "DebugUtil.h"
 
 @interface InitializatorLevelHandler()
@@ -25,6 +26,12 @@
     //Initialize (now just wait 3 second)
     [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(fireInitialedEvent) userInfo:nil repeats:NO];
     return YES;
+}
+
+- (BOOL) wakeup
+{
+    [WakeupHandler wakeUp];
+    return TRUE;
 }
 
 - (void) fireInitialedEvent
