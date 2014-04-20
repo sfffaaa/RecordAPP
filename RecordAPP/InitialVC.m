@@ -46,7 +46,7 @@
     //Remove notification
     [[NSNotificationCenter defaultCenter] removeObserver:self name:INITIAL_EVENT object:nil];
     
-    [UIView transitionWithView:window
+    [UIView transitionWithView:self.view
                       duration:0
                        options:UIViewAnimationOptionTransitionNone
                     animations:^{
