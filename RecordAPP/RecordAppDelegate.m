@@ -18,9 +18,9 @@
 #pragma mark (TODO) Need one VC for enter a icon page.
     
 //  Setup view controller
-    [self.window makeKeyAndVisible];
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     UIViewController *mainViewController = [storyboard instantiateViewControllerWithIdentifier:@"initialView"];
+    [self.window makeKeyAndVisible];
     
     [self.window.rootViewController presentViewController:mainViewController animated:NO completion:nil];
 

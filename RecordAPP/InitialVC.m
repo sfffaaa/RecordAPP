@@ -37,27 +37,27 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(initializedOver:) name:INITIAL_EVENT object:nil];
 }
 
-- (void) viewWillDisappear: (BOOL)animated
-{
-    [super viewWillDisappear:animated];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:INITIAL_EVENT object:nil];
-}
-
 - (void) initializedOver:(NSNotification*) notification
 {
-#pragma mark (TODO) Add animation into dismiss
-    //dismiss view controller
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     UIViewController *tabBarVC = [storyboard instantiateViewControllerWithIdentifier:@"TabBarView"];
     UIWindow *window = [UIApplication sharedApplication].keyWindow;
-    [window setRootViewController:tabBarVC];
     
     //Remove notification
     [[NSNotificationCenter defaultCenter] removeObserver:self name:INITIAL_EVENT object:nil];
     
-    if (FALSE == [[self levelHandler] wakeup]) {
-        CHECK_NOT_ENTER_HERE;
-    }
+    [UIView transitionWithView:window
+                      duration:0
+                       options:UIViewAnimationOptionTransitionNone
+                    animations:^{
+                        [window setRootViewController:tabBarVC];
+                    }
+                    completion:^(BOOL finished) {
+                        if (FALSE == [[self levelHandler] wakeup]) {
+                            CHECK_NOT_ENTER_HERE;
+                        };
+                    }
+     ];
 }
 
 @end
