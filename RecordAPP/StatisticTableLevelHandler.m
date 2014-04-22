@@ -31,10 +31,12 @@
 
 @interface StatisticTableLevelHandler()
 @property (nonatomic, strong) id<RecordInfoFillProtocol> fillBehavior;
+@property (nonatomic, strong) NSArray* infoArray;
 @end
 
 @implementation StatisticTableLevelHandler
 @synthesize fillBehavior = _fillBehavior;
+@synthesize infoArray =_infoArray;
 
 + (StatisticTableLevelHandler*) getInst
 {
@@ -58,35 +60,58 @@
     return self;
 }
 
+- (void) setFillBehavior:(id<RecordInfoFillProtocol>)fillBehavior
+{
+    if (nil == fillBehavior) {
+        CHECK_NOT_ENTER_HERE;
+        return;
+    }
+    _fillBehavior = fillBehavior;
+    if (FALSE == [self reloadInfoArray]) {
+        CHECK_NOT_ENTER_HERE;
+        return;
+    }
+}
+
 - (BOOL) setRecordFillBehavior:(id<RecordInfoFillProtocol>)behavior
 {
     [self setRecordFillBehavior:behavior];
     return TRUE;
 }
 
-- (NSInteger) getCount
-{
-    NSArray* infos = [self getInfoArray];
-    if (nil == infos) {
-        CHECK_NOT_ENTER_HERE;
-        return 0;
-    }
-    return [infos count];
-}
-//if cmptr == nil; date latest is first
-- (NSArray*)getInfoArray
+- (BOOL) reloadInfoArray
 {
     NSArray* rawInfos = nil;
     DBHandler* dbHandler = [DBHandler getInst];
     if (nil == (rawInfos = [dbHandler selectAll])) {
         CHECK_NOT_ENTER_HERE;
-        return nil;
+        return FALSE;
     }
     if (nil == [self fillBehavior]) {
         CHECK_NOT_ENTER_HERE;
+        return FALSE;
+    }
+    _infoArray = [[self fillBehavior] fillArray:rawInfos];
+    
+    return TRUE;
+}
+
+- (NSInteger) getCount
+{
+    if (nil == _infoArray) {
+        CHECK_NOT_ENTER_HERE;
+        return 0;
+    }
+    return [_infoArray count];
+}
+//if cmptr == nil; date latest is first
+- (NSArray*)getInfoArray
+{
+    if (nil == _infoArray) {
+        CHECK_NOT_ENTER_HERE;
         return nil;
     }
-    return [[self fillBehavior] fillArray:rawInfos];
+    return _infoArray;
 }
 
 - (BOOL) removeInfo: (RecordInfo*) info

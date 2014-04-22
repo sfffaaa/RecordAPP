@@ -22,6 +22,7 @@
 
 @interface StatisticTableLevelHandler : NSObject
 + (StatisticTableLevelHandler*) getInst;
+- (BOOL) reloadInfoArray;
 - (NSInteger) getCount;
 - (NSArray*) getInfoArray;
 - (BOOL) removeInfo: (RecordInfo*) info;

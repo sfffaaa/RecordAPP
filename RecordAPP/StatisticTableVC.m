@@ -65,6 +65,10 @@
 
 - (void) reloadTable:(NSNotification*) notification
 {
+    if (FALSE == [[self levelHandler] reloadInfoArray]) {
+        CHECK_NOT_ENTER_HERE;
+        return;
+    }
     [_tableView reloadData];
 }
 
