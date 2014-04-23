@@ -99,13 +99,6 @@
     _textField.inputView = [self createInputView];
     _textField.inputAccessoryView = [self createInputAccessoryView];
     _textField.text = [[NSString alloc] initWithFormat:@"%@", (NSString*)[self getTextString]];
-    
-    UIDatePicker* datePickerView = (UIDatePicker*)[_textField inputView];
-    if (nil == _textField || nil == datePickerView) {
-        CHECK_NOT_ENTER_HERE;
-        return;
-    }
-    datePickerView.date = _nextWakeupDate;
 }
 //protocol
 - (void) setInputDelegate: (id) inputView
@@ -158,5 +151,21 @@
     _nextWakeupDate = [[NSDate alloc] initWithTimeInterval:0 sinceDate:(NSDate*)[[NSUserDefaults standardUserDefaults] objectForKey:USER_SETUP_NEXT_WAKEUP_DATE_KEY]];
     
     _textField.text = (NSString*)[self getTextString];
+}
+
+- (void) editBegin: (id) inputElement
+{
+    if (_textField != inputElement) {
+        return;
+    }
+    UIDatePicker* datePickerView = (UIDatePicker*)[_textField inputView];
+
+    if (nil == _textField || nil == datePickerView) {
+        CHECK_NOT_ENTER_HERE;
+        return;
+    }
+    datePickerView.minimumDate = [NSDate dateWithTimeIntervalSinceNow:0];
+    datePickerView.maximumDate = [NSDate dateWithTimeIntervalSinceNow:MAX_DATE_CONSTRAINT];
+    datePickerView.date = _nextWakeupDate;
 }
 @end

@@ -53,6 +53,31 @@
     return TRUE;
 }
 
+- (BOOL) dismissAllInputView
+{
+    if (nil == _setupArray) {
+        CHECK_NOT_ENTER_HERE;
+        return FALSE;
+    }
+    for (id<SetupElementProtocol> obj in _setupArray) {
+        [obj dismissInputView];
+    }
+    return TRUE;
+}
+
+- (BOOL) editBeginElement: (id) element
+{
+    if (nil == _setupArray) {
+        CHECK_NOT_ENTER_HERE;
+        return FALSE;
+    }
+    for (id<SetupElementProtocol> obj in _setupArray) {
+        [obj editBegin:element];
+    }
+    return TRUE;
+
+}
+
 - (BOOL) reloadSetupElement
 {
     if (nil == _setupArray) {

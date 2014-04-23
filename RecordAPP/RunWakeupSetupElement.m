@@ -62,9 +62,6 @@
     //Set it into the value
     [[NSUserDefaults standardUserDefaults] setBool:_runWakeup forKey:USER_SETUP_RUN_WAKEUP_KEY];
     [[NSUserDefaults standardUserDefaults] synchronize];
-    
-    BOOL aaa = [[NSUserDefaults standardUserDefaults] boolForKey:USER_SETUP_RUN_WAKEUP_KEY];
-
 
     if (TRUE == _runWakeup) {
         [WakeupHandler emitWakeupStartEvent];
@@ -89,6 +86,11 @@
 }
 
 - (void) reloadElement
+{
+    return;
+}
+
+- (void) editBegin: (id) inputElement
 {
     return;
 }

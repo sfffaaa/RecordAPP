@@ -110,4 +110,9 @@
     return;
 }
 
+
+- (void) editBegin: (id) inputElement
+{
+    return;
+}
 @end

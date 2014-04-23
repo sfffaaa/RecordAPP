@@ -20,7 +20,10 @@
 @property (nonatomic, strong) id<SetupElementProtocol> emailElement;
 
 - (BOOL) initAllInputView;
+- (BOOL) dismissAllInputView;
 - (BOOL) setupDefaultUserSetting;
 - (BOOL) reloadSetupElement;
+- (BOOL) editBeginElement: (id) element;
+
 
 @end

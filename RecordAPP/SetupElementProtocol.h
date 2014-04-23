@@ -17,6 +17,7 @@
 - (void) exitInputView;
 - (void) dismissInputView;
 - (void) setInputDelegate: (id) inputView;
+- (void) editBegin: (id) inputElement;
 
 - (void) reloadElement;
 

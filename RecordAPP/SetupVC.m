@@ -98,14 +98,21 @@
 
 - (void)handleTap:(UITapGestureRecognizer *)recognizer
 {
-    [[[self levelHandler] recordPeriodElement] dismissInputView];
-    [[[self levelHandler] runWakeupElement] dismissInputView];
-    [[[self levelHandler] nextWakeupPeriodElement] dismissInputView];
-    [[[self levelHandler] wakeupPeriodElement] dismissInputView];
-    [[[self levelHandler] emailElement] dismissInputView];
+    if (FALSE == [[self levelHandler] dismissAllInputView]) {
+        CHECK_NOT_ENTER_HERE;
+        return;
+    }
+}
+- (IBAction)editDidBegin:(id)sender
+{
+    if (FALSE == [[self levelHandler] editBeginElement:sender]) {
+        CHECK_NOT_ENTER_HERE;
+        return;
+    }
 }
 
-- (IBAction)switchWakeup:(id)sender {
+- (IBAction)switchWakeup:(id)sender
+{
     if (2 == [sender tag]) {
         [[[self levelHandler] runWakeupElement] setElementValue:[NSNumber numberWithBool:[(UISwitch*)sender isOn]]];
     }

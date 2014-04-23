@@ -261,15 +261,6 @@
     _textField.inputView = [self createInputView];
     _textField.inputAccessoryView = [self createInputAccessoryView];
     _textField.text = [[NSString alloc] initWithFormat:@"%@", (NSString*)[self getTextString]];
-
-    UIPickerView* pickerView = (UIPickerView*)[_textField inputView];
-    if (nil == _textField || nil == pickerView) {
-        CHECK_NOT_ENTER_HERE;
-        return;
-    }
-    for (int i = 0; i < MAX_ROW_INDEX; i++) {
-        [pickerView selectRow:[[_wakeupPeriodArray objectAtIndex:i] integerValue] inComponent:i animated:NO];
-    }
 }
 
 - (void) setInputDelegate: (id) inputView
@@ -289,6 +280,22 @@
     [self setPeriod:_wakeupTempPeriodArray value:wakeupPeriod];
     
     _textField.text = (NSString*)[self getTextString];
+}
+
+- (void) editBegin: (id) inputElement
+{
+    if (_textField != inputElement) {
+        return;
+    }
+    
+    UIPickerView* pickerView = (UIPickerView*)[_textField inputView];
+    if (nil == _textField || nil == pickerView) {
+        CHECK_NOT_ENTER_HERE;
+        return;
+    }
+    for (int i = 0; i < MAX_ROW_INDEX; i++) {
+        [pickerView selectRow:[[_wakeupPeriodArray objectAtIndex:i] integerValue] inComponent:i animated:NO];
+    }
 }
 
 @end
