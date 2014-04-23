@@ -24,7 +24,7 @@
 {
     self = [super init];
     if (nil != self) {
-        _runWakeup = [[NSUserDefaults standardUserDefaults] objectForKey:USER_SETUP_RUN_WAKEUP_KEY];
+        _runWakeup = [[NSUserDefaults standardUserDefaults] boolForKey:USER_SETUP_RUN_WAKEUP_KEY];
     }
     return self;
 }
@@ -62,6 +62,9 @@
     //Set it into the value
     [[NSUserDefaults standardUserDefaults] setBool:_runWakeup forKey:USER_SETUP_RUN_WAKEUP_KEY];
     [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    BOOL aaa = [[NSUserDefaults standardUserDefaults] boolForKey:USER_SETUP_RUN_WAKEUP_KEY];
+
 
     if (TRUE == _runWakeup) {
         [WakeupHandler emitWakeupStartEvent];
