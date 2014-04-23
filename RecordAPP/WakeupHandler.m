@@ -8,6 +8,7 @@
 
 #import "WakeupHandler.h"
 #import "DebugUtil.h"
+#import "Util.h"
 #import "NextWakeupTimeSetupElement.h"
 #import "WakeupPeriodSetupElement.h"
 #import "RunWakeupSetupElement.h"
@@ -100,10 +101,8 @@
     NextWakeupTimeSetupElement* nextWakeupTimeSetupElement = [[NextWakeupTimeSetupElement alloc] init];
 
     NSDate* nextWakupDate = [[NSDate alloc] initWithTimeInterval:0 sinceDate:[nextWakeupTimeSetupElement getNextWakeupTime]];
-    NSDate* nowDate = [[NSDate alloc] initWithTimeIntervalSinceNow:0];
     
-    while (NSOrderedDescending == [nowDate compare:nextWakupDate] ||
-           NSOrderedSame == [nowDate compare:nextWakupDate]) {
+    while (IS_DATE_EQUAL_OR_EARLIER(nextWakupDate, [NSDate date])) {
         nextWakupDate = [[NSDate alloc] initWithTimeInterval:[wakeupPeriodSetupElement getWakeupPeriod] sinceDate:nextWakupDate];
     }
     
@@ -133,8 +132,7 @@
     NextWakeupTimeSetupElement* nextWakeupTimeSetupElement = [[NextWakeupTimeSetupElement alloc] init];
     NSDate* nowDate = [[NSDate alloc] initWithTimeIntervalSinceNow:0];
     NSDate* nextDate = [[NSDate alloc] initWithTimeInterval:0 sinceDate:[nextWakeupTimeSetupElement getNextWakeupTime]];
-    if (NSOrderedDescending == [nowDate compare:nextDate] ||
-        NSOrderedSame == [nowDate compare:nextDate]) {
+    if (IS_DATE_EQUAL_OR_LATER(nowDate, nextDate)) {
         [wakeupHandler wakeupStartAction];
     }
 }
@@ -159,11 +157,9 @@
     
     //4. setup the next date in user setup
     NSDate* nextWakeupDate = [[NSDate alloc] initWithTimeInterval:0 sinceDate:[nextWakeupTimeSetupElement getNextWakeupTime]];
-    NSDate* nowDate = [[NSDate alloc] initWithTimeIntervalSinceNow:0];
     WakeupPeriodSetupElement* wakeupPeriodSetupElement = [[WakeupPeriodSetupElement alloc] init];
     
-    while (NSOrderedDescending == [nowDate compare:nextWakeupDate] ||
-           NSOrderedSame == [nowDate compare:nextWakeupDate]) {
+    while (IS_DATE_EQUAL_OR_EARLIER(nextWakeupDate, [NSDate date])) {
         nextWakeupDate = [[NSDate alloc] initWithTimeInterval:[wakeupPeriodSetupElement getWakeupPeriod] sinceDate:nextWakeupDate];
     }
     [nextWakeupTimeSetupElement setElementValue:nextWakeupDate];

@@ -17,6 +17,7 @@
 #import "NextWakeupTimeSetupElement.h"
 #import "WakeupPeriodSetupElement.h"
 #import "DebugUtil.h"
+#import "Util.h"
 
 @interface RecordInfoLevelHandler()
 @end
@@ -123,8 +124,7 @@
     WakeupPeriodSetupElement* wakeupPeriodSetupElement = [[WakeupPeriodSetupElement alloc] init];
     NSDate* date = [_date dateByAddingTimeInterval:0];
     
-    while (NSOrderedAscending == [date compare:[NSDate date]] ||
-           NSOrderedSame == [date compare:[NSDate date]]) {
+    while (IS_DATE_EQUAL_OR_EARLIER(date, [NSDate date])) {
         date = [date dateByAddingTimeInterval:[wakeupPeriodSetupElement getWakeupPeriod]];
     }
     [nextWakeupTimeSetupElement setElementValue:date];

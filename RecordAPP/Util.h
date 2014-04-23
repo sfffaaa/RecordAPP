@@ -9,6 +9,15 @@
 #import <Foundation/Foundation.h>
 #import "RecordInfo.h"
 
+#define IS_DATE_EQUAL_OR_EARLIER(a, b) \
+        (NSOrderedAscending == [(a) compare: (b)] || \
+         NSOrderedSame == [(a) compare: (b)])
+
+#define IS_DATE_EQUAL_OR_LATER(a, b) \
+        (NSOrderedDescending == [(a) compare: (b)] || \
+         NSOrderedSame == [(a) compare: (b)])
+
+
 @interface Util : NSObject
 + (NSDate*) dateFromString: (NSString*) dateString;
 + (NSString*) stringFromDate: (NSDate*) date;
