@@ -11,11 +11,13 @@
 #import "RecordInfoLevelHandler.h"
 #import "WakeupHandler.h"
 #import "DebugUtil.h"
+#import "Util.h"
 
 #define USER_SETUP_NEXT_WAKEUP_DATE_KEY @"Next_Wakeup_Date"
 #define USER_SETUP_NEXT_WAKEUP_DATE_DEFAULT 20
 
 #define MAX_DATE_CONSTRAINT (6*24*60*60)
+#define AUTO_INCREASE_TIME 60
 
 @interface NextWakeupTimeSetupElement()
 @property (nonatomic, strong) NSDate* nextWakeupDate;
@@ -65,6 +67,8 @@
 - (void) setElementValue: (id) value
 {
     NSDate* nextTempWakeupDate = nil;
+    int dateInterval = 0;
+
     if (nil != value) {
         nextTempWakeupDate = [[NSDate alloc] initWithTimeInterval:0 sinceDate:value];
     } else {
@@ -77,7 +81,12 @@
     if (TRUE == [_nextWakeupDate isEqualToDate:nextTempWakeupDate]) {
         return;
     }
-    _nextWakeupDate = [[NSDate alloc] initWithTimeInterval:0 sinceDate:nextTempWakeupDate];
+    if (IS_DATE_EQUAL_OR_EARLIER(nextTempWakeupDate, [NSDate date])) {
+        dateInterval = AUTO_INCREASE_TIME;
+    } else {
+        dateInterval = 0;
+    }
+    _nextWakeupDate = [[NSDate alloc] initWithTimeInterval:dateInterval sinceDate:nextTempWakeupDate];
     
     [[NSUserDefaults standardUserDefaults] setObject:_nextWakeupDate forKey:USER_SETUP_NEXT_WAKEUP_DATE_KEY];
     [[NSUserDefaults standardUserDefaults] synchronize];
@@ -164,7 +173,7 @@
         CHECK_NOT_ENTER_HERE;
         return;
     }
-    datePickerView.minimumDate = [NSDate dateWithTimeIntervalSinceNow:0];
+    datePickerView.minimumDate = [NSDate dateWithTimeIntervalSinceNow:AUTO_INCREASE_TIME];
     datePickerView.maximumDate = [NSDate dateWithTimeIntervalSinceNow:MAX_DATE_CONSTRAINT];
     datePickerView.date = _nextWakeupDate;
 }
