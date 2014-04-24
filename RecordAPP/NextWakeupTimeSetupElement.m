@@ -31,7 +31,7 @@
 {
     self = [super init];
     if (nil != self) {
-        _nextWakeupDate = [[NSDate alloc] initWithTimeInterval:0 sinceDate:(NSDate*)[[NSUserDefaults standardUserDefaults] objectForKey:USER_SETUP_NEXT_WAKEUP_DATE_KEY]];
+        _nextWakeupDate = [(NSDate*)[[NSUserDefaults standardUserDefaults] objectForKey:USER_SETUP_NEXT_WAKEUP_DATE_KEY] dateByAddingTimeInterval:0];
     }
     return self;
 }
@@ -70,13 +70,13 @@
     int dateInterval = 0;
 
     if (nil != value) {
-        nextTempWakeupDate = [[NSDate alloc] initWithTimeInterval:0 sinceDate:value];
+        nextTempWakeupDate = [(NSDate*)value dateByAddingTimeInterval:0];
     } else {
         if (nil == _textField) {
             CHECK_NOT_ENTER_HERE;
         }
         UIDatePicker* datePicker = (UIDatePicker*)[_textField inputView];
-        nextTempWakeupDate = [[NSDate alloc] initWithTimeInterval:0 sinceDate:[datePicker date]];
+        nextTempWakeupDate = [[datePicker date] dateByAddingTimeInterval:0];
     }
     if (TRUE == [_nextWakeupDate isEqualToDate:nextTempWakeupDate]) {
         return;
@@ -86,7 +86,7 @@
     } else {
         dateInterval = 0;
     }
-    _nextWakeupDate = [[NSDate alloc] initWithTimeInterval:dateInterval sinceDate:nextTempWakeupDate];
+    _nextWakeupDate = [nextTempWakeupDate dateByAddingTimeInterval:dateInterval];
     
     [[NSUserDefaults standardUserDefaults] setObject:_nextWakeupDate forKey:USER_SETUP_NEXT_WAKEUP_DATE_KEY];
     [[NSUserDefaults standardUserDefaults] synchronize];
@@ -117,7 +117,7 @@
 
 - (NSDate*) getNextWakeupTime
 {
-    return [[NSDate alloc]initWithTimeInterval:0 sinceDate:_nextWakeupDate];
+    return [_nextWakeupDate dateByAddingTimeInterval:0];
 }
 
 - (NSString*) getTextString
@@ -157,7 +157,7 @@
         CHECK_NOT_ENTER_HERE;
         return;
     }
-    _nextWakeupDate = [[NSDate alloc] initWithTimeInterval:0 sinceDate:(NSDate*)[[NSUserDefaults standardUserDefaults] objectForKey:USER_SETUP_NEXT_WAKEUP_DATE_KEY]];
+    _nextWakeupDate = [(NSDate*)[[NSUserDefaults standardUserDefaults] objectForKey:USER_SETUP_NEXT_WAKEUP_DATE_KEY] dateByAddingTimeInterval:0];
     
     _textField.text = (NSString*)[self getTextString];
 }

@@ -24,7 +24,7 @@
 {
     self = [super init];
     if (nil != self) {
-        _date = [[NSDate alloc] initWithTimeIntervalSinceNow:0];
+        _date = [[NSDate date] dateByAddingTimeInterval:0];
         _score = DEBUG_RECORDINFO_SCORE;
         _isValid = TRUE;
     }

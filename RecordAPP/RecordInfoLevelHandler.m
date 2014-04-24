@@ -53,7 +53,7 @@
 
 - (BOOL) setUp
 {
-    _date = [[NSDate alloc] initWithTimeInterval:0 sinceDate:[[WakeupHandler getInst] nowWakeupDate]];
+    _date = [[[WakeupHandler getInst] nowWakeupDate] dateByAddingTimeInterval:0];
     
     [[WakeupHandler getInst] setSetuped:TRUE];
     return TRUE;

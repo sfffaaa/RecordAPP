@@ -115,7 +115,7 @@
     WakeupPeriodSetupElement* wakeupPeriodSetupElement = [[WakeupPeriodSetupElement alloc] init];
     NextWakeupTimeSetupElement* nextWakeupTimeSetupElement = [[NextWakeupTimeSetupElement alloc] init];
 
-    NSDate* nextWakupDate = [[NSDate alloc] initWithTimeInterval:0 sinceDate:[nextWakeupTimeSetupElement getNextWakeupTime]];
+    NSDate* nextWakupDate = [[nextWakeupTimeSetupElement getNextWakeupTime] dateByAddingTimeInterval:0];
     
     if (IS_DATE_EQUAL_OR_EARLIER(nextWakupDate, [NSDate date])) {
         UILocalNotification* notification = [self setupEachNotification:nextWakupDate];
@@ -124,11 +124,11 @@
     }
     
     while (IS_DATE_EQUAL_OR_EARLIER(nextWakupDate, [NSDate date])) {
-        nextWakupDate = [[NSDate alloc] initWithTimeInterval:[wakeupPeriodSetupElement getWakeupPeriod] sinceDate:nextWakupDate];
+        nextWakupDate = [nextWakupDate dateByAddingTimeInterval:[wakeupPeriodSetupElement getWakeupPeriod]];
     }
     
     for (int i = 0; i < notifyNum; i++) {
-        NSDate* date = [[NSDate alloc] initWithTimeInterval:i*[wakeupPeriodSetupElement getWakeupPeriod] sinceDate:nextWakupDate];
+        NSDate* date = [nextWakupDate dateByAddingTimeInterval:i*[wakeupPeriodSetupElement getWakeupPeriod]];
         UILocalNotification* notification = [self setupEachNotification:date];
 
         [[UIApplication sharedApplication]   scheduleLocalNotification:notification];
@@ -146,8 +146,9 @@
         return;
     }
     NextWakeupTimeSetupElement* nextWakeupTimeSetupElement = [[NextWakeupTimeSetupElement alloc] init];
-    NSDate* nowDate = [[NSDate alloc] initWithTimeIntervalSinceNow:0];
-    NSDate* nextDate = [[NSDate alloc] initWithTimeInterval:0 sinceDate:[nextWakeupTimeSetupElement getNextWakeupTime]];
+    NSDate* nowDate = [[NSDate date] dateByAddingTimeInterval:0];
+    NSDate* nextDate = [[nextWakeupTimeSetupElement getNextWakeupTime] dateByAddingTimeInterval:0];
+
     if (IS_DATE_EQUAL_OR_LATER(nowDate, nextDate)) {
         [wakeupHandler wakeupStartAction];
     }
@@ -172,11 +173,12 @@
     [self setNowWakeupDate:[nextWakeupTimeSetupElement getNextWakeupTime]];
     
     //4. setup the next date in user setup
-    NSDate* nextWakeupDate = [[NSDate alloc] initWithTimeInterval:0 sinceDate:[nextWakeupTimeSetupElement getNextWakeupTime]];
+    NSDate* nextWakeupDate = [[nextWakeupTimeSetupElement getNextWakeupTime] dateByAddingTimeInterval:0];
+
     WakeupPeriodSetupElement* wakeupPeriodSetupElement = [[WakeupPeriodSetupElement alloc] init];
     
     while (IS_DATE_EQUAL_OR_EARLIER(nextWakeupDate, [NSDate date])) {
-        nextWakeupDate = [[NSDate alloc] initWithTimeInterval:[wakeupPeriodSetupElement getWakeupPeriod] sinceDate:nextWakeupDate];
+        nextWakeupDate = [nextWakeupDate dateByAddingTimeInterval:[wakeupPeriodSetupElement getWakeupPeriod]];
     }
     [nextWakeupTimeSetupElement setElementValue:nextWakeupDate];
     DLog(@"test %@", nextWakeupDate);
