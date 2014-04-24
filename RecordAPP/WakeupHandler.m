@@ -13,6 +13,8 @@
 #import "WakeupPeriodSetupElement.h"
 #import "RunWakeupSetupElement.h"
 
+#define MAX_NOTIFICATION_NUM 10
+
 @implementation WakeupHandler
 @synthesize nowWakeupDate = _nowWakeupDate;
 @synthesize setuped = _setuped;
@@ -90,8 +92,21 @@
     [window.rootViewController presentViewController:mainViewController animated:YES completion:nil];
 }
 
+- (UILocalNotification*) setupEachNotification:(NSDate*) date
+{
+    UILocalNotification* notification = [[UILocalNotification alloc] init];
+    notification.timeZone = [NSTimeZone defaultTimeZone];
+    notification.applicationIconBadgeNumber = [[[UIApplication sharedApplication] scheduledLocalNotifications] count] + 1;
+    notification.alertAction = [[NSString alloc] initWithFormat:@"Just for test"];
+    notification.fireDate = date;
+    notification.alertBody = [[NSString alloc] initWithFormat:@"next date %@", notification.fireDate];
+    
+    return notification;
+}
+
 - (BOOL) setupLocalNotification
 {
+    int notifyNum = MAX_NOTIFICATION_NUM;
     RunWakeupSetupElement* runWakeupSetupElement = [[RunWakeupSetupElement alloc] init];
     if (FALSE == [runWakeupSetupElement getWakeupValue]) {
         DLog(@"should enter in false");
@@ -102,18 +117,19 @@
 
     NSDate* nextWakupDate = [[NSDate alloc] initWithTimeInterval:0 sinceDate:[nextWakeupTimeSetupElement getNextWakeupTime]];
     
+    if (IS_DATE_EQUAL_OR_EARLIER(nextWakupDate, [NSDate date])) {
+        UILocalNotification* notification = [self setupEachNotification:nextWakupDate];
+        [[UIApplication sharedApplication]   scheduleLocalNotification:notification];
+        notifyNum--;
+    }
+    
     while (IS_DATE_EQUAL_OR_EARLIER(nextWakupDate, [NSDate date])) {
         nextWakupDate = [[NSDate alloc] initWithTimeInterval:[wakeupPeriodSetupElement getWakeupPeriod] sinceDate:nextWakupDate];
     }
     
-    for (int i = 0; i < 10; i++) {
-        UILocalNotification* notification = [[UILocalNotification alloc] init];
-#pragma mark (TODO) Need to check default time zone
-        notification.timeZone = [NSTimeZone defaultTimeZone];
-        notification.applicationIconBadgeNumber = [[[UIApplication sharedApplication] scheduledLocalNotifications] count] + 1;
-        notification.alertAction = [[NSString alloc] initWithFormat:@"Just for test"];
-        notification.fireDate= [[NSDate alloc] initWithTimeInterval:i*[wakeupPeriodSetupElement getWakeupPeriod] sinceDate:nextWakupDate];
-        notification.alertBody = [[NSString alloc] initWithFormat:@"next date %@", notification.fireDate];
+    for (int i = 0; i < notifyNum; i++) {
+        NSDate* date = [[NSDate alloc] initWithTimeInterval:i*[wakeupPeriodSetupElement getWakeupPeriod] sinceDate:nextWakupDate];
+        UILocalNotification* notification = [self setupEachNotification:date];
 
         [[UIApplication sharedApplication]   scheduleLocalNotification:notification];
         DLog(@"test %i [%@]", i, notification.fireDate);

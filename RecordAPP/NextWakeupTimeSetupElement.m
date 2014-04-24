@@ -17,7 +17,7 @@
 #define USER_SETUP_NEXT_WAKEUP_DATE_DEFAULT 20
 
 #define MAX_DATE_CONSTRAINT (6*24*60*60)
-#define AUTO_INCREASE_TIME 60
+#define AUTO_INCREASE_TIME 0
 
 @interface NextWakeupTimeSetupElement()
 @property (nonatomic, strong) NSDate* nextWakeupDate;
