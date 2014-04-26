@@ -20,4 +20,6 @@
 + (void) emitWakeupReloadEvent;
 + (void) emitWakeupStopEvent;
 + (void) wakeUp;
+
+- (BOOL) rescheduleNotification;
 @end

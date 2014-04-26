@@ -157,16 +157,24 @@
     }
 }
 
-- (void) wakeupStartAction
+- (BOOL) rescheduleNotification
 {
-    //1. cancel notification
     [[UIApplication sharedApplication] cancelAllLocalNotifications];
     
-    //2. schedule the new event
     if (FALSE == [self setupLocalNotification]) {
         CHECK_NOT_ENTER_HERE;
+        return FALSE;
     }
-    
+    return TRUE;
+}
+
+- (void) wakeupStartAction
+{
+    //1. reschedule notification
+    if (FALSE == [self rescheduleNotification]) {
+        CHECK_NOT_ENTER_HERE;
+    }
+
     if (TRUE == [self setuped]) {
         return;
     }

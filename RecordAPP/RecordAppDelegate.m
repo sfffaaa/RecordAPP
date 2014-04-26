@@ -15,59 +15,18 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-#pragma mark (TODO) Need one VC for enter a icon page.
-    
-//  Setup view controller
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     UIViewController *mainViewController = [storyboard instantiateViewControllerWithIdentifier:@"initialView"];
     [self.window makeKeyAndVisible];
     
     [self.window.rootViewController presentViewController:mainViewController animated:NO completion:nil];
 
-//  Setup
-//    1. setup wake upder handler
-    [WakeupHandler getInst];
-//    2.
     UILocalNotification *notification = [launchOptions objectForKey:UIApplicationLaunchOptionsLocalNotificationKey];
     if (notification) {
         application.applicationIconBadgeNumber = 0;
     }
     self.window.backgroundColor = [UIColor whiteColor];
-/*
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"RecordTime" bundle:nil];
-    UIViewController *mainViewController = [storyboard instantiateViewControllerWithIdentifier:@"timeToRecord"];
-    
-    [self.window.rootViewController presentViewController:mainViewController animated:NO completion:nil];
-    //    self.window.rootViewController = mainViewController;
-*/
 
-    //1. Set and initial init handler
-    /*
-    InitializatorLevelHandler* initHandler = [[InitializatorLevelHandler alloc] init];
-    [initHandler setNowVC:recordingVC];
-    [initHandler setStoredNextState:RECORD_VOICE_START_STATE];
-
-    //   2. Set Business logic handler state (Recording)
-    [[BusinessLogicHandler getBusinessLogicHanlder] setNowState:INIT_STATE];
-    [[BusinessLogicHandler getBusinessLogicHanlder] setHandler:initHandler];
-    
-    //  3. Set navigation view controller
-    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:recordingVC];
-    [navigationController setNavigationBarHidden:TRUE];
-    [self.window setRootViewController:navigationController];
-    [[[self.window rootViewController] navigationController] setNavigationBarHidden:TRUE];
-    
-    //  4. Start initialization
-    if (FALSE == [initHandler startInitialize]) {
-        DLog(@"Should not enter here");
-        return NO;
-    }
-    // 5. Goto Next;
-    if (0 != [[BusinessLogicHandler getBusinessLogicHanlder] goNext]) {
-        DLog(@"BusinessLogicHandler error: cannot go Next");
-        return NO;
-    }
-*/
     return YES;
 }
 							
@@ -79,25 +38,17 @@
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
-    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
+    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
+    WakeupHandler* wakeHandler = [WakeupHandler getInst];
+    if (FALSE == [wakeHandler rescheduleNotification]) {
+        CHECK_NOT_ENTER_HERE;
+    }
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
     [WakeupHandler wakeUp];
-/*
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"RecordTime" bundle:nil];
-    UIViewController *mainViewController = [storyboard instantiateViewControllerWithIdentifier:@"timeToRecord"];
-
-    [self.window.rootViewController presentViewController:mainViewController animated:YES completion:nil];
-*/
-//    self.window.rootViewController = mainViewController;
-//    [self.window makeKeyAndVisible];
-
-/*    BusinessLogicHandler* handler = [BusinessLogicHandler getBusinessLogicHanlder];
-    [handler goNext];
- */
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
 }
 
