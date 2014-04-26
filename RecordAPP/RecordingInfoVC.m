@@ -51,9 +51,6 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    if (FALSE == [_levelHandler setDown]) {
-        CHECK_NOT_ENTER_HERE;
-    };
 }
 
 - (void)didReceiveMemoryWarning
@@ -76,6 +73,9 @@
     [window makeKeyAndVisible];
     
     [window.rootViewController dismissViewControllerAnimated:YES completion:nil];
+    if (FALSE == [_levelHandler setDown]) {
+        CHECK_NOT_ENTER_HERE;
+    };
 }
 
 - (IBAction)happinessChange:(UISlider *)sender {
