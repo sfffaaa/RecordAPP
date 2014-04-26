@@ -44,6 +44,7 @@
 		24AD06B918A5C88500599DCE /* DreamVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 24AD06B818A5C88500599DCE /* DreamVC.m */; };
 		24AD06C318A5FDFB00599DCE /* StatisticTableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 24AD06C218A5FDFB00599DCE /* StatisticTableVC.m */; };
 		24AD06C518A6096700599DCE /* StatisticRecordInfo.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24AD06C418A6096700599DCE /* StatisticRecordInfo.xib */; };
+		24B45A35190C12620036854F /* hello.png in Resources */ = {isa = PBXBuildFile; fileRef = 24B45A34190C12620036854F /* hello.png */; };
 		24B894D418FA5E0D00971743 /* RecordPeriodSetupElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 24B894D318FA5E0D00971743 /* RecordPeriodSetupElement.m */; };
 		24BED5C418C3776E00E140EA /* AudioFileHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 24BED5C318C3776E00E140EA /* AudioFileHandler.m */; };
 		24BED5C918C8BB1F00E140EA /* DummyAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 24BED5C818C8BB1F00E140EA /* DummyAction.m */; };
@@ -147,6 +148,7 @@
 		24AD06C118A5FDFB00599DCE /* StatisticTableVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatisticTableVC.h; sourceTree = "<group>"; };
 		24AD06C218A5FDFB00599DCE /* StatisticTableVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatisticTableVC.m; sourceTree = "<group>"; };
 		24AD06C418A6096700599DCE /* StatisticRecordInfo.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StatisticRecordInfo.xib; sourceTree = "<group>"; };
+		24B45A34190C12620036854F /* hello.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = hello.png; path = Picture/hello.png; sourceTree = "<group>"; };
 		24B894D218FA5E0D00971743 /* RecordPeriodSetupElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordPeriodSetupElement.h; sourceTree = "<group>"; };
 		24B894D318FA5E0D00971743 /* RecordPeriodSetupElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordPeriodSetupElement.m; sourceTree = "<group>"; };
 		24BED5C218C3776E00E140EA /* AudioFileHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioFileHandler.h; sourceTree = "<group>"; };
@@ -531,6 +533,7 @@
 		24767BAD190AC99D00A0E8D1 /* Picture */ = {
 			isa = PBXGroup;
 			children = (
+				24B45A34190C12620036854F /* hello.png */,
 				24767BB6190ACB6A00A0E8D1 /* blue-calendar-icon.png */,
 				24767BB7190ACB6A00A0E8D1 /* blue-clock-icon.png */,
 				24767BB8190ACB6A00A0E8D1 /* blue-user-icon.png */,
@@ -887,6 +890,7 @@
 				24767BBC190ACB6A00A0E8D1 /* blue-user-icon.png in Resources */,
 				24767BBB190ACB6A00A0E8D1 /* blue-clock-icon.png in Resources */,
 				2409307D188D1C5C00B01D94 /* Main.storyboard in Resources */,
+				24B45A35190C12620036854F /* hello.png in Resources */,
 				24D17F7718A3D425005CBA4E /* RecordTime.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

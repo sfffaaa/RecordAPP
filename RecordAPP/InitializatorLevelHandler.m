@@ -24,7 +24,7 @@
     [handler setNowState:INIT_STATE];
     
     //Initialize (now just wait 3 second)
-    [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(fireInitialedEvent) userInfo:nil repeats:NO];
+    [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(fireInitialedEvent) userInfo:nil repeats:NO];
     return YES;
 }
 
