@@ -10,7 +10,9 @@
 #import "DebugUtil.h"
 
 #define DATE_FORMAT @"yyyy-MM-dd HH:mm:ss"
-#define DISPLAY_DATE_FORMAT @"EEEE yyyy-MM-dd HH:mm:ss"
+#define DISPLAY_DATE_FORMAT @"yyyy-MM-dd HH:mm"
+#define DISPLAY_WEEK_FORMAT @"EEE"
+
 
 @implementation Util
 
@@ -60,6 +62,23 @@
         return nil;
     }
     return destDateString;
+}
+
++ (NSString*) displayWeekStringFromDate:(NSDate *)date
+{
+    if (nil == date) {
+        CHECK_NOT_ENTER_HERE;
+        return nil;
+    }
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:DISPLAY_WEEK_FORMAT];
+    NSString *destWeekString = [dateFormatter stringFromDate:date];
+    if (nil == destWeekString) {
+        CHECK_NOT_ENTER_HERE;
+        return nil;
+    }
+    return destWeekString;
+
 }
 
 + (UIColor*) userClickableButtonColor

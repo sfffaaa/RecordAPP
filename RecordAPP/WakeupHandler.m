@@ -87,9 +87,12 @@
 - (void) presentVC
 {
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"RecordTime" bundle:nil];
-    UIViewController *mainViewController = [storyboard instantiateViewControllerWithIdentifier:@"timeToRecord"];
+    UIViewController *timeViewController = [storyboard instantiateViewControllerWithIdentifier:@"timeToRecord"];
     UIWindow *window = [UIApplication sharedApplication].keyWindow;
-    [window.rootViewController presentViewController:mainViewController animated:YES completion:nil];
+    [window makeKeyAndVisible];
+    
+    [window.rootViewController presentViewController:timeViewController animated:YES completion:nil];
+
 }
 
 - (UILocalNotification*) setupEachNotification:(NSDate*) date
@@ -173,6 +176,18 @@
     [self setNowWakeupDate:[nextWakeupTimeSetupElement getNextWakeupTime]];
     
     //4. setup the next date in user setup
+    if (FALSE == [self nextWakeupTimeSet]) {
+        CHECK_NOT_ENTER_HERE;
+    }
+    
+    //5. wake up the vc
+    [self presentVC];
+}
+
+- (BOOL) nextWakeupTimeSet
+{
+    NextWakeupTimeSetupElement* nextWakeupTimeSetupElement = [[NextWakeupTimeSetupElement alloc] init];
+    
     NSDate* nextWakeupDate = [[nextWakeupTimeSetupElement getNextWakeupTime] dateByAddingTimeInterval:0];
 
     WakeupPeriodSetupElement* wakeupPeriodSetupElement = [[WakeupPeriodSetupElement alloc] init];
@@ -181,10 +196,7 @@
         nextWakeupDate = [nextWakeupDate dateByAddingTimeInterval:[wakeupPeriodSetupElement getWakeupPeriod]];
     }
     [nextWakeupTimeSetupElement setElementValue:nextWakeupDate];
-    DLog(@"test %@", nextWakeupDate);
-    
-    //5. wake up the vc
-    [self presentVC];
+    return TRUE;
 }
 
 @end

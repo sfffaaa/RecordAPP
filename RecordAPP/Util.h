@@ -22,6 +22,7 @@
 + (NSDate*) dateFromString: (NSString*) dateString;
 + (NSString*) stringFromDate: (NSDate*) date;
 + (NSString*) displayStringFromDate: (NSDate*) date;
++ (NSString*) displayWeekStringFromDate:(NSDate *)date;
 
 + (UIColor*) userClickableButtonColor;
 + (UIColor*) userDisableButtonColor;

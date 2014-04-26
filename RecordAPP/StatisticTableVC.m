@@ -16,12 +16,12 @@
 
 #pragma mark (FEATURE) Need has filter for no record time
 
-#define VALID_RECORD_INFO_HEIGHT 106
+#define VALID_RECORD_INFO_HEIGHT 115
 #define INVALID_RECORD_INFO_HEIGHT 20
 
 #define kRecordTableViewDateTextTag 1
-#define kRecordTableViewScoreTextTag 2
 #define kRecordTableViewLengthTextTag 3
+#define kRecordTableViewPictureTagOffset 100
 
 @interface StatisticTableVC ()
 @property (nonatomic, strong) StatisticTableLevelHandler* levelHandler;
@@ -99,13 +99,31 @@
         cell = [[[NSBundle mainBundle] loadNibNamed:@"StatisticRecordInfo" owner:self options:nil] objectAtIndex:0];
     }
     
-    ((UILabel*)[cell viewWithTag:kRecordTableViewDateTextTag]).text = [[NSString alloc]initWithFormat:@"%@", [Util displayStringFromDate:[info date]]];
-    ((UILabel*)[cell viewWithTag:kRecordTableViewScoreTextTag]).text = [[NSString alloc]initWithFormat:@"%i", [info score]];
+    ((UILabel*)[cell viewWithTag:kRecordTableViewDateTextTag]).text = [[NSString alloc]initWithFormat:@"%@ %@", [Util displayWeekStringFromDate:[info date]], [Util displayStringFromDate:[info date]]];
+    if (FALSE == [self loadScorePicture:cell info:info]) {
+        CHECK_NOT_ENTER_HERE;
+    }
     DLog(@"test %f", [info length]);
-    ((UILabel*)[cell viewWithTag:kRecordTableViewLengthTextTag]).text = [[NSString alloc]initWithFormat:@"%.0f", [info length]];
+    ((UILabel*)[cell viewWithTag:kRecordTableViewLengthTextTag]).text = [[NSString alloc]initWithFormat:@"%.1f sec", [info length]];
 
-#pragma mark (TODO) Connect tableviewcell with record info
     return cell;
+}
+
+- (BOOL) loadScorePicture:(UITableViewCell*)cell info:(RecordInfo*)info
+{
+    if (nil == cell || nil == info) {
+        CHECK_NOT_ENTER_HERE;
+    }
+    int score = [info score];
+    for (int i = 0; i < RECORD_SCORE_MAX; i++) {
+        UIImageView* imageView = (UIImageView*)[cell viewWithTag:i + kRecordTableViewPictureTagOffset];
+        imageView.hidden = YES;
+    }
+    for (int i = 0; i < score; i++) {
+        UIImageView* imageView = (UIImageView*)[cell viewWithTag:i + kRecordTableViewPictureTagOffset];
+        imageView.hidden = NO;
+    }
+    return true;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

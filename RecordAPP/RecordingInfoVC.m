@@ -73,6 +73,8 @@
         CHECK_NOT_ENTER_HERE;
     }
     UIWindow *window = [UIApplication sharedApplication].keyWindow;
+    [window makeKeyAndVisible];
+    
     [window.rootViewController dismissViewControllerAnimated:YES completion:nil];
 }
 

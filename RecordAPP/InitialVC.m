@@ -42,7 +42,8 @@
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     UIViewController *tabBarVC = [storyboard instantiateViewControllerWithIdentifier:@"TabBarView"];
     UIWindow *window = [UIApplication sharedApplication].keyWindow;
-    
+    [window makeKeyAndVisible];
+
     //Remove notification
     [[NSNotificationCenter defaultCenter] removeObserver:self name:INITIAL_EVENT object:nil];
     

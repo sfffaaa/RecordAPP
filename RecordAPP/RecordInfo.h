@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+#define RECORD_SCORE_MAX 5
+
 @interface RecordInfo : NSObject
 @property (nonatomic) BOOL isValid;
 @property (nonatomic, strong) NSString* name;
