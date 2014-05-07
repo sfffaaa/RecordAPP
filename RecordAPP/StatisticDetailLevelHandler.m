@@ -8,7 +8,7 @@
 
 #import "StatisticDetailLevelHandler.h"
 #import "RecordActionLevelHandler.h"
-#import "RecordInfo.h"
+#import "RecordInfoProtocol.h"
 #import "ListeningAction.h"
 #import "DebugUtil.h"
 #import "AudioFileHandler.h"
@@ -34,7 +34,7 @@
     return inst;
 }
 
-- (void) setInfo:(RecordInfo *)info
+- (void) setInfo:(id<RecordInfoProtocol>)info
 {
     _info = info;
     [_recordActionHandler setDate:[_info date]];

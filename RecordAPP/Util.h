@@ -7,15 +7,20 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "RecordInfo.h"
 
 #define IS_DATE_EQUAL_OR_EARLIER(a, b) \
         (NSOrderedAscending == [(a) compare: (b)] || \
          NSOrderedSame == [(a) compare: (b)])
 
+#define IS_DATE_EARLIER(a, b) \
+        (NSOrderedAscending == [(a) compare: (b)])
+
 #define IS_DATE_EQUAL_OR_LATER(a, b) \
         (NSOrderedDescending == [(a) compare: (b)] || \
          NSOrderedSame == [(a) compare: (b)])
+
+#define IS_NOT_CLASS_NAME(a, b) \
+        (FALSE == [(a) isEqualToString: NSStringFromClass((b))])
 
 
 @interface Util : NSObject

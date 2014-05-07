@@ -13,11 +13,11 @@
 @interface DBHandler : NSObject
 + (DBHandler*) getInst;
 
-- (NSString*) convertToID: (RecordInfo*) info;
+- (NSString*) convertToID: (id<RecordInfoProtocol>) info;
 
-- (BOOL) push: (RecordInfo*) info;
-- (RecordInfo*) get: (NSDate*) date;
+- (BOOL) push: (id<RecordInfoProtocol>) info;
+- (id<RecordInfoProtocol>) get: (NSDate*) date;
 - (NSArray*) selectAll;
-- (BOOL) remove: (RecordInfo*) info;
+- (BOOL) remove: (id<RecordInfoProtocol>) info;
 
 @end

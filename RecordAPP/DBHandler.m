@@ -62,7 +62,7 @@
     return self;
 }
 
-- (NSString*) convertToID: (RecordInfo*) info
+- (NSString*) convertToID: (id<RecordInfoProtocol>) info
 {
     if (nil == info) {
         CHECK_NOT_ENTER_HERE;
@@ -72,7 +72,7 @@
 
 //return false: no entry
 //        true: has entry
--(BOOL) isRecordExist: (RecordInfo*) info
+-(BOOL) isRecordExist: (id<RecordInfoProtocol>) info
 {
     if (nil == info) {
         CHECK_NOT_ENTER_HERE;
@@ -87,7 +87,7 @@
     }
 }
 
-- (BOOL) push: (RecordInfo*) info
+- (BOOL) push: (id<RecordInfoProtocol>) info
 {
     BOOL ret = FALSE;
     NSString* dbID = nil, *sqlCmd = nil;
@@ -122,7 +122,7 @@ END:
     return ret;
 }
 
-- (BOOL) remove: (RecordInfo*) info
+- (BOOL) remove: (id<RecordInfoProtocol>) info
 {
     BOOL ret = FALSE;
     NSString* dbID = nil, *sqlCmd = nil;
@@ -153,9 +153,9 @@ END:
     return ret;
 }
 
-- (RecordInfo*) extractFromDB: (FMResultSet*) rs
+- (id<RecordInfoProtocol>) extractFromDB: (FMResultSet*) rs
 {
-    RecordInfo* ret = nil, *info = nil;
+    id<RecordInfoProtocol> ret = nil, info = nil;
     
     if (nil == rs) {
         CHECK_NOT_ENTER_HERE;
@@ -170,16 +170,15 @@ END:
     [info setDate:[Util dateFromString:[rs stringForColumn:RECORD_DATE]]];
     [info setLength:[[rs objectForColumnName:RECORD_LENGTH] floatValue]];
     [info setScore:[[rs objectForColumnName:RECORD_SCORE] intValue]];
-    [info setIsValid:TRUE];
     
     ret = info;
 END:
     return ret;
 }
 
-- (RecordInfo*) get: (NSDate*) date
+- (id<RecordInfoProtocol>) get: (NSDate*) date
 {
-    RecordInfo* ret = nil, *info = nil;
+    id<RecordInfoProtocol> ret = nil, info = nil;
     NSString* sqlCmd = nil;
     FMResultSet* rs = nil;
     
@@ -215,7 +214,7 @@ END:
     NSMutableArray* tmpArray = [[NSMutableArray alloc] init];
     NSString* sqlCmd = [[NSString alloc] initWithFormat:@"select %@ from %@ order by %@ DESC;", COLUME_ALL, RECORD_TABLE, RECORD_DATE];
     FMResultSet* rs = [_db executeQuery:sqlCmd];
-    RecordInfo* info = nil;
+    id<RecordInfoProtocol> info = nil;
     while ([rs next]) {
         if (nil == (info = [self extractFromDB: rs])) {
             continue;

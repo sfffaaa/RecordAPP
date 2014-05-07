@@ -14,7 +14,7 @@
 
 @implementation AudioFileHandler
 
-+ (NSURL*) getFileURLFromInfo: (RecordInfo*) info
++ (NSURL*) getFileURLFromInfo: (id<RecordInfoProtocol>) info
 {
     if (nil == info && nil == [info date]) {
         CHECK_NOT_ENTER_HERE;
@@ -43,7 +43,7 @@
     return outputFileURL;
 }
 
-+ (float) getAudioLengthFromInfo: (RecordInfo*) info
++ (float) getAudioLengthFromInfo: (id<RecordInfoProtocol>) info
 {
     if (nil == info && nil == [info date]) {
         CHECK_NOT_ENTER_HERE;
@@ -74,7 +74,7 @@
 
 
 
-+ (BOOL) removeAudioFile: (RecordInfo*) info
++ (BOOL) removeAudioFile: (id<RecordInfoProtocol>) info
 {
     if (nil == info) {
         CHECK_NOT_ENTER_HERE;

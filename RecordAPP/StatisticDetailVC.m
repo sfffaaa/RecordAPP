@@ -8,7 +8,7 @@
 
 #import "StatisticDetailVC.h"
 #import "StatisticDetailLevelHandler.h"
-#import "RecordInfo.h"
+#import "RecordInfoProtocol.h"
 #import "Util.h"
 #import "TimerHandler.h"
 #import "DebugUtil.h"
@@ -55,7 +55,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)setInfo:(RecordInfo *)info
+- (void)setInfo:(id<RecordInfoProtocol>)info
 {
     [[self levelHandler] setInfo:info];
 }

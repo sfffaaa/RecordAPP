@@ -8,10 +8,10 @@
 
 #import <Foundation/Foundation.h>
 #import "ActionLevelToVCProtocol.h"
-#import "RecordInfo.h"
+#import "RecordInfoProtocol.h"
 
 @interface StatisticDetailLevelHandler : NSObject <ActionLevelToVCProtocol>
-@property (nonatomic, strong) RecordInfo* info;
+@property (nonatomic, strong) id<RecordInfoProtocol> info;
 
 + (StatisticDetailLevelHandler*) getInst;
 

@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "RecordInfo.h"
+#import "RecordInfoProtocol.h"
 
 @interface StatisticDetailVC : UIViewController
-- (void) setInfo: (RecordInfo*) info;
+- (void) setInfo: (id<RecordInfoProtocol>) info;
 @end

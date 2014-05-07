@@ -1,18 +1,16 @@
 //
-//  RecordInfo.h
+//  ComposeRecordInfo.h
 //  RecordAPP
 //
-//  Created by sfffaaa on 2014/1/26.
+//  Created by sfffaaa on 2014/5/2.
 //  Copyright (c) 2014年 sfffaaa. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
+
 #import "RecordInfoProtocol.h"
-#import "RecordInfoTableViewCell.h"
 
-#define RECORD_SCORE_MAX 5
-
-@interface RecordInfo : NSObject <RecordInfoProtocol>
+@interface ComposeRecordInfo : NSObject <RecordInfoProtocol>
 @property (nonatomic, strong) NSString* name;
 @property (nonatomic, strong) NSDate* date;
 @property (nonatomic) int score;

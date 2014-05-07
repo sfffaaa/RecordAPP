@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "RecordInfo.h"
+#import "RecordInfoProtocol.h"
 
 @protocol RecordInfoFillProtocol <NSObject>
 - (NSArray*) fillArray: (NSArray*) array;
@@ -16,7 +16,7 @@
 @interface RecordInfoWithVanishEntryBehavior : NSObject <RecordInfoFillProtocol>
 @end
 
-@interface RecordInfoWithoutVanishEntry : NSObject <RecordInfoFillProtocol>
+@interface RecordInfoWithoutVanishEntryBehavior : NSObject <RecordInfoFillProtocol>
 @end
 
 
@@ -25,7 +25,7 @@
 - (BOOL) reloadInfoArray;
 - (NSInteger) getCount;
 - (NSArray*) getInfoArray;
-- (BOOL) removeInfo: (RecordInfo*) info;
+//- (BOOL) removeInfo: (id<RecordInfoProtocol>) info;
 - (void) sortArray:(NSComparator)cmptr;
 - (BOOL) setRecordFillBehavior:(id<RecordInfoFillProtocol>) behavior;
 @end

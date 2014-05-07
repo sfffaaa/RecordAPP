@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "StatisticTableLevelHandler.h"
 
 @interface StatisticTableVC : UIViewController <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (nonatomic, strong) StatisticTableLevelHandler* levelHandler;
+
 @end

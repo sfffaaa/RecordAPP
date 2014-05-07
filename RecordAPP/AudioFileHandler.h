@@ -7,14 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "RecordInfo.h"
+#import "RecordInfoProtocol.h"
 
 @interface AudioFileHandler : NSObject
-+ (float) getAudioLengthFromInfo: (RecordInfo*) info;
++ (float) getAudioLengthFromInfo: (id<RecordInfoProtocol>) info;
 + (float) getAudioLengthFromDate: (NSDate*) date;
 + (float) getAudioLengthFromURL: (NSURL*) dateURL;
 
-+ (BOOL) removeAudioFile: (RecordInfo*) info;
-+ (NSURL*) getFileURLFromInfo: (RecordInfo*) info;
++ (BOOL) removeAudioFile: (id<RecordInfoProtocol>) info;
++ (NSURL*) getFileURLFromInfo: (id<RecordInfoProtocol>) info;
 + (NSURL*) getFileURLFromDate: (NSDate*) date;
 @end
