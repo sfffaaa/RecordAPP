@@ -40,7 +40,7 @@
     NSInteger minValue = value;
     [array replaceObjectAtIndex:DAY_ROW_INDEX withObject:[NSNumber numberWithInteger:minValue / (24 * 60 * 60)]];
     [array replaceObjectAtIndex:HOUR_ROW_INDEX withObject:[NSNumber numberWithInteger:(minValue / (60 * 60)) % 24]];
-    [array replaceObjectAtIndex:MIN_ROW_INDEX withObject:[NSNumber numberWithInteger:minValue / 60]];
+    [array replaceObjectAtIndex:MIN_ROW_INDEX withObject:[NSNumber numberWithInteger:(minValue / 60) % 60]];
 }
 
 - (NSUInteger) getPeriod: (NSMutableArray*) array
