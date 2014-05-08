@@ -294,6 +294,7 @@
                     <connections>
                         <outlet property="tableView" destination="T4P-C1-a5c" id="yC0-uE-hxk"/>
                         <segue destination="YSH-We-3CU" kind="push" identifier="toStatisticDetailVC" id="J0O-PM-2pp"/>
+                        <segue destination="gFz-2X-u9w" kind="push" identifier="toComposeStatisticDetailVC" id="etB-x3-qY0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HRT-jf-3zb" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -366,7 +367,41 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hqv-v2-vFi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1457" y="959"/>
+            <point key="canvasLocation" x="1657" y="957"/>
+        </scene>
+        <!--Compose Statistic TableVC View Controller - Compose Statistic-->
+        <scene sceneID="sQD-ze-TJY">
+            <objects>
+                <viewController id="gFz-2X-u9w" customClass="ComposeStatisticTableVCViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="6O9-d3-Nqx"/>
+                        <viewControllerLayoutGuide type="bottom" id="oba-9l-K0z"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="7gU-aa-mB7">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="ggn-Uw-VMD">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="gFz-2X-u9w" id="to9-pa-XAn"/>
+                                    <outlet property="delegate" destination="gFz-2X-u9w" id="sDe-ug-hTO"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Compose Statistic" id="Ria-b4-Ofh"/>
+                    <connections>
+                        <outlet property="tableView" destination="ggn-Uw-VMD" id="bNO-Tc-Q1b"/>
+                        <segue destination="YSH-We-3CU" kind="push" identifier="toStatisticDetailVC" id="BfL-eq-nZp"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7gS-At-U6M" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1657" y="1568"/>
         </scene>
     </scenes>
     <resources>
@@ -377,4 +412,7 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="BfL-eq-nZp"/>
+    </inferredMetricsTieBreakers>
 </document>

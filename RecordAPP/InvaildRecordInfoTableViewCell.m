@@ -16,7 +16,7 @@
 
 @implementation InvaildRecordInfoTableViewCell
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtRecordInfo:(id<RecordInfoProtocol>) info VC: (StatisticTableVC*) VC
+- (void)tableView:(UITableView *)tableView didSelectRowAtRecordInfo:(id<RecordInfoProtocol>) info VC: (UIViewController*) VC
 {
     if (IS_NOT_CLASS_NAME(@"InvalidRecordInfo", [info class])) {
         CHECK_NOT_ENTER_HERE;

@@ -20,7 +20,7 @@
 
 @implementation RecordInfoTableViewCell
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtRecordInfo:(id<RecordInfoProtocol>) info VC: (StatisticTableVC*) VC
+- (void)tableView:(UITableView *)tableView didSelectRowAtRecordInfo:(id<RecordInfoProtocol>) info VC: (UIViewController*) VC
 {
     if (nil == info || nil == VC) {
         CHECK_NOT_ENTER_HERE;

@@ -1,33 +1,21 @@
 //
-//  StatisticTableVC.m
+//  ComposeStatisticTableVCViewController.m
 //  RecordAPP
 //
-//  Created by sfffaaa on 2014/2/8.
+//  Created by sfffaaa on 2014/5/9.
 //  Copyright (c) 2014年 sfffaaa. All rights reserved.
 //
 
-#import "StatisticTableVC.h"
-#import "StatisticDetailVC.h"
 #import "ComposeStatisticTableVCViewController.h"
 #import "RecordInfoLevelHandler.h"
-#import "RecordInfoProtocol.h"
-#import "RecordInfoTableViewCell.h"
-#import "Util.h"
+#import "RecordInfoTableViewCellProtocol.h"
+#import "StatisticDetailVC.h"
 #import "DebugUtil.h"
 
-#pragma mark (FEATURE) Need has filter for no record time
-
-#define VALID_RECORD_INFO_HEIGHT 115
-#define INVALID_RECORD_INFO_HEIGHT 20
-
-#define kRecordTableViewDateTextTag 1
-#define kRecordTableViewLengthTextTag 3
-#define kRecordTableViewPictureTagOffset 100
-
-@interface StatisticTableVC ()
+@interface ComposeStatisticTableVCViewController ()
 @end
 
-@implementation StatisticTableVC
+@implementation ComposeStatisticTableVCViewController
 @synthesize levelHandler = _levelHandler;
 @synthesize tableView = _tableView;
 
@@ -35,7 +23,7 @@
 {
     self = [super initWithCoder:aDecoder];
     if (self) {
-        _levelHandler = [[StatisticTableLevelHandler alloc] init];
+        _levelHandler = [[ComposeStatisticTableLevelHandler alloc] init];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTable:) name:RELOAD_EVENT object:nil];
     }
     return self;
@@ -44,23 +32,18 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-}
-
-- (void) viewWillDisappear: (BOOL)animated
-{
-    [super viewWillDisappear:animated];
+    // Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)setInfo:(id<RecordInfoProtocol>)info
+{
+    [[self levelHandler] setInfo:info];
 }
 
 - (void) reloadTable:(NSNotification*) notification
@@ -72,11 +55,10 @@
     [_tableView reloadData];
 }
 
-
 #pragma mark - UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-
+    
     id<RecordInfoProtocol> info = [[[self levelHandler] getInfoArray] objectAtIndex:[indexPath row]];
     [[info tableViewCellImp] tableView:tableView didSelectRowAtRecordInfo:info VC:self];
 }
@@ -84,7 +66,6 @@
 #pragma mark - UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    [[self levelHandler] sortArray:nil];
     return [[self levelHandler] getCount];
 }
 
@@ -113,21 +94,12 @@
     }
 }
 
-- (IBAction)filter:(id)sender
-{
-#pragma mark (TODO) Implement filter
-    DLog(@"filter");
-}
-
 #pragma mark - segue
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([[segue identifier] isEqualToString:@"toStatisticDetailVC"]) {
         StatisticDetailVC *vc = [segue destinationViewController];
-        [vc setInfo:(id<RecordInfoProtocol>)sender];
-    } else if ([[segue identifier] isEqualToString:@"toComposeStatisticDetailVC"]) {
-        ComposeStatisticTableVCViewController* vc = [segue destinationViewController];
         [vc setInfo:(id<RecordInfoProtocol>)sender];
     }
 }

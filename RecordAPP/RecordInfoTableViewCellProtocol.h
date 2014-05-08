@@ -14,7 +14,7 @@
 @protocol RecordInfoTableViewCellProtocol <NSObject>
 
 #pragma mark - TableViewCell related
-- (void)tableView:(UITableView *)tableView didSelectRowAtRecordInfo:(id<RecordInfoProtocol>) info VC:(StatisticTableVC*) VC;
+- (void)tableView:(UITableView *)tableView didSelectRowAtRecordInfo:(id<RecordInfoProtocol>) info VC:(UIViewController*) VC;
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtRecordInfo:(id<RecordInfoProtocol>) info;
 

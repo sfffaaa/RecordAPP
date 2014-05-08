@@ -56,6 +56,8 @@
 		24B45A5C1918053C0036854F /* saly_spin.png in Resources */ = {isa = PBXBuildFile; fileRef = 24B45A5B1918053C0036854F /* saly_spin.png */; };
 		24B45A5F191A80C30036854F /* ComposeRecordInfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 24B45A5E191A80C30036854F /* ComposeRecordInfoTableViewCell.m */; };
 		24B45A61191A82610036854F /* StatisticComposeRecordInfo.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24B45A60191A82610036854F /* StatisticComposeRecordInfo.xib */; };
+		24B45A65191BE91B0036854F /* ComposeStatisticTableVCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24B45A64191BE91B0036854F /* ComposeStatisticTableVCViewController.m */; };
+		24B45A69191BE98A0036854F /* ComposeStatisticTableLevelHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 24B45A68191BE98A0036854F /* ComposeStatisticTableLevelHandler.m */; };
 		24B894D418FA5E0D00971743 /* RecordPeriodSetupElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 24B894D318FA5E0D00971743 /* RecordPeriodSetupElement.m */; };
 		24BED5C418C3776E00E140EA /* AudioFileHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 24BED5C318C3776E00E140EA /* AudioFileHandler.m */; };
 		24BED5C918C8BB1F00E140EA /* DummyAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 24BED5C818C8BB1F00E140EA /* DummyAction.m */; };
@@ -178,6 +180,10 @@
 		24B45A5D191A80C30036854F /* ComposeRecordInfoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComposeRecordInfoTableViewCell.h; sourceTree = "<group>"; };
 		24B45A5E191A80C30036854F /* ComposeRecordInfoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComposeRecordInfoTableViewCell.m; sourceTree = "<group>"; };
 		24B45A60191A82610036854F /* StatisticComposeRecordInfo.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StatisticComposeRecordInfo.xib; sourceTree = "<group>"; };
+		24B45A63191BE91B0036854F /* ComposeStatisticTableVCViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComposeStatisticTableVCViewController.h; sourceTree = "<group>"; };
+		24B45A64191BE91B0036854F /* ComposeStatisticTableVCViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComposeStatisticTableVCViewController.m; sourceTree = "<group>"; };
+		24B45A67191BE98A0036854F /* ComposeStatisticTableLevelHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComposeStatisticTableLevelHandler.h; sourceTree = "<group>"; };
+		24B45A68191BE98A0036854F /* ComposeStatisticTableLevelHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComposeStatisticTableLevelHandler.m; sourceTree = "<group>"; };
 		24B894D218FA5E0D00971743 /* RecordPeriodSetupElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordPeriodSetupElement.h; sourceTree = "<group>"; };
 		24B894D318FA5E0D00971743 /* RecordPeriodSetupElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordPeriodSetupElement.m; sourceTree = "<group>"; };
 		24BED5C218C3776E00E140EA /* AudioFileHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioFileHandler.h; sourceTree = "<group>"; };
@@ -354,6 +360,7 @@
 		2409309E188D1C9500B01D94 /* ViewControllerLevel-Handler */ = {
 			isa = PBXGroup;
 			children = (
+				24B45A66191BE9420036854F /* ComposeStatisticTableLevel */,
 				24C7036018994C1E008DDBA6 /* Base */,
 				24C70359189949A3008DDBA6 /* InitialtorLevel */,
 				24161BC31894BE5600BBFC56 /* RecordInfoLevel */,
@@ -529,6 +536,7 @@
 		24161BCE189561A000BBFC56 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				24B45A62191BE8E30036854F /* ComposeStatisticTableVC */,
 				24F16F4118ABC6B800D4CA78 /* SetupVC */,
 				24F16F3D18A68F6500D4CA78 /* StatisticDetailVC */,
 				24AD06BA18A5FBBA00599DCE /* StatisticTableVC */,
@@ -683,6 +691,24 @@
 				24B45A5B1918053C0036854F /* saly_spin.png */,
 			);
 			name = Sally;
+			sourceTree = "<group>";
+		};
+		24B45A62191BE8E30036854F /* ComposeStatisticTableVC */ = {
+			isa = PBXGroup;
+			children = (
+				24B45A63191BE91B0036854F /* ComposeStatisticTableVCViewController.h */,
+				24B45A64191BE91B0036854F /* ComposeStatisticTableVCViewController.m */,
+			);
+			name = ComposeStatisticTableVC;
+			sourceTree = "<group>";
+		};
+		24B45A66191BE9420036854F /* ComposeStatisticTableLevel */ = {
+			isa = PBXGroup;
+			children = (
+				24B45A67191BE98A0036854F /* ComposeStatisticTableLevelHandler.h */,
+				24B45A68191BE98A0036854F /* ComposeStatisticTableLevelHandler.m */,
+			);
+			name = ComposeStatisticTableLevel;
 			sourceTree = "<group>";
 		};
 		24B894D118FA5DD600971743 /* RecordPeriod */ = {
@@ -1079,11 +1105,13 @@
 				24161B921893ACCA00BBFC56 /* WakeupHandler.m in Sources */,
 				24F37D3118F0022E006286D6 /* CreateSetupElementFactory.m in Sources */,
 				24D17F7B18A3EA11005CBA4E /* InitialVC.m in Sources */,
+				24B45A65191BE91B0036854F /* ComposeStatisticTableVCViewController.m in Sources */,
 				24C7036D189A0E3F008DDBA6 /* BaseVC.m in Sources */,
 				24161BB21893F80100BBFC56 /* RecordFileHandler.m in Sources */,
 				24161BBD1894029300BBFC56 /* StatisticTableLevelHandler.m in Sources */,
 				2409307A188D1C5C00B01D94 /* RecordAppDelegate.m in Sources */,
 				24F16F7F18BCEE2E00D4CA78 /* FMResultSet.m in Sources */,
+				24B45A69191BE98A0036854F /* ComposeStatisticTableLevelHandler.m in Sources */,
 				2430F8F018FAD0D7004BC2DA /* NextWakeupTimeSetupElement.m in Sources */,
 				24F16F4D18ABDC0700D4CA78 /* SetupLevelHandler.m in Sources */,
 				24C703581896C073008DDBA6 /* TimerHandler.m in Sources */,
