@@ -10,6 +10,7 @@
 #import "RunWakeupSetupElement.h"
 #import "WakeupHandler.h"
 #import "DebugUtil.h"
+#import "EventDefine.h"
 
 #define USER_SETUP_WAKEUP_PERIOD_KEY @"Wakeup_Period"
 #define USER_SETUP_WAKEUP_PERIOD_DEFAULT 60
@@ -229,8 +230,12 @@
         CHECK_NOT_ENTER_HERE;
         return;
     }
-    if (TRUE == [runWakeupElement getWakeupValue] && TRUE == valueChanged) {
-        [WakeupHandler emitWakeupReloadEvent];
+
+    if (TRUE == valueChanged) {
+        [[NSNotificationCenter defaultCenter] postNotificationName: TABLE_RELOAD_EVENT object:self];
+        if (TRUE == [runWakeupElement getWakeupValue]) {
+            [WakeupHandler emitWakeupReloadEvent];
+        }
     }
 }
 

@@ -8,10 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-#define WAKEUP_RELOAD_EVENT @"wakeupReloadEvent"
-#define WAKEUP_START_EVENT @"wakeupStartEvent"
-#define WAKEUP_STOP_EVNET @"wakeupStopEvent"
-
 @interface WakeupHandler : NSObject
 @property (nonatomic, strong) NSDate* nowWakeupDate;
 @property (nonatomic) BOOL setuped;

@@ -18,6 +18,7 @@
 #import "WakeupPeriodSetupElement.h"
 #import "DebugUtil.h"
 #import "Util.h"
+#import "EventDefine.h"
 
 @interface RecordInfoLevelHandler()
 @end
@@ -128,7 +129,7 @@
         date = [date dateByAddingTimeInterval:[wakeupPeriodSetupElement getWakeupPeriod]];
     }
     [nextWakeupTimeSetupElement setElementValue:date];
-    [[NSNotificationCenter defaultCenter] postNotificationName: RELOAD_EVENT object:self];
+    [[NSNotificationCenter defaultCenter] postNotificationName: TABLE_RELOAD_EVENT object:self];
     
     return TRUE;
 }

@@ -10,8 +10,6 @@
 #import "RecordActionProtocol.h"
 #import "TimerHandler.h"
 
-#define RELOAD_EVENT @"reload_event"
-
 @interface RecordInfoLevelHandler : NSObject
 @property (nonatomic) int score;
 @property (nonatomic, strong) NSDate* date;

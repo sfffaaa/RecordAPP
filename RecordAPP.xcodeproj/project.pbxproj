@@ -184,6 +184,7 @@
 		24B45A64191BE91B0036854F /* ComposeStatisticTableVCViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComposeStatisticTableVCViewController.m; sourceTree = "<group>"; };
 		24B45A67191BE98A0036854F /* ComposeStatisticTableLevelHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComposeStatisticTableLevelHandler.h; sourceTree = "<group>"; };
 		24B45A68191BE98A0036854F /* ComposeStatisticTableLevelHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComposeStatisticTableLevelHandler.m; sourceTree = "<group>"; };
+		24B45A6A191D23F70036854F /* EventDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventDefine.h; sourceTree = "<group>"; };
 		24B894D218FA5E0D00971743 /* RecordPeriodSetupElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordPeriodSetupElement.h; sourceTree = "<group>"; };
 		24B894D318FA5E0D00971743 /* RecordPeriodSetupElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordPeriodSetupElement.m; sourceTree = "<group>"; };
 		24BED5C218C3776E00E140EA /* AudioFileHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioFileHandler.h; sourceTree = "<group>"; };
@@ -905,6 +906,7 @@
 			children = (
 				24F16F8318C0BB3700D4CA78 /* Util.h */,
 				24F16F8418C0BB3700D4CA78 /* Util.m */,
+				24B45A6A191D23F70036854F /* EventDefine.h */,
 			);
 			name = Util;
 			sourceTree = "<group>";

@@ -12,6 +12,7 @@
 #import "NextWakeupTimeSetupElement.h"
 #import "WakeupPeriodSetupElement.h"
 #import "RunWakeupSetupElement.h"
+#import "EventDefine.h"
 
 #define MAX_NOTIFICATION_NUM 10
 

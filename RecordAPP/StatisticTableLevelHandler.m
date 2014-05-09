@@ -58,14 +58,20 @@
     
     WakeupPeriodSetupElement* wakeupPeriodSetupElement = [[WakeupPeriodSetupElement alloc] init];
     int wakeupPeriod = [wakeupPeriodSetupElement getWakeupPeriod];
-    NSDate* initialDate = [self getInitialDate:array];
+    NSDate* recordInitialDate = [self getInitialDate:array];
 
     //先算最後一個的時間
     NSUInteger arrIdx = 0;
     NSDate* date = [self getMaxDate];
     
+    //算第一個時間
+    NSDate* initialDate = nil;
+    while (IS_DATE_EARLIER(recordInitialDate, initialDate)) {
+        initialDate = [initialDate dateByAddingTimeInterval:-1 * wakeupPeriod];
+    }
+    
     //時間的 loop 往回走（當 array 的 loop 走完，或是走到最早的時間 就停)
-    for (date = [self getMaxDate]; IS_DATE_EARLIER(initialDate, date); date = [date dateByAddingTimeInterval:-1 * wakeupPeriod]) {
+    for (date = [self getMaxDate]; IS_DATE_EQUAL_OR_EARLIER(initialDate, date); date = [date dateByAddingTimeInterval:-1 * wakeupPeriod]) {
         NSUInteger tmpIdx = arrIdx;
         //走 array 的 loop
         while (arrIdx < [array count] &&
@@ -194,55 +200,6 @@
         return nil;
     }
     return _infoArray;
-}
-
-#pragma mark (TODO) Need to merge into record info
-/*
-- (BOOL) removeInfo: (id<RecordInfoProtocol>) info
-{
-    if (nil == info) {
-        CHECK_NOT_ENTER_HERE;
-        return FALSE;
-    }
-    if (FALSE == [info isValid]) {
-        return TRUE;
-    }
-    
-//  Remove file
-    if (FALSE == [AudioFileHandler removeAudioFile:info]) {
-        CHECK_NOT_ENTER_HERE;
-        return FALSE;
-    }
-    
-//  Remove db
-    DBHandler* dbHandler = [DBHandler getInst];
-    if (nil == dbHandler) {
-        CHECK_NOT_ENTER_HERE;
-        return FALSE;
-    }
-    if (FALSE == [dbHandler remove:info]) {
-        CHECK_NOT_ENTER_HERE;
-        return FALSE;
-    }
-    [[NSNotificationCenter defaultCenter] postNotificationName: RELOAD_EVENT object:self];
-    
-    return TRUE;
-}*/
-
-- (void)sortArray:(NSComparator)cmptr
-{
-#pragma mark (TODO) Implement sortArray
-    NSArray* array = nil;
-    if (nil == cmptr) {
-        cmptr = ^NSComparisonResult(id obj1, id obj2) {
-            id<RecordInfoProtocol> record1 = obj1;
-            id<RecordInfoProtocol> record2 = obj2;
-            return [[record2 date] compare:[record1 date]];
-        };
-    }
-    if (nil != array) {
-        array = [array sortedArrayUsingComparator:cmptr];
-    }
 }
 
 @end

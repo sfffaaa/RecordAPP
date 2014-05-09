@@ -25,7 +25,5 @@
 - (BOOL) reloadInfoArray;
 - (NSInteger) getCount;
 - (NSArray*) getInfoArray;
-//- (BOOL) removeInfo: (id<RecordInfoProtocol>) info;
-- (void) sortArray:(NSComparator)cmptr;
 - (BOOL) setRecordFillBehavior:(id<RecordInfoFillProtocol>) behavior;
 @end

@@ -14,6 +14,7 @@
 #import "RecordInfoTableViewCell.h"
 #import "Util.h"
 #import "DebugUtil.h"
+#import "EventDefine.h"
 
 #pragma mark (FEATURE) Need has filter for no record time
 
@@ -36,7 +37,7 @@
     self = [super initWithCoder:aDecoder];
     if (self) {
         _levelHandler = [[StatisticTableLevelHandler alloc] init];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTable:) name:RELOAD_EVENT object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTable:) name:TABLE_RELOAD_EVENT object:nil];
     }
     return self;
 }
@@ -84,7 +85,6 @@
 #pragma mark - UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    [[self levelHandler] sortArray:nil];
     return [[self levelHandler] getCount];
 }
 
@@ -109,7 +109,7 @@
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         id<RecordInfoProtocol> info = [[[self levelHandler] getInfoArray] objectAtIndex:[indexPath row]];
         [[info tableViewCellImp] tableView:tableView commitEditingStyle:editingStyle forRowAtRecordInfo:info];
-        [[NSNotificationCenter defaultCenter] postNotificationName: RELOAD_EVENT object:self];
+        [[NSNotificationCenter defaultCenter] postNotificationName: TABLE_RELOAD_EVENT object:self];
     }
 }
 

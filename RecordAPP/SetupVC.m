@@ -11,6 +11,7 @@
 #import "DebugUtil.h"
 #import "RecordInfoLevelHandler.h"
 #import "Util.h"
+#import "EventDefine.h"
 
 @interface SetupVC ()
 @property (weak, nonatomic) IBOutlet UITextField *recordLengthTextField;
@@ -75,7 +76,7 @@
     UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
     [self.view addGestureRecognizer:tap];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadSetupElement:) name:RELOAD_EVENT object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadSetupElement:) name:TABLE_RELOAD_EVENT object:nil];
 }
 
 - (void) viewWillDisappear: (BOOL)animated
