@@ -141,8 +141,7 @@
 {
     self = [super init];
     if (nil != self) {
-//        [self setFillBehavior:[[RecordInfoWithoutVanishEntryBehavior alloc] init]];
-        [self setFillBehavior:[[RecordInfoWithVanishEntryBehavior alloc] init]];
+        [self setFillBehavior:[[RecordInfoWithoutVanishEntryBehavior alloc] init]];
 
     }
     return self;
@@ -163,7 +162,7 @@
 
 - (BOOL) setRecordFillBehavior:(id<RecordInfoFillProtocol>)behavior
 {
-    [self setRecordFillBehavior:behavior];
+    [self setFillBehavior:behavior];
     return TRUE;
 }
 

@@ -16,14 +16,14 @@
 #import "DebugUtil.h"
 #import "EventDefine.h"
 
-#pragma mark (FEATURE) Need has filter for no record time
-
 @interface StatisticTableVC ()
+@property (nonatomic) BOOL fillPressed;
 @end
 
 @implementation StatisticTableVC
 @synthesize levelHandler = _levelHandler;
 @synthesize tableView = _tableView;
+@synthesize fillPressed = _fillPressed;
 
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
@@ -106,10 +106,48 @@
     }
 }
 
+- (BOOL) setupNonFillerBarItem: (UIBarButtonItem*) item
+{
+    if (nil == item) {
+        CHECK_NOT_ENTER_HERE;
+        return FALSE;
+    }
+    if (FALSE == [[self levelHandler] setRecordFillBehavior:[[RecordInfoWithoutVanishEntryBehavior alloc] init]]) {
+        CHECK_NOT_ENTER_HERE;
+        return FALSE;
+    }
+    item.title = [[NSString alloc] initWithFormat:@"Filler"];
+    return TRUE;
+}
+
+- (BOOL) setupFillerBarItem: (UIBarButtonItem*) item
+{
+    if (nil == item) {
+        CHECK_NOT_ENTER_HERE;
+        return FALSE;
+    }
+    if (FALSE == [[self levelHandler] setRecordFillBehavior:[[RecordInfoWithVanishEntryBehavior alloc] init]]) {
+        CHECK_NOT_ENTER_HERE;
+        return FALSE;
+    }
+    item.title = [[NSString alloc] initWithFormat:@"NonFiller"];
+    return TRUE;
+}
+
 - (IBAction)filter:(id)sender
 {
-#pragma mark (TODO) Implement filter
-    DLog(@"filter");
+    UIBarButtonItem* barItem = (UIBarButtonItem*)sender;
+    if (FALSE == _fillPressed) {
+        if (FALSE == [self setupFillerBarItem:barItem]) {
+            CHECK_NOT_ENTER_HERE;
+        }
+    } else {
+        if (FALSE == [self setupNonFillerBarItem:barItem]) {
+            CHECK_NOT_ENTER_HERE;
+        }
+    }
+    _fillPressed = !_fillPressed;
+    [[NSNotificationCenter defaultCenter] postNotificationName: TABLE_RELOAD_EVENT object:self];
 }
 
 #pragma mark - segue
