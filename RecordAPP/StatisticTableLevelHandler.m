@@ -71,7 +71,7 @@
     }
     
     //時間的 loop 往回走（當 array 的 loop 走完，或是走到最早的時間 就停)
-    for (date = [self getMaxDate]; IS_DATE_EQUAL_OR_EARLIER(initialDate, date); date = [date dateByAddingTimeInterval:-1 * wakeupPeriod]) {
+    for (date = [[self getMaxDate] dateByAddingTimeInterval:-1 * wakeupPeriod] ; IS_DATE_EQUAL_OR_EARLIER(initialDate, date); date = [date dateByAddingTimeInterval:-1 * wakeupPeriod]) {
         NSUInteger tmpIdx = arrIdx;
         //走 array 的 loop
         while (arrIdx < [array count] &&
