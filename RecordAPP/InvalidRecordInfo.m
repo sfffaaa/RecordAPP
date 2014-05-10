@@ -8,11 +8,13 @@
 
 #import "InvalidRecordInfo.h"
 #import "InvaildRecordInfoTableViewCell.h"
+#import "DebugUtil.h"
 
 @implementation InvalidRecordInfo
 
 @synthesize score = _score;
 @synthesize date = _date;
+@synthesize datePeriod = _datePeriod;
 @synthesize name = _name;
 @synthesize length = _length;
 @synthesize tableViewCellImp = _tableViewCellImp;
@@ -25,6 +27,11 @@
         _tableViewCellImp = [[InvaildRecordInfoTableViewCell alloc] init];
     }
     return self;
+}
+
+- (void) setTableViewCellImp:(id<RecordInfoTableViewCellProtocol>)tableViewCellImp
+{
+    CHECK_NOT_ENTER_HERE;
 }
 
 - (BOOL) isValid

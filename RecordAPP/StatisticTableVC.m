@@ -30,6 +30,7 @@
     self = [super initWithCoder:aDecoder];
     if (self) {
         _levelHandler = [[StatisticTableLevelHandler alloc] init];
+        _fillPressed = true;
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTable:) name:TABLE_RELOAD_EVENT object:nil];
     }
     return self;
@@ -116,7 +117,7 @@
         CHECK_NOT_ENTER_HERE;
         return FALSE;
     }
-    item.title = [[NSString alloc] initWithFormat:@"Filler"];
+    item.title = [[NSString alloc] initWithFormat:@"Fill"];
     return TRUE;
 }
 
@@ -130,7 +131,7 @@
         CHECK_NOT_ENTER_HERE;
         return FALSE;
     }
-    item.title = [[NSString alloc] initWithFormat:@"NonFiller"];
+    item.title = [[NSString alloc] initWithFormat:@"NoFill"];
     return TRUE;
 }
 

@@ -285,7 +285,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Statistc" id="iQ9-tD-KPa">
-                        <barButtonItem key="leftBarButtonItem" tag="1" title="Fill" id="K8M-n3-3WK">
+                        <barButtonItem key="leftBarButtonItem" tag="1" title="NoFill" id="K8M-n3-3WK">
                             <connections>
                                 <action selector="filter:" destination="xbO-Qg-eb6" id="631-GR-7vl"/>
                             </connections>

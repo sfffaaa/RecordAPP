@@ -14,6 +14,7 @@
 @interface InvalidRecordInfo : NSObject <RecordInfoProtocol>
 @property (nonatomic, strong) NSString* name;
 @property (nonatomic, strong) NSDate* date;
+@property (nonatomic, strong) DatePeriod* datePeriod;
 @property (nonatomic) int score;
 @property (nonatomic) float length;
 @property (nonatomic, strong) id<RecordInfoTableViewCellProtocol> tableViewCellImp;

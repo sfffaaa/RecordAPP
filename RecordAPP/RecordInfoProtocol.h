@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "DatePeriod.h"
 
 #define RECORD_SCORE_MAX 5
 
@@ -19,11 +20,14 @@
 - (NSString*) name;
 - (void) setDate:(NSDate *)date;
 - (NSDate*) date;
+- (void) setDatePeriod:(DatePeriod*) datePeriod;
+- (DatePeriod*) datePeriod;
 - (void) setScore:(int)score;
 - (int) score;
 - (void) setLength:(float)length;
 - (float) length;
 - (id<RecordInfoTableViewCellProtocol>) tableViewCellImp;
+- (void) setTableViewCellImp: (id<RecordInfoTableViewCellProtocol>) tableViewCellImp;
 
 - (BOOL) isValid;
 - (BOOL) remove;

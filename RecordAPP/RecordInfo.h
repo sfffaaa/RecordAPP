@@ -17,5 +17,6 @@
 @property (nonatomic, strong) NSDate* date;
 @property (nonatomic) int score;
 @property (nonatomic) float length;
+@property (nonatomic, strong) DatePeriod* datePeriod;
 @property (nonatomic, strong) id<RecordInfoTableViewCellProtocol> tableViewCellImp;
 @end

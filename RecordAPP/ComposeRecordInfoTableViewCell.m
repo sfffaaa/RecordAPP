@@ -11,10 +11,11 @@
 #import "DebugUtil.h"
 #import "Util.h"
 
-#define kRecordTableViewDateTextTag 1
+#define kRecordTableViewStartDateTextTag 1
+#define kRecordTableViewEndDateTextTag 2
 #define kRecordTableViewDataCountTextTag 3
 
-#define COMPOSE_RECORD_INFO_HEIGHT 115
+#define COMPOSE_RECORD_INFO_HEIGHT 130
 
 @implementation ComposeRecordInfoTableViewCell
 
@@ -48,9 +49,13 @@
     if (nil == cell) {
         cell = [[[NSBundle mainBundle] loadNibNamed:@"StatisticComposeRecordInfo" owner:self options:nil] objectAtIndex:0];
     }
+    DatePeriod* datePeriod = [info datePeriod];
     
-    ((UILabel*)[cell viewWithTag:kRecordTableViewDateTextTag]).text = [[NSString alloc]initWithFormat:@"%@ %@", [Util displayWeekStringFromDate:[info date]], [Util displayStringFromDate:[info date]]];
-    ((UILabel*)[cell viewWithTag:kRecordTableViewDataCountTextTag]).text = [[NSString alloc]initWithFormat:@"wow %lu data", (unsigned long)[info getRecordInfoCount]];
+    ((UILabel*)[cell viewWithTag:kRecordTableViewStartDateTextTag]).text = [[NSString alloc]initWithFormat:@"%@ %@", [Util displayWeekStringFromDate:[datePeriod startDate]], [Util displayStringFromDate:[datePeriod startDate]]];
+    
+    ((UILabel*)[cell viewWithTag:kRecordTableViewEndDateTextTag]).text = [[NSString alloc]initWithFormat:@"%@ %@", [Util displayWeekStringFromDate:[datePeriod endDate]], [Util displayStringFromDate:[datePeriod endDate]]];
+
+    ((UILabel*)[cell viewWithTag:kRecordTableViewDataCountTextTag]).text = [[NSString alloc]initWithFormat:@"%lu data(s)", (unsigned long)[info getRecordInfoCount]];
 
     return cell;
 }

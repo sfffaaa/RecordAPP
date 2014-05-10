@@ -17,6 +17,7 @@
 @implementation ComposeRecordInfo
 @synthesize score = _score;
 @synthesize date = _date;
+@synthesize datePeriod = _datePeriod;
 @synthesize name = _name;
 @synthesize length = _length;
 @synthesize child = _child;
@@ -34,6 +35,11 @@
 - (BOOL) isValid
 {
     return TRUE;
+}
+
+- (void) setTableViewCellImp:(id<RecordInfoTableViewCellProtocol>)tableViewCellImp
+{
+    CHECK_NOT_ENTER_HERE;
 }
 
 #pragma mark (TODO) Remove all item;

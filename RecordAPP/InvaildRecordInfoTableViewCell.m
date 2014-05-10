@@ -11,8 +11,10 @@
 #import "DebugUtil.h"
 #import "Util.h"
 
-#define kRecordTableViewDateTextTag 1
-#define INVALID_RECORD_INFO_HEIGHT 115
+#define kRecordTableViewStartDateTextTag 1
+#define kRecordTableViewEndDateTextTag 2
+
+#define INVALID_RECORD_INFO_HEIGHT 130
 
 @implementation InvaildRecordInfoTableViewCell
 
@@ -41,9 +43,12 @@
     if (nil == cell) {
         cell = [[[NSBundle mainBundle] loadNibNamed:@"StatisticInvalidRecordInfo" owner:self options:nil] objectAtIndex:0];
     }
+    DatePeriod* datePeriod = [info datePeriod];
     
-    ((UILabel*)[cell viewWithTag:kRecordTableViewDateTextTag]).text = [[NSString alloc]initWithFormat:@"%@ %@", [Util displayWeekStringFromDate:[info date]], [Util displayStringFromDate:[info date]]];
+    ((UILabel*)[cell viewWithTag:kRecordTableViewStartDateTextTag]).text = [[NSString alloc]initWithFormat:@"%@ %@", [Util displayWeekStringFromDate:[datePeriod startDate]], [Util displayStringFromDate:[datePeriod startDate]]];
     
+    ((UILabel*)[cell viewWithTag:kRecordTableViewEndDateTextTag]).text = [[NSString alloc]initWithFormat:@"%@ %@", [Util displayWeekStringFromDate:[datePeriod endDate]], [Util displayStringFromDate:[datePeriod endDate]]];
+
     return cell;
 }
 

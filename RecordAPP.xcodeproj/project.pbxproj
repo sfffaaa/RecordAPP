@@ -40,6 +40,11 @@
 		24767BBB190ACB6A00A0E8D1 /* blue-clock-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 24767BB7190ACB6A00A0E8D1 /* blue-clock-icon.png */; };
 		24767BBC190ACB6A00A0E8D1 /* blue-user-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 24767BB8190ACB6A00A0E8D1 /* blue-user-icon.png */; };
 		24767BBD190ACB6A00A0E8D1 /* red-heart-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 24767BB9190ACB6A00A0E8D1 /* red-heart-icon.png */; };
+		24ABAE47191E7B5F0033E60F /* DatePeriod.m in Sources */ = {isa = PBXBuildFile; fileRef = 24ABAE46191E7B5F0033E60F /* DatePeriod.m */; };
+		24ABAE4B191E8AC40033E60F /* DatePeriodRecordInfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 24ABAE4A191E8AC40033E60F /* DatePeriodRecordInfoTableViewCell.m */; };
+		24ABAE4D191E8D460033E60F /* StatisticDateRecordInfo.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24ABAE4C191E8D460033E60F /* StatisticDateRecordInfo.xib */; };
+		24ABAE4F191E909C0033E60F /* green-calendar-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 24ABAE4E191E909C0033E60F /* green-calendar-icon.png */; };
+		24ABAE51191E98090033E60F /* cry.png in Resources */ = {isa = PBXBuildFile; fileRef = 24ABAE50191E98090033E60F /* cry.png */; };
 		24AD06B518A5C65F00599DCE /* dream_edit_over2.png in Resources */ = {isa = PBXBuildFile; fileRef = 24AD06B418A5C65F00599DCE /* dream_edit_over2.png */; };
 		24AD06B918A5C88500599DCE /* DreamVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 24AD06B818A5C88500599DCE /* DreamVC.m */; };
 		24AD06C318A5FDFB00599DCE /* StatisticTableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 24AD06C218A5FDFB00599DCE /* StatisticTableVC.m */; };
@@ -155,6 +160,13 @@
 		24767BB7190ACB6A00A0E8D1 /* blue-clock-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "blue-clock-icon.png"; path = "Picture/blue-clock-icon.png"; sourceTree = "<group>"; };
 		24767BB8190ACB6A00A0E8D1 /* blue-user-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "blue-user-icon.png"; path = "Picture/blue-user-icon.png"; sourceTree = "<group>"; };
 		24767BB9190ACB6A00A0E8D1 /* red-heart-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "red-heart-icon.png"; path = "Picture/red-heart-icon.png"; sourceTree = "<group>"; };
+		24ABAE45191E7B5F0033E60F /* DatePeriod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatePeriod.h; sourceTree = "<group>"; };
+		24ABAE46191E7B5F0033E60F /* DatePeriod.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatePeriod.m; sourceTree = "<group>"; };
+		24ABAE49191E8AC40033E60F /* DatePeriodRecordInfoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatePeriodRecordInfoTableViewCell.h; sourceTree = "<group>"; };
+		24ABAE4A191E8AC40033E60F /* DatePeriodRecordInfoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatePeriodRecordInfoTableViewCell.m; sourceTree = "<group>"; };
+		24ABAE4C191E8D460033E60F /* StatisticDateRecordInfo.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StatisticDateRecordInfo.xib; sourceTree = "<group>"; };
+		24ABAE4E191E909C0033E60F /* green-calendar-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "green-calendar-icon.png"; path = "Picture/green-calendar-icon.png"; sourceTree = "<group>"; };
+		24ABAE50191E98090033E60F /* cry.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = cry.png; path = Picture/cry.png; sourceTree = "<group>"; };
 		24AD06B418A5C65F00599DCE /* dream_edit_over2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dream_edit_over2.png; sourceTree = "<group>"; };
 		24AD06B718A5C88500599DCE /* DreamVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DreamVC.h; sourceTree = "<group>"; };
 		24AD06B818A5C88500599DCE /* DreamVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DreamVC.m; sourceTree = "<group>"; };
@@ -511,6 +523,7 @@
 		24161BC21894058900BBFC56 /* Data Structure */ = {
 			isa = PBXGroup;
 			children = (
+				24ABAE44191E7B3F0033E60F /* DatePeriod */,
 				24F16F4E18ABDC9D00D4CA78 /* RecordInfo */,
 			);
 			name = "Data Structure";
@@ -577,11 +590,31 @@
 				24B45A38190CE7170036854F /* statitic.png */,
 				24B45A34190C12620036854F /* hello.png */,
 				24767BB6190ACB6A00A0E8D1 /* blue-calendar-icon.png */,
+				24ABAE4E191E909C0033E60F /* green-calendar-icon.png */,
 				24767BB7190ACB6A00A0E8D1 /* blue-clock-icon.png */,
 				24767BB8190ACB6A00A0E8D1 /* blue-user-icon.png */,
 				24767BB9190ACB6A00A0E8D1 /* red-heart-icon.png */,
 			);
 			name = Picture;
+			sourceTree = "<group>";
+		};
+		24ABAE44191E7B3F0033E60F /* DatePeriod */ = {
+			isa = PBXGroup;
+			children = (
+				24ABAE45191E7B5F0033E60F /* DatePeriod.h */,
+				24ABAE46191E7B5F0033E60F /* DatePeriod.m */,
+			);
+			name = DatePeriod;
+			sourceTree = "<group>";
+		};
+		24ABAE48191E8AA40033E60F /* DatePeriodRecordInfoTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				24ABAE49191E8AC40033E60F /* DatePeriodRecordInfoTableViewCell.h */,
+				24ABAE4A191E8AC40033E60F /* DatePeriodRecordInfoTableViewCell.m */,
+				24ABAE4C191E8D460033E60F /* StatisticDateRecordInfo.xib */,
+			);
+			name = DatePeriodRecordInfoTableViewCell;
 			sourceTree = "<group>";
 		};
 		24AD06B618A5C7CD00599DCE /* DreamVC */ = {
@@ -641,6 +674,7 @@
 			isa = PBXGroup;
 			children = (
 				24B45A4C1915425D0036854F /* RecordInfoTableViewCellStrategyFactory */,
+				24ABAE48191E8AA40033E60F /* DatePeriodRecordInfoTableViewCell */,
 				24B45A4A1915417F0036854F /* ComposeRecordInfoTableViewCell */,
 				24B45A49191541640036854F /* RecordInfoTableViewCell */,
 				24B45A481915414F0036854F /* InvalidRecordInfoTableViewCell */,
@@ -690,6 +724,7 @@
 			isa = PBXGroup;
 			children = (
 				24B45A5B1918053C0036854F /* saly_spin.png */,
+				24ABAE50191E98090033E60F /* cry.png */,
 			);
 			name = Sally;
 			sourceTree = "<group>";
@@ -1028,6 +1063,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				24ABAE4F191E909C0033E60F /* green-calendar-icon.png in Resources */,
 				24B45A3B190CE7170036854F /* statitic.png in Resources */,
 				24767BBA190ACB6A00A0E8D1 /* blue-calendar-icon.png in Resources */,
 				24B45A5C1918053C0036854F /* saly_spin.png in Resources */,
@@ -1039,9 +1075,11 @@
 				24767BBD190ACB6A00A0E8D1 /* red-heart-icon.png in Resources */,
 				24093082188D1C5C00B01D94 /* Images.xcassets in Resources */,
 				24093074188D1C5C00B01D94 /* InfoPlist.strings in Resources */,
+				24ABAE4D191E8D460033E60F /* StatisticDateRecordInfo.xib in Resources */,
 				24B45A61191A82610036854F /* StatisticComposeRecordInfo.xib in Resources */,
 				24767BBC190ACB6A00A0E8D1 /* blue-user-icon.png in Resources */,
 				24767BBB190ACB6A00A0E8D1 /* blue-clock-icon.png in Resources */,
+				24ABAE51191E98090033E60F /* cry.png in Resources */,
 				2409307D188D1C5C00B01D94 /* Main.storyboard in Resources */,
 				24B45A35190C12620036854F /* hello.png in Resources */,
 				24D17F7718A3D425005CBA4E /* RecordTime.storyboard in Resources */,
@@ -1080,6 +1118,7 @@
 				24F16F6918B8B71E00D4CA78 /* ListeningAction.m in Sources */,
 				24F16F4A18ABC86000D4CA78 /* SetupVC.m in Sources */,
 				24F37D3818F01812006286D6 /* WakeupPeriodSetupElement.m in Sources */,
+				24ABAE47191E7B5F0033E60F /* DatePeriod.m in Sources */,
 				24AD06B918A5C88500599DCE /* DreamVC.m in Sources */,
 				24B45A411913E4D10036854F /* InvalidRecordInfo.m in Sources */,
 				24161BA51893B11A00BBFC56 /* RecordSettingHandler.m in Sources */,
@@ -1107,6 +1146,7 @@
 				24161B921893ACCA00BBFC56 /* WakeupHandler.m in Sources */,
 				24F37D3118F0022E006286D6 /* CreateSetupElementFactory.m in Sources */,
 				24D17F7B18A3EA11005CBA4E /* InitialVC.m in Sources */,
+				24ABAE4B191E8AC40033E60F /* DatePeriodRecordInfoTableViewCell.m in Sources */,
 				24B45A65191BE91B0036854F /* ComposeStatisticTableVCViewController.m in Sources */,
 				24C7036D189A0E3F008DDBA6 /* BaseVC.m in Sources */,
 				24161BB21893F80100BBFC56 /* RecordFileHandler.m in Sources */,

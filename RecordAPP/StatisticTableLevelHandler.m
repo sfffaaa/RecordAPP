@@ -17,6 +17,7 @@
 #import "WakeupPeriodSetupElement.h"
 #import "InvalidRecordInfo.h"
 #import "ComposeRecordInfo.h"
+#import "DatePeriodRecordInfoTableViewCell.h"
 
 @implementation RecordInfoWithVanishEntryBehavior
 - (NSDate*) getInitialDate: (NSArray*) array
@@ -78,15 +79,20 @@
                IS_DATE_EQUAL_OR_LATER([(id<RecordInfoProtocol>)[array objectAtIndex:arrIdx] date], date)) {
             arrIdx++;
         }
+        DatePeriod* nowDatePeriod = [[DatePeriod alloc] init];
+        [nowDatePeriod setStartDate:date];
+        [nowDatePeriod setEndDate:[date dateByAddingTimeInterval:wakeupPeriod]];
         id<RecordInfoProtocol> element = nil;
         if (tmpIdx == arrIdx) {
             InvalidRecordInfo* invalidRecordInfo = [[InvalidRecordInfo alloc] init];
             [invalidRecordInfo setDate:date];
+            [invalidRecordInfo setDatePeriod:nowDatePeriod];
             element = invalidRecordInfo;
         } else if (1 != arrIdx - tmpIdx) {
             ComposeRecordInfo* composeRecordInfo =
             [[ComposeRecordInfo alloc] init];
             [composeRecordInfo setDate:date];
+            [composeRecordInfo setDatePeriod:nowDatePeriod];
             for (; tmpIdx < arrIdx; tmpIdx++) {
                 if (FALSE == [composeRecordInfo pushRecordInfo:(id<RecordInfoProtocol>)[array objectAtIndex:tmpIdx]]) {
                     CHECK_NOT_ENTER_HERE;
@@ -94,7 +100,16 @@
             }
             element = composeRecordInfo;
         } else {
-            element = [array objectAtIndex:tmpIdx];
+            RecordInfo* recordInfo =
+            [[RecordInfo alloc] init];
+            id<RecordInfoProtocol> info = [array objectAtIndex:tmpIdx];
+            [recordInfo setName:[info name]];
+            [recordInfo setDate:[info date]];
+            [recordInfo setScore:[info score]];
+            [recordInfo setDatePeriod:nowDatePeriod];
+            [recordInfo setTableViewCellImp:[[DatePeriodRecordInfoTableViewCell alloc] init]];
+            
+            element = recordInfo;
         }
         [processArray addObject:element];
         
@@ -141,7 +156,7 @@
 {
     self = [super init];
     if (nil != self) {
-        [self setFillBehavior:[[RecordInfoWithoutVanishEntryBehavior alloc] init]];
+        [self setFillBehavior:[[RecordInfoWithVanishEntryBehavior alloc] init]];
 
     }
     return self;

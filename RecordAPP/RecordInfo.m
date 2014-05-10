@@ -19,6 +19,7 @@
 @implementation RecordInfo
 @synthesize score = _score;
 @synthesize date = _date;
+@synthesize datePeriod = _datePeriod;
 @synthesize name = _name;
 @synthesize length = _length;
 @synthesize tableViewCellImp = _tableViewCellImp;
