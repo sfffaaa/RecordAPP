@@ -16,5 +16,6 @@
 - (NSInteger) getCount;
 - (NSArray*) getInfoArray;
 - (BOOL) setInfo:(id<RecordInfoProtocol>) recordInfo;
+- (BOOL) remove: (NSInteger) index;
 
 @end

@@ -25,7 +25,7 @@
     self = [super initWithCoder:aDecoder];
     if (self) {
         _levelHandler = [[ComposeStatisticTableLevelHandler alloc] init];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTable:) name:TABLE_RELOAD_EVENT object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTable:) name:TABLE_RELOAD_EVENT object:self];
     }
     return self;
 }
@@ -53,7 +53,7 @@
         CHECK_NOT_ENTER_HERE;
         return;
     }
-    [_tableView reloadData];
+    [_tableView performSelector:@selector(reloadData) withObject:nil afterDelay:0.01];
 }
 
 #pragma mark - UITableViewDelegate
@@ -91,6 +91,10 @@
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         id<RecordInfoProtocol> info = [[[self levelHandler] getInfoArray] objectAtIndex:[indexPath row]];
         [[info tableViewCellImp] tableView:tableView commitEditingStyle:editingStyle forRowAtRecordInfo:info];
+        if (FALSE == [[self levelHandler] remove:[indexPath row]]) {
+            CHECK_NOT_ENTER_HERE;
+            return;
+        }
         [[NSNotificationCenter defaultCenter] postNotificationName: TABLE_RELOAD_EVENT object:self];
     }
 }

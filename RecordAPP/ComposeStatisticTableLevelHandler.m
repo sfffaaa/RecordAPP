@@ -77,4 +77,14 @@
     }
     return _recordInfos;
 }
+
+- (BOOL) remove: (NSInteger) index
+{
+    if (0 > index || [_recordInfos count] <= index) {
+        CHECK_NOT_ENTER_HERE;
+        return FALSE;
+    }
+    [_recordInfos removeObjectAtIndex:index];
+    return TRUE;
+}
 @end

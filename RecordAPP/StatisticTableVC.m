@@ -70,7 +70,7 @@
         CHECK_NOT_ENTER_HERE;
         return;
     }
-    [_tableView reloadData];
+    [_tableView performSelector:@selector(reloadData) withObject:nil afterDelay:0.01];
 }
 
 
