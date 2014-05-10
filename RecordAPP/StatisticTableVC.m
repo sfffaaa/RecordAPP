@@ -18,13 +18,6 @@
 
 #pragma mark (FEATURE) Need has filter for no record time
 
-#define VALID_RECORD_INFO_HEIGHT 115
-#define INVALID_RECORD_INFO_HEIGHT 20
-
-#define kRecordTableViewDateTextTag 1
-#define kRecordTableViewLengthTextTag 3
-#define kRecordTableViewPictureTagOffset 100
-
 @interface StatisticTableVC ()
 @end
 

@@ -62,7 +62,7 @@
 
     //先算最後一個的時間
     NSUInteger arrIdx = 0;
-    NSDate* date = [self getMaxDate];
+    NSDate* date = nil;
     
     //算第一個時間
     NSDate* initialDate = nil;
