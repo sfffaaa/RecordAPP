@@ -42,6 +42,11 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [_tableView setEditing:NO];
+}
+
 - (void)setInfo:(id<RecordInfoProtocol>)info
 {
     [[self levelHandler] setInfo:info];
@@ -53,7 +58,7 @@
         CHECK_NOT_ENTER_HERE;
         return;
     }
-    [_tableView performSelector:@selector(reloadData) withObject:nil afterDelay:0.01];
+    [_tableView reloadData];
 }
 
 #pragma mark - UITableViewDelegate
@@ -95,6 +100,7 @@
             CHECK_NOT_ENTER_HERE;
             return;
         }
+
         [[NSNotificationCenter defaultCenter] postNotificationName: TABLE_RELOAD_EVENT object:self];
     }
 }

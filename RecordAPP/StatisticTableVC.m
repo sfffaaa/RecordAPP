@@ -50,6 +50,7 @@
 - (void) viewWillDisappear: (BOOL)animated
 {
     [super viewWillDisappear:animated];
+    [_tableView setEditing:NO];
 }
 
 - (void)didReceiveMemoryWarning
@@ -64,7 +65,7 @@
         CHECK_NOT_ENTER_HERE;
         return;
     }
-    [_tableView performSelector:@selector(reloadData) withObject:nil afterDelay:0.01];
+    [_tableView reloadData];
 }
 
 
