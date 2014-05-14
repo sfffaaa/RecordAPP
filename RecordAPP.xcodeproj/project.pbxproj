@@ -584,6 +584,7 @@
 		24767BAD190AC99D00A0E8D1 /* Picture */ = {
 			isa = PBXGroup;
 			children = (
+				24ABAE52191FC2A60033E60F /* icon */,
 				24B45A5A191805200036854F /* Sally */,
 				24B45A36190CE7170036854F /* dream.png */,
 				24B45A37190CE7170036854F /* setting.png */,
@@ -615,6 +616,13 @@
 				24ABAE4C191E8D460033E60F /* StatisticDateRecordInfo.xib */,
 			);
 			name = DatePeriodRecordInfoTableViewCell;
+			sourceTree = "<group>";
+		};
+		24ABAE52191FC2A60033E60F /* icon */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = icon;
 			sourceTree = "<group>";
 		};
 		24AD06B618A5C7CD00599DCE /* DreamVC */ = {

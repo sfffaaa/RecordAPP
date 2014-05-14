@@ -62,6 +62,8 @@
 - (BOOL) start
 {
     // Start recording
+    [_player setCurrentTime:0];
+
     [_player play];
     
     return TRUE;
