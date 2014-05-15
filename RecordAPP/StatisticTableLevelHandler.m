@@ -106,6 +106,7 @@
             [recordInfo setName:[info name]];
             [recordInfo setDate:[info date]];
             [recordInfo setScore:[info score]];
+            [recordInfo setLength:[info length]];
             [recordInfo setDatePeriod:nowDatePeriod];
             [recordInfo setTableViewCellImp:[[DatePeriodRecordInfoTableViewCell alloc] init]];
             
