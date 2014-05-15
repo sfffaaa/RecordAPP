@@ -131,18 +131,20 @@
         CHECK_NOT_ENTER_HERE;
         goto END;
     }
-    //Timer start
-    if (FALSE == [_timerHandler timeToStart:[specificAction getTotalTime]]) {
-        DLog(@"Cannot start the timer");
-        CHECK_NOT_ENTER_HERE;
-        goto END;
-    }
     
     //action start;
     if (FALSE == [specificAction start]) {
         CHECK_NOT_ENTER_HERE;
         goto END;
     }
+
+    //Timer start
+    if (FALSE == [_timerHandler timeToStart:[specificAction getTotalTime]]) {
+        DLog(@"Cannot start the timer");
+        CHECK_NOT_ENTER_HERE;
+        goto END;
+    }
+
     actionStatus = [specificAction getActionType];
     ret = TRUE;
     
