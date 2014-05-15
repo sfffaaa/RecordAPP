@@ -14,22 +14,32 @@
 #import "DebugUtil.h"
 
 #define kTimeLabelTag 1
+#define kListenLabelTag 2
+
+#define kListenStartButtonTag 3
+#define kListenStopButtonTag 4
+
+#define NO_LISTEN_LABEL @"Listen"
+#define LISTENING_LABEL @"Listening"
 
 #pragma mark (TODO) Change button color when touch
 #pragma mark (TODO) Duplicate code with RecordActionVC
 
 @interface StatisticDetailVC ()
+@property (nonatomic) BOOL listening;
 @property (nonatomic, weak) StatisticDetailLevelHandler* levelHandler;
 @end
 
 @implementation StatisticDetailVC
 @synthesize levelHandler = _levelHandler;
+@synthesize listening = _listening;
 
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
     self = [super initWithCoder:aDecoder];
     if (self) {
         _levelHandler = [StatisticDetailLevelHandler getInst];
+        _listening = FALSE;
     }
     return self;
 }
@@ -46,7 +56,28 @@
         CHECK_NOT_ENTER_HERE;
     }
     
-    ((UILabel*)[self.view viewWithTag:kTimeLabelTag]).text = [[NSString alloc] initWithFormat:@"%.0f", [[self levelHandler] getActionTime]];
+    [self setListenRelatedView];
+}
+
+- (void) setListenRelatedView
+{
+    if (FALSE == _listening) {
+        ((UILabel*)[self.view viewWithTag:kListenLabelTag]).text = [[NSString alloc] initWithFormat:@"%@", NO_LISTEN_LABEL];
+        
+        UIButton* button = ((UIButton*)[self.view viewWithTag:kListenStartButtonTag]);
+        [button setTitleColor:[Util userClickableButtonColor] forState:UIControlStateNormal];
+        button = ((UIButton*)[self.view viewWithTag:kListenStopButtonTag]);
+        [button setTitleColor:[Util userDisableButtonColor] forState:UIControlStateNormal];
+        
+        ((UILabel*)[self.view viewWithTag:kTimeLabelTag]).text = [[NSString alloc] initWithFormat:SECOND_FORMAT, [[self levelHandler] getActionTime]];
+    } else {
+        ((UILabel*)[self.view viewWithTag:kListenLabelTag]).text = [[NSString alloc] initWithFormat:@"%@", LISTENING_LABEL];
+        
+        UIButton* button = ((UIButton*)[self.view viewWithTag:kListenStartButtonTag]);
+        [button setTitleColor:[Util userDisableButtonColor] forState:UIControlStateNormal];
+        button = ((UIButton*)[self.view viewWithTag:kListenStopButtonTag]);
+        [button setTitleColor:[Util userClickableButtonColor] forState:UIControlStateNormal];
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -61,6 +92,8 @@
 }
 
 - (IBAction)listenStart:(id)sender {
+    _listening = TRUE;
+    [self setListenRelatedView];
     if (FALSE == [[self levelHandler] start]) {
         DLog(@"cannot start listen");
     }
@@ -69,6 +102,8 @@
     if (false == [[self levelHandler] manualStop]) {
         DLog(@"cannot stop listen");
     }
+    _listening = FALSE;
+    [self setListenRelatedView];
 }
 
 #pragma mark - event handler
@@ -81,8 +116,7 @@
         CHECK_NOT_ENTER_HERE;
     }
     //And show it.
-    ((UILabel*)[self.view viewWithTag:kTimeLabelTag]).text = [[NSString alloc] initWithFormat:@"%0.f", value];
-    
+    ((UILabel*)[self.view viewWithTag:kTimeLabelTag]).text = [[NSString alloc] initWithFormat:SECOND_FORMAT, value];
 }
 
 - (void)timerStop:(NSNotification*) notification
@@ -95,7 +129,9 @@
     if (FALSE == [_levelHandler stop]) {
         CHECK_NOT_ENTER_HERE;
     }
-    ((UILabel*)[self.view viewWithTag:kTimeLabelTag]).text = [[NSString alloc] initWithFormat:@"%0.f", [[self levelHandler] getActionTime]];
+    _listening = FALSE;
+    [self setListenRelatedView];
+
 }
 
 @end

@@ -35,7 +35,7 @@
     return LISTEN_ACTION;
 }
 
-- (int) getTotalTime
+- (float) getTotalTime
 {
     if (nil == _urlFilePath) {
         CHECK_NOT_ENTER_HERE;

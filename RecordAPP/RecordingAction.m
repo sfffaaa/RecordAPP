@@ -33,7 +33,7 @@
 }
 
 #pragma mark (TODO) Need to check the return value with integer.
-- (int) getTotalTime
+- (float) getTotalTime
 {
     RecordPeriodSetupElement* recordSetup = [[RecordPeriodSetupElement alloc] init];
     return [recordSetup getRecordPeriod];

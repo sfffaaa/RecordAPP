@@ -22,6 +22,7 @@
 #define IS_NOT_CLASS_NAME(a, b) \
         (FALSE == [(a) isEqualToString: NSStringFromClass((b))])
 
+#define SECOND_FORMAT @"%.1f sec"
 
 @interface Util : NSObject
 + (NSDate*) dateFromString: (NSString*) dateString;

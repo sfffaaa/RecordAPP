@@ -72,7 +72,7 @@
     if (FALSE == [self loadScorePicture:cell info:info]) {
         CHECK_NOT_ENTER_HERE;
     }
-    ((UILabel*)[cell viewWithTag:kRecordTableViewLengthTextTag]).text = [[NSString alloc]initWithFormat:@"%.1f sec", [info length]];
+    ((UILabel*)[cell viewWithTag:kRecordTableViewLengthTextTag]).text = [[NSString alloc]initWithFormat:SECOND_FORMAT, [info length]];
     return cell;
 }
 

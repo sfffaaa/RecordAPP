@@ -44,7 +44,7 @@
     if (FALSE == [_levelHandler prepareStart]) {
         CHECK_NOT_ENTER_HERE;
     };
-    ((UILabel*)[self.view viewWithTag:kTimeLabelTag]).text = [[NSString alloc] initWithFormat:@"%i s", [_levelHandler getPerpareTime]];
+    ((UILabel*)[self.view viewWithTag:kTimeLabelTag]).text = [[NSString alloc] initWithFormat:SECOND_FORMAT, [_levelHandler getPerpareTime]];
     ((UILabel*)[self.view viewWithTag:kActionLabelTag]).text = [[NSString alloc] initWithFormat:@"%@", [_levelHandler getPrepareName]];
     self.title = [[NSString alloc] initWithFormat:@"%@", [Util displayStringFromDate:[_levelHandler date]]];
 }
@@ -70,7 +70,7 @@
         CHECK_NOT_ENTER_HERE;
     }
     //And show it.
-    ((UILabel*)[self.view viewWithTag:kTimeLabelTag]).text = [[NSString alloc] initWithFormat:@"%.0f s", value];
+    ((UILabel*)[self.view viewWithTag:kTimeLabelTag]).text = [[NSString alloc] initWithFormat:SECOND_FORMAT, value];
 }
 
 - (void)timerStop:(NSNotification*) notification
@@ -112,7 +112,7 @@
     if (FALSE == [_levelHandler stop]) {
         CHECK_NOT_ENTER_HERE;
     }
-    ((UILabel*)[self.view viewWithTag:kTimeLabelTag]).text = [[NSString alloc] initWithFormat:@"%i s", [_levelHandler getPerpareTime]];
+    ((UILabel*)[self.view viewWithTag:kTimeLabelTag]).text = [[NSString alloc] initWithFormat:@"%0.f s", [_levelHandler getPerpareTime]];
     ((UILabel*)[self.view viewWithTag:kActionLabelTag]).text = [[NSString alloc] initWithFormat:@"%@", [_levelHandler getPrepareName]];
 }
 

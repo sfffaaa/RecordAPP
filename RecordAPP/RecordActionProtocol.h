@@ -20,7 +20,7 @@ typedef enum _ACTION_PROTOCOL_
 
 - (RECORD_ACTION_TYPE) getActionType;
 
-- (int) getTotalTime;
+- (float) getTotalTime;
 - (NSString*) getActionName;
 
 - (BOOL) setFilePath: (NSURL*) fileURL;

@@ -19,7 +19,7 @@
     return TRUE;
 }
 
-- (int) getTotalTime
+- (float) getTotalTime
 {
     return PREPARE_TIME;
 }

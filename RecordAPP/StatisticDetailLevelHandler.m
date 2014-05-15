@@ -100,7 +100,7 @@
     return TRUE;
 }
 
-- (int) getPerpareTime
+- (float) getPerpareTime
 {
     CHECK_NOT_ENTER_HERE;
     return FALSE;

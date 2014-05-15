@@ -10,7 +10,7 @@
 
 @protocol ActionLevelToVCProtocol <NSObject>
 
-- (int) getPerpareTime;
+- (float) getPerpareTime;
 #pragma mark (TODO) Change the name (not precise)
 - (float) getActionTime;
 

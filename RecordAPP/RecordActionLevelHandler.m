@@ -83,7 +83,7 @@
     return TRUE;
 }
 
-- (int) getPerpareTime
+- (float) getPerpareTime
 {
     if (nil == _prepareAction) {
         CHECK_NOT_ENTER_HERE
